@@ -39,6 +39,7 @@
             this.btnInsertar.TabIndex = 0;
             this.btnInsertar.Text = "INSERTAR";
             this.btnInsertar.UseVisualStyleBackColor = true;
+            this.btnInsertar.Click += new System.EventHandler(this.btnInsertar_Click);
             // 
             // FormDAFH
             // 

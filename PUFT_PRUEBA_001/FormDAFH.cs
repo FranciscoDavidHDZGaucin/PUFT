@@ -32,5 +32,19 @@ namespace PUFT_PRUEBA_001
                 MessageBox.Show("Hubo un error de conexion");
             }
         }
+
+        private void btnInsertar_Click(object sender, EventArgs e)
+        {
+            bool exito = cmds.insertarDatos();
+
+            if (exito)
+            {
+                MessageBox.Show("Se ejecutó el sp");
+            }
+            else
+            {
+                MessageBox.Show("Hubo un error de conexion");
+            }
+        }
     }
 }
