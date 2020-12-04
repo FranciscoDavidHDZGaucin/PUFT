@@ -76,9 +76,9 @@ namespace PUFT_PRUEBA_001{
                 {
                     foreach (DataRow row in tb_productos.Rows)
                     {
-                        var  prueba =   row["ORDENDE_VENTA"].ToString(); 
+                        var  prueba =   row["ORDENDE_VENTA"].ToString();
                         //// METER KLA CLASE DE INSERTSIO DE   PRODUCTOS  
-
+                     
                     }
 
 
