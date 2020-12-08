@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 using System.Configuration;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace PUFT_PRUEBA_001
 {
-    class cmdsForm { 
+    class cmdsForm
+    {
 
-    private string connection = string.Empty;
-    MySqlConnection conexion = new MySqlConnection(ConfigurationManager.ConnectionStrings["Server80"].ConnectionString);
+        private string connection = string.Empty;
+        MySqlConnection conexion = new MySqlConnection(ConfigurationManager.ConnectionStrings["Server80"].ConnectionString);
         private MySqlCommand cmd;
         private MySqlCommandBuilder cmbuilder;
         private MySqlDataAdapter da;
@@ -27,7 +29,7 @@ namespace PUFT_PRUEBA_001
                 conexion.Open();
                 conectado = true;
             }
-            catch(MySqlException e)
+            catch (MySqlException e)
             {
                 conectado = false;
             }
@@ -38,7 +40,8 @@ namespace PUFT_PRUEBA_001
             return conectado;
         }
 
-        public bool insertarDatos() {
+        public bool insertarDatos()
+        {
             conexion.Open();
 
             bool exito = false;
@@ -110,13 +113,13 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("fecha_autorizanalisajr", "2020-12-02");
                 command.Parameters.AddWithValue("cancela_coment_soporte", "fdsgsgsd");
                 command.Parameters.AddWithValue("abasto_inicial", "fdsgsgsd");
-                
+
                 if (command.ExecuteNonQuery() == 1)
                 {
                     exito = true;
                 }
             }
-            catch (MySqlException e)
+            catch (SqlException e)
             {
                 exito = false;
             }
@@ -124,10 +127,10 @@ namespace PUFT_PRUEBA_001
             {
                 conexion.Close();
             }
-           
-            
+
+
             return exito;
         }
 
-}
+    }
 }

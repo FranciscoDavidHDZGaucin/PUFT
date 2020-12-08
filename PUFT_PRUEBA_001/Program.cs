@@ -16,7 +16,7 @@ namespace PUFT_PRUEBA_001
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormDAFH());
+            Application.Run(new FormFHG());
         }
     }
 }
