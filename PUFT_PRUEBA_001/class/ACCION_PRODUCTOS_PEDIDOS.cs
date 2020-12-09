@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -13,6 +14,7 @@ namespace PUFT_PRUEBA_001{
     {
         public CTRL_OBJET _CONTROL_ORDEVENTA;
         private DataTable tb_productos;
+        
 
         public ACCION_PRODUCTOS_PEDIDOS(CTRL_OBJET   _CTRLORDVENTA     )
         {
@@ -51,6 +53,7 @@ namespace PUFT_PRUEBA_001{
                     }
                     catch (Exception e)
                     {
+                        var RESULTADO = e.ToString();
                         tb_productos = new DataTable();
                     }
 
@@ -89,6 +92,8 @@ namespace PUFT_PRUEBA_001{
             }
 
         }
+
+        
 
 
     }

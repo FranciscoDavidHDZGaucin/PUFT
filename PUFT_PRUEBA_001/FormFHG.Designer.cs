@@ -28,18 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
+            this.TIMER_CICLO_PUFT = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(376, 200);
+            this.button1.Location = new System.Drawing.Point(37, 25);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(70, 64);
+            this.button1.Size = new System.Drawing.Size(112, 57);
             this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
+            this.button1.Text = "Iniciar  Cada 2 Minutos";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // TIMER_CICLO_PUFT
+            // 
+            this.TIMER_CICLO_PUFT.Interval = 180000;
+            this.TIMER_CICLO_PUFT.Tick += new System.EventHandler(this.TIMER_CICLO_PUFT_Tick);
             // 
             // FormFHG
             // 
@@ -56,5 +63,6 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer TIMER_CICLO_PUFT;
     }
 }
