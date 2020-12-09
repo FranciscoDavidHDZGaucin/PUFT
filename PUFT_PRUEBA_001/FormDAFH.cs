@@ -35,7 +35,7 @@ namespace PUFT_PRUEBA_001
 
         private void btnInsertar_Click(object sender, EventArgs e)
         {
-            bool exito = cmds.insertarDatos();
+            bool exito = cmds.insertarDatosEncabeza();
 
             if (exito)
             {
