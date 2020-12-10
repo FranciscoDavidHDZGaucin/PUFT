@@ -117,15 +117,13 @@ namespace PUFT_PRUEBA_001
                                 if (ctrl_ESTA_PERMITIDO_INSERTAR (existe_ORDENVNETA, exis_agnete, NUEVA_REMISION))
                                 {
 
+                                        
+                                        ACCION_PRODUCTOS_PEDIDOS INSERT_PROD = new ACCION_PRODUCTOS_PEDIDOS(NUEVA_REMISION);
+                                        INSERT_PROD.RECORRER_PRODUCTOS();
 
-
-                                            ///***** REVISAR QUE SE CARGO EL PEDIDO
-                                            if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
-                                            {
-                                                
-
-
-                                            }
+                                        ///***** REVISAR QUE SE CARGO EL PEDIDO
+                                        if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
+                                          { }
 
                                 }
 
