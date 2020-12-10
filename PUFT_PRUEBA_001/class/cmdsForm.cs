@@ -38,31 +38,16 @@ namespace PUFT_PRUEBA_001
             return conectado;
         }
 
-
-        public bool PUFT_InsertDatosDetalle(DataRow RENGLON,CTRL_OBJET CTRLVENTA)
-        {
-           var REMISION  =  Convert.ToInt32(CTRLVENTA.REMISION);
-           var AGENTE  = Convert.ToInt32(RENGLON["n_agente"]);
-
-
-
-            return true;
-        }
-
-
-
-
-        public bool insertarDatosDetalle(Int64 n_remision, int n_agente,string nom_age,DateTime fecha_alta, string cve_cte, string nom_cte, string cve_prod, string nom_prod,double cant_prod, double precio_prod, double dcto_prod, double ieps, double iva, double total_prod, int moneda_prod, double cant_falta
-, int autorizado, double total_prodmxp, double tipo_cambio, double precio_condcto, double precio_politica, string comentario, string estatus, string bonificacion, DateTime fecha_autoriza, string estatus2, string n_factura, string comentario2, int terminada, string motivo, DateTime f_cancela
-, DateTime fecha_promesa, int n_promotor, string nom_promotor, int corte, DateTime fechap_programa, DateTime fechap_real, string sinfecha, int notifica_p, DateTime fecha_autorizadc, string litkg_unidad, double fact_ds, double precio_representante, int au_gerente, int au_dc, double precio_pagar, double precio_factura
-, double total_factura, int bandera_especial, int plazo_especial, double boni_precioporunidad, double boni_cantidadporunidad,string boni_productoid, double boni_precioventa, double boni_cantidadcalculo, double boni_estado, double boni_costomp, double boni_bonificadomp
-, string entrega, DateTime fecha_autorizajefecomer, DateTime fecha_autorizanalisajr, string cancela_coment_soporte, string abasto_inicial) {
-           
+        public bool insertarDatosDetalle(int n_remision, int n_agente,string nom_age,DateTime fecha_alta, string cve_cte, string nom_cte, string cve_prod, string nom_prod,double cant_prod, double precio_prod, double dcto_prod, double ieps, double iva, double total_prod, int moneda_prod, double cant_falta
+            , int autorizado, double total_prodmxp, double tipo_cambio, double precio_condcto, double precio_politica, string comentario, string estatus, string bonificacion, DateTime fecha_autoriza, string estatus2, string n_factura, string comentario2, int terminada, string motivo, DateTime f_cancela
+            , DateTime fecha_promesa, int n_promotor, string nom_promotor, int corte, DateTime fechap_programa, DateTime fechap_real, string sinfecha, int notifica_p, DateTime fecha_autorizadc, string litkg_unidad, double fact_ds, double precio_representante, int au_gerente, int au_dc, double precio_pagar, double precio_factura
+            , double total_factura, int bandera_especial, int plazo_especial, double boni_precioporunidad, double boni_cantidadporunidad,string boni_productoid, double boni_precioventa, double boni_cantidadcalculo, double boni_estado, double boni_costomp, double boni_bonificadomp
+            , string entrega, DateTime fecha_autorizajefecomer, DateTime fecha_autorizanalisajr, string cancela_coment_soporte, string abasto_inicial) {
+            conexion.Open();
 
             bool exito = false;
             try
             {
-                conexion.Open();
                 MySqlCommand command = new MySqlCommand("SP_INSERT_DT_PEDIDOS", conexion);
                 command.Connection = conexion;
                 command.CommandType = CommandType.StoredProcedure;
@@ -129,7 +114,7 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("fecha_autorizanalisajr", fecha_autorizanalisajr);
                 command.Parameters.AddWithValue("cancela_coment_soporte", cancela_coment_soporte);
                 command.Parameters.AddWithValue("abasto_inicial", abasto_inicial);
-
+                
                 if (command.ExecuteNonQuery() == 1)
                 {
                     exito = true;
@@ -149,12 +134,12 @@ namespace PUFT_PRUEBA_001
         }
 
         public bool insertarDatosEncabeza(int n_remision , DateTime fecha_alta , string cve_cte ,string nom_cte,string RFC  ,string Ciudad , string Domicilio,
- string CP  , string estatus  , int n_agente ,string nom_age , string observacion, int moneda, int plazo, int tipo_venta, float total,string medio_pago ,int cuenta,
- string destino ,int tipo_agente, float total_p , string documento,string cultivo ,int vip_estnotifi,string vip_cliente ,int vbo_gestor,string comentario_gestor ,int vbo_jefecyc,
- string comentario_jefecyc,int vbo_dircom,string comentario_dircom,int vbo_dirgral,string comentario_dirgral , DateTime timeres_gestor, DateTime timeres_jefecyc, DateTime timeres_dircom , DateTime timeres_dirgral,
-   float tipo_cambio , int vbo_gerente ,string comentario_gerente , DateTime timeres_gerente , DateTime fechacomp_gerente, float montocomp_gerente , DateTime fechacomp_real, float montocomp_real,
- DateTime altahora_pedido , int localidad,float fact_ds ,int encbandera_especial,int encplazo_especial,int id_entregas,int indica_entrega ,string bodega_entrega , DateTime fech_3Areturn,
-      string opCFDI ,string ORD ,string MTDPG  , int idEntregaSap,int dcto_pp,string CREDITO ,int mes_factura,string clas_credito_mes )
+             string CP  , string estatus  , int n_agente ,string nom_age , string observacion, int moneda, int plazo, int tipo_venta, float total,string medio_pago ,int cuenta,
+             string destino ,int tipo_agente, float total_p , string documento,string cultivo ,int vip_estnotifi,string vip_cliente ,int vbo_gestor,string comentario_gestor ,int vbo_jefecyc,
+             string comentario_jefecyc,int vbo_dircom,string comentario_dircom,int vbo_dirgral,string comentario_dirgral , DateTime timeres_gestor, DateTime timeres_jefecyc, DateTime timeres_dircom , DateTime timeres_dirgral,
+               float tipo_cambio , int vbo_gerente ,string comentario_gerente , DateTime timeres_gerente , DateTime fechacomp_gerente, float montocomp_gerente , DateTime fechacomp_real, float montocomp_real,
+             DateTime altahora_pedido , int localidad,float fact_ds ,int encbandera_especial,int encplazo_especial,int id_entregas,int indica_entrega ,string bodega_entrega , DateTime fech_3Areturn,
+                  string opCFDI ,string ORD ,string MTDPG  , int idEntregaSap,int dcto_pp,string CREDITO ,int mes_factura,string clas_credito_mes )
         {
             conexion.Open();
 
@@ -245,8 +230,4 @@ namespace PUFT_PRUEBA_001
         }
 
     }
-
-
-    
-
 }
