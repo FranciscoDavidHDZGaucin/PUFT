@@ -133,7 +133,7 @@ namespace PUFT_PRUEBA_001
             return exito;
         }
 
-        public bool insertarDatosEncabeza(int n_remision , DateTime fecha_alta , string cve_cte ,string nom_cte,string RFC  ,string Ciudad , string Domicilio,
+        public bool insertarDatosEncabeza(Int64 n_remision , DateTime fecha_alta , string cve_cte ,string nom_cte,string RFC  ,string Ciudad , string Domicilio,
              string CP  , string estatus  , int n_agente ,string nom_age , string observacion, int moneda, int plazo, int tipo_venta, float total,string medio_pago ,int cuenta,
              string destino ,int tipo_agente, float total_p , string documento,string cultivo ,int vip_estnotifi,string vip_cliente ,int vbo_gestor,string comentario_gestor ,int vbo_jefecyc,
              string comentario_jefecyc,int vbo_dircom,string comentario_dircom,int vbo_dirgral,string comentario_dirgral , DateTime timeres_gestor, DateTime timeres_jefecyc, DateTime timeres_dircom , DateTime timeres_dirgral,
