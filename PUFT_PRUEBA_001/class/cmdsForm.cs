@@ -38,7 +38,7 @@ namespace PUFT_PRUEBA_001
             return conectado;
         }
 
-        public bool insertarDatosDetalle(int n_remision, int n_agente,string nom_age,DateTime fecha_alta, string cve_cte, string nom_cte, string cve_prod, string nom_prod,double cant_prod, double precio_prod, double dcto_prod, double ieps, double iva, double total_prod, int moneda_prod, double cant_falta
+        public bool insertarDatosDetalle(Int64 n_remision, int n_agente,string nom_age,DateTime fecha_alta, string cve_cte, string nom_cte, string cve_prod, string nom_prod,double cant_prod, double precio_prod, double dcto_prod, double ieps, double iva, double total_prod, int moneda_prod, double cant_falta
             , int autorizado, double total_prodmxp, double tipo_cambio, double precio_condcto, double precio_politica, string comentario, string estatus, string bonificacion, DateTime fecha_autoriza, string estatus2, string n_factura, string comentario2, int terminada, string motivo, DateTime f_cancela
             , DateTime fecha_promesa, int n_promotor, string nom_promotor, int corte, DateTime fechap_programa, DateTime fechap_real, string sinfecha, int notifica_p, DateTime fecha_autorizadc, string litkg_unidad, double fact_ds, double precio_representante, int au_gerente, int au_dc, double precio_pagar, double precio_factura
             , double total_factura, int bandera_especial, int plazo_especial, double boni_precioporunidad, double boni_cantidadporunidad,string boni_productoid, double boni_precioventa, double boni_cantidadcalculo, double boni_estado, double boni_costomp, double boni_bonificadomp
