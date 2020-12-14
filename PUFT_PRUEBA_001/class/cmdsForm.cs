@@ -180,13 +180,10 @@ namespace PUFT_PRUEBA_001
             return exito;
         }
 
-        public bool insertarDatosEncabeza(Int64 n_remision , DateTime fecha_alta , string cve_cte ,string nom_cte,string RFC  ,string Ciudad , string Domicilio,
-             string CP  , string estatus  , int n_agente ,string nom_age , string observacion, int moneda, int plazo, int tipo_venta, float total,string medio_pago ,int cuenta,
-             string destino ,int tipo_agente, float total_p , string documento,string cultivo ,int vip_estnotifi,string vip_cliente ,int vbo_gestor,string comentario_gestor ,int vbo_jefecyc,
-             string comentario_jefecyc,int vbo_dircom,string comentario_dircom,int vbo_dirgral,string comentario_dirgral , DateTime timeres_gestor, DateTime timeres_jefecyc, DateTime timeres_dircom , DateTime timeres_dirgral,
-               float tipo_cambio , int vbo_gerente ,string comentario_gerente , DateTime timeres_gerente , DateTime fechacomp_gerente, float montocomp_gerente , DateTime fechacomp_real, float montocomp_real,
-             DateTime altahora_pedido , int localidad,float fact_ds ,int encbandera_especial,int encplazo_especial,int id_entregas,int indica_entrega ,string bodega_entrega , DateTime fech_3Areturn,
-                  string opCFDI ,string ORD ,string MTDPG  , int idEntregaSap,int dcto_pp,string CREDITO ,int mes_factura,string clas_credito_mes )
+        public bool insertarDatosEncabeza(Int64 n_remision, DateTime fecha_alta, string cve_cte, string nom_cte, string estatus, int n_agente, string nom_age, string observacion, int moneda, int plazo, int tipo_venta, double total, string medio_pago,
+     string destino, int tipo_agente, double total_p, int vbo_gestor, string comentario_gestor, int vbo_jefecyc,
+     string comentario_jefecyc, DateTime timeres_gestor, DateTime timeres_jefecyc, string comentario_gerente, DateTime timeres_gerente,
+    int encbandera_especial, int encplazo_especial, string opCFDI, string MTDPG)
         {
             conexion.Open();
 
@@ -200,10 +197,6 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("fecha_alta", fecha_alta);
                 command.Parameters.AddWithValue("cve_cte", cve_cte);
                 command.Parameters.AddWithValue("nom_cte", nom_cte);
-                command.Parameters.AddWithValue("RFC", RFC);
-                command.Parameters.AddWithValue("Ciudad", Ciudad);
-                command.Parameters.AddWithValue("Domicilio", Domicilio);
-                command.Parameters.AddWithValue("CP", CP);
                 command.Parameters.AddWithValue("estatus", estatus);
                 command.Parameters.AddWithValue("n_agente", n_agente);
                 command.Parameters.AddWithValue("nom_age", nom_age);
@@ -213,52 +206,21 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("tipo_venta", tipo_venta);
                 command.Parameters.AddWithValue("total", total);
                 command.Parameters.AddWithValue("medio_pago", medio_pago);
-                command.Parameters.AddWithValue("cuenta", cuenta);
                 command.Parameters.AddWithValue("destino", destino);
                 command.Parameters.AddWithValue("tipo_agente", tipo_agente);
                 command.Parameters.AddWithValue("total_p", total_p);
-                command.Parameters.AddWithValue("documento", documento);
-                command.Parameters.AddWithValue("cultivo", cultivo);
-                command.Parameters.AddWithValue("vip_estnotifi", vip_estnotifi);
-                command.Parameters.AddWithValue("vip_cliente", vip_cliente);
                 command.Parameters.AddWithValue("vbo_gestor", vbo_gestor);
                 command.Parameters.AddWithValue("comentario_gestor", comentario_gestor);
                 command.Parameters.AddWithValue("vbo_jefecyc", vbo_jefecyc);
                 command.Parameters.AddWithValue("comentario_jefecyc", comentario_jefecyc);
-                command.Parameters.AddWithValue("vbo_dircom", vbo_dircom);
-                command.Parameters.AddWithValue("comentario_dircom", comentario_dircom);
-                command.Parameters.AddWithValue("vbo_dirgral", vbo_dirgral);
-                command.Parameters.AddWithValue("comentario_dirgral", comentario_dirgral);
                 command.Parameters.AddWithValue("timeres_gestor", timeres_gestor);
                 command.Parameters.AddWithValue("timeres_jefecyc", timeres_jefecyc);
-                command.Parameters.AddWithValue("timeres_dircom", timeres_dircom);
-                command.Parameters.AddWithValue("timeres_dirgral", timeres_dirgral);
-                command.Parameters.AddWithValue("tipo_cambio", tipo_cambio);
-                command.Parameters.AddWithValue("vbo_gerente", vbo_gerente);
                 command.Parameters.AddWithValue("comentario_gerente", comentario_gerente);
                 command.Parameters.AddWithValue("timeres_gerente", timeres_gerente);
-                command.Parameters.AddWithValue("fechacomp_gerente", fechacomp_gerente);
-                command.Parameters.AddWithValue("montocomp_gerente", montocomp_gerente);
-                command.Parameters.AddWithValue("fechacomp_real", fechacomp_real);
-                command.Parameters.AddWithValue("montocomp_real", montocomp_real);
-                command.Parameters.AddWithValue("altahora_pedido", altahora_pedido);
-                command.Parameters.AddWithValue("localidad", localidad);
-                command.Parameters.AddWithValue("fact_ds", fact_ds);
                 command.Parameters.AddWithValue("encbandera_especial", encbandera_especial);
                 command.Parameters.AddWithValue("encplazo_especial", encplazo_especial);
-                command.Parameters.AddWithValue("id_entregas", id_entregas);
-                command.Parameters.AddWithValue("indica_entrega", indica_entrega);
-                command.Parameters.AddWithValue("bodega_entrega", bodega_entrega);
-                command.Parameters.AddWithValue("fech_3Areturn", fech_3Areturn);
                 command.Parameters.AddWithValue("opCFDI", opCFDI);
-                command.Parameters.AddWithValue("ORD", ORD);
                 command.Parameters.AddWithValue("MTDPG", MTDPG);
-                command.Parameters.AddWithValue("idEntregaSap", idEntregaSap);
-                command.Parameters.AddWithValue("dcto_pp", dcto_pp);
-                command.Parameters.AddWithValue("CREDITO", CREDITO);
-                command.Parameters.AddWithValue("mes_factura", mes_factura);
-                command.Parameters.AddWithValue("clas_credito_mes", clas_credito_mes);
-              
                 if (command.ExecuteNonQuery() == 1)
                 {
                     exito = true;
@@ -276,6 +238,7 @@ namespace PUFT_PRUEBA_001
 
             return exito;
         }
+
 
     }
 }
