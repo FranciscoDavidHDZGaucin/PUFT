@@ -106,7 +106,8 @@ namespace PUFT_PRUEBA_001
                                 CTRL_OBJET NUEVA_REMISION = null;
 
 
-                        if (ORDEN_VENTA == 13062 || ORDEN_VENTA == 13063)
+                  
+                        if (ORDEN_VENTA == 13065 || ORDEN_VENTA == 13067 || ORDEN_VENTA == 13066)
                         {
                             if (ORDEN_VENTA > 0) { existe_ORDENVNETA = true; }
                             if (N_AGENTE > 0) { exis_agnete = true; control_agente_new_remi = 888; }
