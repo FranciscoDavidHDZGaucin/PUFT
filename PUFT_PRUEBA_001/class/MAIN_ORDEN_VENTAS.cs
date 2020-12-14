@@ -63,18 +63,33 @@ namespace PUFT_PRUEBA_001
                     }
                     catch (Exception e)
                     {
+                    // Get the current date.
+                    DateTime thisDay = DateTime.Today;
+                    // Display the date in the default (general) format.
+
+                    PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR  EN NEW MAIN_ORDEN_VENTAS SP SP_PUFT_ORDENDEVENTA_PENDIENTE", e.ToString(), thisDay);
 
 
 
                     TB_ORDVTS = new DataTable();
-                    }
+                }
 
 
 
 
             }
             catch (Exception e)
-            { }
+            {
+
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR  EN NEW MAIN_ORDEN_VENTAS SP SP_PUFT_ORDENDEVENTA_PENDIENTE", e.ToString(), thisDay);
+
+
+
+            }
 
 
 
