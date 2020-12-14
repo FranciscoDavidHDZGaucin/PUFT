@@ -38,11 +38,58 @@ namespace PUFT_PRUEBA_001
             return conectado;
         }
 
-        public bool insertarDatosDetalle(int n_remision, int n_agente,string nom_age,DateTime fecha_alta, string cve_cte, string nom_cte, string cve_prod, string nom_prod,double cant_prod, double precio_prod, double dcto_prod, double ieps, double iva, double total_prod, int moneda_prod, double cant_falta
-            , int autorizado, double total_prodmxp, double tipo_cambio, double precio_condcto, double precio_politica, string comentario, string estatus, string bonificacion, DateTime fecha_autoriza, string estatus2, string n_factura, string comentario2, int terminada, string motivo, DateTime f_cancela
-            , DateTime fecha_promesa, int n_promotor, string nom_promotor, int corte, DateTime fechap_programa, DateTime fechap_real, string sinfecha, int notifica_p, DateTime fecha_autorizadc, string litkg_unidad, double fact_ds, double precio_representante, int au_gerente, int au_dc, double precio_pagar, double precio_factura
-            , double total_factura, int bandera_especial, int plazo_especial, double boni_precioporunidad, double boni_cantidadporunidad,string boni_productoid, double boni_precioventa, double boni_cantidadcalculo, double boni_estado, double boni_costomp, double boni_bonificadomp
-            , string entrega, DateTime fecha_autorizajefecomer, DateTime fecha_autorizanalisajr, string cancela_coment_soporte, string abasto_inicial) {
+        public bool insertarDatosDetalle(Int64 n_remision,
+             int n_agente, string nom_age,
+             DateTime fecha_alta,
+             string cve_cte,
+             string nom_cte,
+             string cve_prod,
+             string nom_prod,
+             double cant_prod,
+             double precio_prod,
+             double dcto_prod,
+             double ieps,
+             double iva,
+             double total_prod,
+             int moneda_prod,
+             double cant_falta,
+             int autorizado,
+             double total_prodmxp,
+             double tipo_cambio,
+             double precio_condcto,
+             double precio_politica,
+             string comentario,
+             string estatus,
+             string bonificacion,
+             DateTime fecha_autoriza,
+             string estatus2,
+             string n_factura,
+             string comentario2,
+             int terminada,
+             /*string motivo, DateTime f_cancela
+             , DateTime fecha_promesa, int n_promotor, string nom_promotor,
+             */
+             int corte,
+             //  DateTime fechap_programa, DateTime fechap_real, string sinfecha,
+             int notifica_p,
+            /// DateTime fecha_autorizadc, 
+            string litkg_unidad,
+             double fact_ds,
+             double precio_representante,
+             int au_gerente,
+             int au_dc,
+             double precio_pagar,
+             double precio_factura
+             , double total_factura,
+             int bandera_especial,
+             /* int plazo_especial, double boni_precioporunidad, double boni_cantidadporunidad,string boni_productoid, double boni_precioventa, double boni_cantidadcalculo, double boni_estado, double boni_costomp, double boni_bonificadomp
+              , string entrega,*/
+
+             DateTime fecha_autorizajefecomer, DateTime fecha_autorizanalisajr,
+             string ID_SALESFORCE
+
+             /*, string cancela_coment_soporte, string abasto_inicial*/)
+        {
             conexion.Open();
 
             bool exito = false;
@@ -80,17 +127,17 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("n_factura", n_factura);
                 command.Parameters.AddWithValue("comentario2", comentario2);
                 command.Parameters.AddWithValue("terminada", terminada);
-                command.Parameters.AddWithValue("motivo", motivo);
-                command.Parameters.AddWithValue("f_cancela", f_cancela);
-                command.Parameters.AddWithValue("fecha_promesa", fecha_promesa);
-                command.Parameters.AddWithValue("n_promotor", n_promotor);
-                command.Parameters.AddWithValue("nom_promotor", nom_promotor);
+                //command.Parameters.AddWithValue("motivo", motivo);
+                //command.Parameters.AddWithValue("f_cancela", f_cancela);
+                //command.Parameters.AddWithValue("fecha_promesa", fecha_promesa);
+                //command.Parameters.AddWithValue("n_promotor", n_promotor);
+                //command.Parameters.AddWithValue("nom_promotor", nom_promotor);
                 command.Parameters.AddWithValue("corte", corte);
-                command.Parameters.AddWithValue("fechap_programa", fechap_programa);
-                command.Parameters.AddWithValue("fechap_real", fechap_real);
-                command.Parameters.AddWithValue("sinfecha", sinfecha);
+                //command.Parameters.AddWithValue("fechap_programa", fechap_programa);
+                //command.Parameters.AddWithValue("fechap_real", fechap_real);
+                //command.Parameters.AddWithValue("sinfecha", sinfecha);
                 command.Parameters.AddWithValue("notifica_p", notifica_p);
-                command.Parameters.AddWithValue("fecha_autorizadc", fecha_autorizadc);
+                //command.Parameters.AddWithValue("fecha_autorizadc", fecha_autorizadc);
                 command.Parameters.AddWithValue("litkg_unidad", litkg_unidad);
                 command.Parameters.AddWithValue("fact_ds", fact_ds);
                 command.Parameters.AddWithValue("precio_representante", precio_representante);
@@ -100,21 +147,22 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("precio_factura", precio_factura);
                 command.Parameters.AddWithValue("total_factura", total_factura);
                 command.Parameters.AddWithValue("bandera_especial", bandera_especial);
-                command.Parameters.AddWithValue("plazo_especial", plazo_especial);
-                command.Parameters.AddWithValue("boni_precioporunidad", boni_precioporunidad);
-                command.Parameters.AddWithValue("boni_cantidadporunidad", boni_cantidadporunidad);
-                command.Parameters.AddWithValue("boni_productoid", boni_productoid);
-                command.Parameters.AddWithValue("boni_precioventa", boni_precioventa);
-                command.Parameters.AddWithValue("boni_cantidadcalculo", boni_cantidadcalculo);
-                command.Parameters.AddWithValue("boni_estado", boni_estado);
-                command.Parameters.AddWithValue("boni_costomp", boni_costomp);
-                command.Parameters.AddWithValue("boni_bonificadomp", boni_bonificadomp);
-                command.Parameters.AddWithValue("entrega", entrega);
+                //command.Parameters.AddWithValue("plazo_especial", plazo_especial);
+                //command.Parameters.AddWithValue("boni_precioporunidad", boni_precioporunidad);
+                //command.Parameters.AddWithValue("boni_cantidadporunidad", boni_cantidadporunidad);
+                //command.Parameters.AddWithValue("boni_productoid", boni_productoid);
+                //command.Parameters.AddWithValue("boni_precioventa", boni_precioventa);
+                //command.Parameters.AddWithValue("boni_cantidadcalculo", boni_cantidadcalculo);
+                //command.Parameters.AddWithValue("boni_estado", boni_estado);
+                //command.Parameters.AddWithValue("boni_costomp", boni_costomp);
+                //command.Parameters.AddWithValue("boni_bonificadomp", boni_bonificadomp);
+                //command.Parameters.AddWithValue("entrega", entrega);
                 command.Parameters.AddWithValue("fecha_autorizajefecomer", fecha_autorizajefecomer);
                 command.Parameters.AddWithValue("fecha_autorizanalisajr", fecha_autorizanalisajr);
-                command.Parameters.AddWithValue("cancela_coment_soporte", cancela_coment_soporte);
-                command.Parameters.AddWithValue("abasto_inicial", abasto_inicial);
-                
+                //command.Parameters.AddWithValue("cancela_coment_soporte", cancela_coment_soporte);
+                //command.Parameters.AddWithValue("abasto_inicial", abasto_inicial);
+                command.Parameters.AddWithValue("IDSALESFORCE", ID_SALESFORCE);
+
                 if (command.ExecuteNonQuery() == 1)
                 {
                     exito = true;
@@ -128,8 +176,8 @@ namespace PUFT_PRUEBA_001
             {
                 conexion.Close();
             }
-           
-            
+
+
             return exito;
         }
 
