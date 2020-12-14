@@ -30,7 +30,7 @@ namespace PUFT_PRUEBA_001{
                     {
                         var connection =
                                       System.Configuration.ConfigurationManager.
-                                      ConnectionStrings["SALESFOREC"].ConnectionString;
+                                      ConnectionStrings["PUFT_PRUEBA_001.Properties.Settings.VRS_SALESFORCE"].ConnectionString;
                         using (SqlConnection CONECT = new SqlConnection(connection))
                         {
                             CONECT.Open();
@@ -52,6 +52,11 @@ namespace PUFT_PRUEBA_001{
                     catch (Exception e)
                     {
                         tb_productos = new DataTable();
+                        // Get the current date.
+                        DateTime thisDay = DateTime.Today;
+                        // Display the date in the default (general) format.
+                    
+                        PUFT_ERRORS error = new PUFT_ERRORS("CLASSE ACCION_PRODUCTOS_PEDIDOS ", "ERROR  EN NEW ACCION_PRODUCTOS_PEDIDOS CONSULATA", e.ToString(), thisDay); 
                     }
 
 
@@ -60,7 +65,13 @@ namespace PUFT_PRUEBA_001{
 
             }
             catch (Exception e)
-            { }
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE ACCION_PRODUCTOS_PEDIDOS ", "ERROR  EN NEW ACCION_PRODUCTOS_PEDIDOS TRY  PRINCIPAL ", e.ToString(), thisDay);
+
+            }
 
 
 
@@ -76,32 +87,91 @@ namespace PUFT_PRUEBA_001{
                 {
                     foreach (DataRow row in tb_productos.Rows)
                     {
-                        var  prueba =   row["ORDENDE_VENTA"].ToString();
-                        //// METER KLA CLASE DE INSERTSIO DE   PRODUCTOS  
-                        ///
-                        var pr = new cmdsForm();
-                        pr.insertarDatosDetalle(Convert.ToInt32(row["n_remision"].ToString()), Convert.ToInt32(row["n_agente"].ToString()), row["nom_age"].ToString(),
-                            Convert.ToDateTime(row["fecha_alta"].ToString()), Convert.ToString(row["cve_cte"].ToString()), Convert.ToString(row["nom_cte"].ToString()),
-                            Convert.ToString(row["cve_prod"].ToString()), Convert.ToString(row["nom_prod"].ToString()), Convert.ToInt32(row["cant_prod"].ToString()),
-                            Convert.ToInt32(row["precio_prod"].ToString()), Convert.ToInt32(row["dcto_prod"].ToString()), Convert.ToInt32(row["ieps"].ToString()),
-                            Convert.ToInt32(row["iva"].ToString()), Convert.ToInt32(row["total_prod"].ToString()), Convert.ToInt32(row["moneda_prod"].ToString()),
-                            Convert.ToInt32(row["cant_falta"].ToString()), Convert.ToInt32(row["AUTORIZADP"].ToString()), Convert.ToInt32(row["total_prodmxp"].ToString()),
-                            Convert.ToInt32(row["TIPO_CAMBIO"].ToString()), Convert.ToInt32(row["precio_condcto"].ToString()), Convert.ToInt32(row["precio_politica"].ToString()),
-                            Convert.ToString(row["comentario"].ToString()), Convert.ToString(row["estatus"].ToString()), Convert.ToString(row["bonificacion"].ToString()),
-                            Convert.ToDateTime(row["fecha_autoriza"].ToString()), Convert.ToString(row["estatus2"].ToString()), Convert.ToString(row["n_factura"].ToString()),
-                            Convert.ToString(row["comentario2"].ToString()), Convert.ToInt32(row["TERMINADA"].ToString()), Convert.ToString(row["motivo"].ToString()),
-                            Convert.ToDateTime(row["f_cancela"].ToString()), Convert.ToDateTime(row["fecha_promesa"].ToString()), Convert.ToInt32(row["n_promotor"].ToString()),
-                            Convert.ToString(row["nom_promotor"].ToString()), Convert.ToInt32(row["corte"].ToString()), Convert.ToDateTime(row["fechap_programa"].ToString()),
-                            Convert.ToDateTime(row["fechap_real"].ToString()), Convert.ToString(row["sinfecha"].ToString()), Convert.ToInt32(row["notifica_p"].ToString()),
-                            Convert.ToDateTime(row["fecha_autorizadc"].ToString()), Convert.ToString(row["litkg_unidad"].ToString()), Convert.ToInt32(row["fact_ds"].ToString()),
-                            Convert.ToInt32(row["precio_representante"].ToString()), Convert.ToInt32(row["au_gerente"].ToString()), Convert.ToInt32(row["au_dc"].ToString()),
-                            Convert.ToInt32(row["precio_pagar"].ToString()), Convert.ToInt32(row["precio_factura"].ToString()), Convert.ToInt32(row["total_factura"].ToString()),
-                            Convert.ToInt32(row["bandera_especial"].ToString()), Convert.ToInt32(row["plazo_especial"].ToString()), Convert.ToInt32(row["boni_precioporunidad"].ToString()), Convert.ToInt32(row["boni_cantidadporunidad"].ToString()),
-                            Convert.ToString(row["boni_productoid"].ToString()), Convert.ToInt32(row["boni_precioventa"].ToString()), Convert.ToInt32(row["boni_cantidadcalculo"].ToString()),
-                            Convert.ToInt32(row["boni_estado"].ToString()), Convert.ToInt32(row["boni_costomp"].ToString()), Convert.ToInt32(row["boni_bonificadomp"].ToString()),
-                            Convert.ToString(row["entrega"].ToString()), Convert.ToDateTime(row["fecha_autorizajefecomer"].ToString()), Convert.ToDateTime(row["fecha_autorizanalisajr"].ToString()),
-                            Convert.ToString(row["cancela_coment_soporte"].ToString()), Convert.ToString(row["abasto_inicial"].ToString()));
+                        try
+                        {
+                            var prueba = row["ORDENDE_VENTA"].ToString();
+                            var notifica_p = Convert.ToInt32(row["notifica_p"]);
+                            var SALES = row["ID_SALESFORECE"].ToString(); 
+                            //// METER KLA CLASE DE INSERTSIO DE   PRODUCTOS  
+                            ///
+                            var pr = new cmdsForm();
+                            pr.insertarDatosDetalle(_CONTROL_ORDEVENTA.REMISION,
+                                Convert.ToInt32(row["n_agente"]),
+                                row["nom_age"].ToString(),
+                                Convert.ToDateTime(row["fecha_alta"]),
+                                row["cve_cte"].ToString(), 
+                                row["nom_cte"].ToString(),
+                                row["cve_prod"].ToString(),
+                                row["nom_prod"].ToString(), 
+                                Convert.ToInt32(row["cant_prod"]),
+                                Convert.ToDouble(row["precio_prod"]),
+                                Convert.ToDouble(row["dcto_prod"]),
+                                Convert.ToDouble(row["ieps"]),
+                                Convert.ToDouble(row["iva"]),
+                                Convert.ToDouble(row["total_prod"]), 
+                                Convert.ToInt32(row["moneda_prod"]),
 
+                                Convert.ToDouble(row["cant_falta"]),
+                                Convert.ToInt32(row["AUTORIZADP"]),
+                                Convert.ToDouble(row["total_prodmxp"]),
+                                Convert.ToDouble(row["TIPO_CAMBIO"]),
+                                Convert.ToDouble(row["precio_condcto"]),
+                                Convert.ToDouble(row["precio_politica"]),
+                                row["comentario"].ToString(),
+                                row["estatus"].ToString(),
+                                row["bonificacion"].ToString(),
+                                Convert.ToDateTime(row["fecha_autoriza"]),
+                                row["estatus2"].ToString(),
+                                row["n_factura"].ToString(),
+                                row["comentario2"].ToString(),
+                                Convert.ToInt32(row["TERMINADA"]),
+                                 /// row["motivo"].ToString(),
+                                 //Convert.ToDateTime(row["f_cancela"]),
+                                // Convert.ToDateTime(row["fecha_promesa"]),
+                                //Convert.ToInt32(row["n_promotor"]),
+                                //row["nom_promotor"].ToString(),
+                                Convert.ToInt32(row["corte"]),
+                                //Convert.ToDateTime(row["fechap_programa"]),
+                                //Convert.ToDateTime(row["fechap_real"]),
+                                //row["sinfecha"].ToString(),
+                                Convert.ToInt32(row["notifica_p"]),
+                                //Convert.ToDateTime(row["fecha_autorizadc"]),
+                                row["litkg_unidad"].ToString(),
+                                Convert.ToDouble(row["fact_ds"]),
+                                Convert.ToDouble(row["precio_representante"]),
+                                Convert.ToInt32(row["au_gerente"]),
+                                Convert.ToInt32(row["au_dc"]),
+                                Convert.ToDouble(row["precio_pagar"]),
+                                Convert.ToDouble(row["precio_factura"]),
+                                Convert.ToDouble(row["total_factura"]),
+                                Convert.ToInt32(row["bandera_especial"]),
+                                //Convert.ToInt32(row["plazo_especial"]),
+                                //Convert.ToDouble(row["boni_precioporunidad"]),
+                                //Convert.ToDouble(row["boni_cantidadporunidad"]),
+                                //row["boni_productoid"].ToString(),
+                                //Convert.ToDouble(row["boni_precioventa"]),
+                                //Convert.ToDouble(row["boni_cantidadcalculo"]),
+                                //Convert.ToDouble(row["boni_estado"]),
+                                //Convert.ToDouble(row["boni_costomp"]),
+                                //Convert.ToDouble(row["boni_bonificadomp"]),
+                                //row["entrega"].ToString(),
+                                Convert.ToDateTime(row["fecha_autorizajefecomer"]),
+                                Convert.ToDateTime(row["fecha_autorizanalisajr"]),
+                                //row["cancela_coment_soporte"].ToString(),
+                                //row["abasto_inicial"].ToString()
+                                row["ID_SALESFORECE"].ToString()
+                                );
+                        }
+                          catch (Exception e)
+                        {
+
+                            var resultado = e.ToString();
+                            // Get the current date.
+                            DateTime thisDay = DateTime.Today;
+                            // Display the date in the default (general) format.
+
+                            PUFT_ERRORS error = new PUFT_ERRORS("CLASSE ACCION_PRODUCTOS_PEDIDOS ", "ERROR  EN RECORRER_PRODUCTOS DENTRO DEL FORE ", e.ToString(), thisDay);
+                        }
                         //pr.insertarDatosEncabeza(Convert.ToInt32(row["n_remision"].ToString()), Convert.ToInt32(row["fecha_alta"].ToString()), row["cve_cte"].ToString(),
                         //    Convert.ToDateTime(row["CardName"].ToString()), Convert.ToString(row["estatus"].ToString()), Convert.ToString(row["n_agente"].ToString()),
                         //    Convert.ToString(row["nom_age"].ToString()), Convert.ToString(row["comentario"].ToString()), Convert.ToInt32(row["moneda"].ToString()),

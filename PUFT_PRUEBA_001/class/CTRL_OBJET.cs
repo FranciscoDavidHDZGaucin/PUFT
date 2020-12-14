@@ -32,7 +32,11 @@ namespace PUFT_PRUEBA_001
             }
             catch (Exception e)
             {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
 
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE CTRL_OBJET ", "ERROR  EN CTRL_OBJET ", e.ToString(), thisDay);
 
             }
 
