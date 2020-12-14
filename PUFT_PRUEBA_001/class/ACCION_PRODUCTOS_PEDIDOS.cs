@@ -52,6 +52,11 @@ namespace PUFT_PRUEBA_001{
                     catch (Exception e)
                     {
                         tb_productos = new DataTable();
+                        // Get the current date.
+                        DateTime thisDay = DateTime.Today;
+                        // Display the date in the default (general) format.
+                    
+                        PUFT_ERRORS error = new PUFT_ERRORS("CLASSE ACCION_PRODUCTOS_PEDIDOS ", "ERROR  EN NEW ACCION_PRODUCTOS_PEDIDOS CONSULATA", e.ToString(), thisDay); 
                     }
 
 
@@ -60,7 +65,13 @@ namespace PUFT_PRUEBA_001{
 
             }
             catch (Exception e)
-            { }
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE ACCION_PRODUCTOS_PEDIDOS ", "ERROR  EN NEW ACCION_PRODUCTOS_PEDIDOS TRY  PRINCIPAL ", e.ToString(), thisDay);
+
+            }
 
 
 
@@ -154,8 +165,12 @@ namespace PUFT_PRUEBA_001{
                           catch (Exception e)
                         {
 
-                            var resultado = e.ToString(); 
+                            var resultado = e.ToString();
+                            // Get the current date.
+                            DateTime thisDay = DateTime.Today;
+                            // Display the date in the default (general) format.
 
+                            PUFT_ERRORS error = new PUFT_ERRORS("CLASSE ACCION_PRODUCTOS_PEDIDOS ", "ERROR  EN RECORRER_PRODUCTOS DENTRO DEL FORE ", e.ToString(), thisDay);
                         }
                         //pr.insertarDatosEncabeza(Convert.ToInt32(row["n_remision"].ToString()), Convert.ToInt32(row["fecha_alta"].ToString()), row["cve_cte"].ToString(),
                         //    Convert.ToDateTime(row["CardName"].ToString()), Convert.ToString(row["estatus"].ToString()), Convert.ToString(row["n_agente"].ToString()),

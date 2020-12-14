@@ -90,6 +90,7 @@
     <Compile Include="class\cmdsForm.cs" />
     <Compile Include="class\CTRL_OBJET.cs" />
     <Compile Include="class\MAIN_ORDEN_VENTAS.cs" />
+    <Compile Include="class\PUFT_ERRORS.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
