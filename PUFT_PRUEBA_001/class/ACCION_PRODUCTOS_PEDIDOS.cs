@@ -79,14 +79,26 @@ namespace PUFT_PRUEBA_001{
                         try
                         {
                             var prueba = row["ORDENDE_VENTA"].ToString();
+                            var notifica_p = Convert.ToInt32(row["notifica_p"]);
+                            var SALES = row["ID_SALESFORECE"].ToString(); 
                             //// METER KLA CLASE DE INSERTSIO DE   PRODUCTOS  
                             ///
                             var pr = new cmdsForm();
-                            pr.insertarDatosDetalle(_CONTROL_ORDEVENTA.REMISION, Convert.ToInt32(row["n_agente"]), row["nom_age"].ToString(),
-                                Convert.ToDateTime(row["fecha_alta"].ToString()), row["cve_cte"].ToString(), row["nom_cte"].ToString(),
-                                row["cve_prod"].ToString(), row["nom_prod"].ToString(), Convert.ToInt32(row["cant_prod"]),
-                                Convert.ToDouble(row["precio_prod"]), Convert.ToDouble(row["dcto_prod"]), Convert.ToDouble(row["ieps"]),
-                                Convert.ToDouble(row["iva"]), Convert.ToDouble(row["total_prod"]), Convert.ToInt32(row["moneda_prod"]),
+                            pr.insertarDatosDetalle(_CONTROL_ORDEVENTA.REMISION,
+                                Convert.ToInt32(row["n_agente"]),
+                                row["nom_age"].ToString(),
+                                Convert.ToDateTime(row["fecha_alta"]),
+                                row["cve_cte"].ToString(), 
+                                row["nom_cte"].ToString(),
+                                row["cve_prod"].ToString(),
+                                row["nom_prod"].ToString(), 
+                                Convert.ToInt32(row["cant_prod"]),
+                                Convert.ToDouble(row["precio_prod"]),
+                                Convert.ToDouble(row["dcto_prod"]),
+                                Convert.ToDouble(row["ieps"]),
+                                Convert.ToDouble(row["iva"]),
+                                Convert.ToDouble(row["total_prod"]), 
+                                Convert.ToInt32(row["moneda_prod"]),
 
                                 Convert.ToDouble(row["cant_falta"]),
                                 Convert.ToInt32(row["AUTORIZADP"]),
@@ -102,16 +114,17 @@ namespace PUFT_PRUEBA_001{
                                 row["n_factura"].ToString(),
                                 row["comentario2"].ToString(),
                                 Convert.ToInt32(row["TERMINADA"]),
-                                row["motivo"].ToString(),
-                                Convert.ToDateTime(row["f_cancela"]),
-                                Convert.ToDateTime(row["fecha_promesa"]),
-                                Convert.ToInt32(row["n_promotor"]),
-                                row["nom_promotor"].ToString(),
+                                 /// row["motivo"].ToString(),
+                                 //Convert.ToDateTime(row["f_cancela"]),
+                                // Convert.ToDateTime(row["fecha_promesa"]),
+                                //Convert.ToInt32(row["n_promotor"]),
+                                //row["nom_promotor"].ToString(),
                                 Convert.ToInt32(row["corte"]),
-                                Convert.ToDateTime(row["fechap_programa"]),
-                                Convert.ToDateTime(row["fechap_real"]), row["sinfecha"].ToString(),
+                                //Convert.ToDateTime(row["fechap_programa"]),
+                                //Convert.ToDateTime(row["fechap_real"]),
+                                //row["sinfecha"].ToString(),
                                 Convert.ToInt32(row["notifica_p"]),
-                                Convert.ToDateTime(row["fecha_autorizadc"]),
+                                //Convert.ToDateTime(row["fecha_autorizadc"]),
                                 row["litkg_unidad"].ToString(),
                                 Convert.ToDouble(row["fact_ds"]),
                                 Convert.ToDouble(row["precio_representante"]),
@@ -121,22 +134,24 @@ namespace PUFT_PRUEBA_001{
                                 Convert.ToDouble(row["precio_factura"]),
                                 Convert.ToDouble(row["total_factura"]),
                                 Convert.ToInt32(row["bandera_especial"]),
-                                Convert.ToInt32(row["plazo_especial"]),
-                                Convert.ToDouble(row["boni_precioporunidad"]),
-                                Convert.ToDouble(row["boni_cantidadporunidad"]),
-                                row["boni_productoid"].ToString(),
-                                Convert.ToDouble(row["boni_precioventa"]),
-                                Convert.ToDouble(row["boni_cantidadcalculo"]),
-                                Convert.ToDouble(row["boni_estado"]),
-                                Convert.ToDouble(row["boni_costomp"]),
-                                Convert.ToDouble(row["boni_bonificadomp"]),
-                                row["entrega"].ToString(),
+                                //Convert.ToInt32(row["plazo_especial"]),
+                                //Convert.ToDouble(row["boni_precioporunidad"]),
+                                //Convert.ToDouble(row["boni_cantidadporunidad"]),
+                                //row["boni_productoid"].ToString(),
+                                //Convert.ToDouble(row["boni_precioventa"]),
+                                //Convert.ToDouble(row["boni_cantidadcalculo"]),
+                                //Convert.ToDouble(row["boni_estado"]),
+                                //Convert.ToDouble(row["boni_costomp"]),
+                                //Convert.ToDouble(row["boni_bonificadomp"]),
+                                //row["entrega"].ToString(),
                                 Convert.ToDateTime(row["fecha_autorizajefecomer"]),
                                 Convert.ToDateTime(row["fecha_autorizanalisajr"]),
-                                row["cancela_coment_soporte"].ToString(),
-                                row["abasto_inicial"].ToString());
+                                //row["cancela_coment_soporte"].ToString(),
+                                //row["abasto_inicial"].ToString()
+                                row["ID_SALESFORECE"].ToString()
+                                );
                         }
-                        catch (Exception e)
+                          catch (Exception e)
                         {
 
                             var resultado = e.ToString(); 

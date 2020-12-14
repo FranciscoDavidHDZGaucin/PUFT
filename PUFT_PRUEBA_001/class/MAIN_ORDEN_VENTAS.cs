@@ -94,56 +94,59 @@ namespace PUFT_PRUEBA_001
                     {
                             try
                             {
-                                var prueba = row["ORDENDE_VENTA"].ToString();
+                        int ORDEN_VENTA = Convert.ToInt32(row["ORDENDE_VENTA"]);
+                        if (ORDEN_VENTA == 13065 || ORDEN_VENTA == 13067 || ORDEN_VENTA == 13066)
+                        {
+                            var prueba = row["ORDENDE_VENTA"].ToString();
 
-                                GET_NEW_REMISION(Convert.ToInt32(row["n_agente"]), 888);
+                            GET_NEW_REMISION(Convert.ToInt32(row["n_agente"]), 888);
 
-                                int ORDEN_VENTA = Convert.ToInt32(row["ORDENDE_VENTA"]);
-                                int N_AGENTE = Convert.ToInt32(row["n_agente"]);
-                                Boolean existe_ORDENVNETA = false;
-                                Boolean exis_agnete = false;
-                                int control_agente_new_remi = 0;
-                                CTRL_OBJET NUEVA_REMISION = null;
-
-
-                                if (ORDEN_VENTA > 0) { existe_ORDENVNETA = true; }
-                                if (N_AGENTE > 0) { exis_agnete = true; control_agente_new_remi = 888; }
-
-                                    if (existe_ORDENVNETA == true && exis_agnete)
-                                    {
-                                        NUEVA_REMISION = GENERAR_CONTROL_OBJECTO(ORDEN_VENTA, N_AGENTE, exis_agnete, existe_ORDENVNETA, control_agente_new_remi);
-                                    }
-                                ///*********** Esta permitido  Insertar 
-                                if (ctrl_ESTA_PERMITIDO_INSERTAR (existe_ORDENVNETA, exis_agnete, NUEVA_REMISION))
-                                {
-
-                            //var pr = new cmdsForm();
-                            //pr.insertarDatosEncabeza(NUEVA_REMISION.REMISION, Convert.ToDateTime(row["fecha_alta"].ToString()), row["cve_cte"].ToString(),
-                            //    Convert.ToString(row["CardName"].ToString()), "", "", "", "", Convert.ToString(row["estatus"].ToString()), Convert.ToInt32(row["n_agente"].ToString()),
-                            //    Convert.ToString(row["nom_age"].ToString()), Convert.ToString(row["comentario"].ToString()), Convert.ToInt32(row["moneda"].ToString()),
-                            //    Convert.ToInt32(row["plazo"].ToString()), Convert.ToInt32(row["tipo_venta"].ToString()), Convert.ToInt32(row["toal"].ToString()),
-                            //    Convert.ToString(row["medio_pago"].ToString()), Convert.ToInt32(row["cuenta"].ToString()), Convert.ToString(row["destino"].ToString()),
-                            //    Convert.ToInt32(row["tipo_agente"].ToString()), Convert.ToInt32(row["total_p"].ToString()), "", "", 0, "", Convert.ToInt32(row["vbo_gestor"].ToString()),
-                            //    Convert.ToString(row["comentario_gestor"].ToString()), Convert.ToInt32(row["vbo_jefecyc"].ToString()), Convert.ToString(row["comentario_jefecyc"].ToString()),
-                            //    0, "", 0, "", Convert.ToDateTime(row["timeres_gestor"].ToString()), Convert.ToDateTime(row["timeres_jefecyc"].ToString()), DateTime.Now, DateTime.Now, 0, Convert.ToInt32(row["vbo_gerente"].ToString()),
-                            //    Convert.ToString(row["comentario_gerente"].ToString()), Convert.ToDateTime(row["timeres_gerente"].ToString()), DateTime.Now, 0, DateTime.Now, 0, Convert.ToDateTime(row["altahora_pedido"].ToString()),
-                            //    0, 0, Convert.ToInt32(row["encbandera_especial"].ToString()), Convert.ToInt32(row["encbandera_especial"].ToString()), 0, 0, "", DateTime.Now, Convert.ToString(row["opCFDI"].ToString()),
-                            //    "", Convert.ToString(row["MTDPG"].ToString()), 0, 0, "", 0, "");
+                            
+                            int N_AGENTE = Convert.ToInt32(row["n_agente"]);
+                            Boolean existe_ORDENVNETA = false;
+                            Boolean exis_agnete = false;
+                            int control_agente_new_remi = 0;
+                            CTRL_OBJET NUEVA_REMISION = null;
 
 
+                            if (ORDEN_VENTA > 0) { existe_ORDENVNETA = true; }
+                            if (N_AGENTE > 0) { exis_agnete = true; control_agente_new_remi = 888; }
+
+                            if (existe_ORDENVNETA == true && exis_agnete)
+                            {
+                                NUEVA_REMISION = GENERAR_CONTROL_OBJECTO(ORDEN_VENTA, N_AGENTE, exis_agnete, existe_ORDENVNETA, control_agente_new_remi);
+                            }
+                            ///*********** Esta permitido  Insertar 
+                            if (ctrl_ESTA_PERMITIDO_INSERTAR(existe_ORDENVNETA, exis_agnete, NUEVA_REMISION))
+                            {
+
+                                //var pr = new cmdsForm();
+                                //pr.insertarDatosEncabeza(NUEVA_REMISION.REMISION, Convert.ToDateTime(row["fecha_alta"].ToString()), row["cve_cte"].ToString(),
+                                //    Convert.ToString(row["CardName"].ToString()), "", "", "", "", Convert.ToString(row["estatus"].ToString()), Convert.ToInt32(row["n_agente"].ToString()),
+                                //    Convert.ToString(row["nom_age"].ToString()), Convert.ToString(row["comentario"].ToString()), Convert.ToInt32(row["moneda"].ToString()),
+                                //    Convert.ToInt32(row["plazo"].ToString()), Convert.ToInt32(row["tipo_venta"].ToString()), Convert.ToInt32(row["toal"].ToString()),
+                                //    Convert.ToString(row["medio_pago"].ToString()), Convert.ToInt32(row["cuenta"].ToString()), Convert.ToString(row["destino"].ToString()),
+                                //    Convert.ToInt32(row["tipo_agente"].ToString()), Convert.ToInt32(row["total_p"].ToString()), "", "", 0, "", Convert.ToInt32(row["vbo_gestor"].ToString()),
+                                //    Convert.ToString(row["comentario_gestor"].ToString()), Convert.ToInt32(row["vbo_jefecyc"].ToString()), Convert.ToString(row["comentario_jefecyc"].ToString()),
+                                //    0, "", 0, "", Convert.ToDateTime(row["timeres_gestor"].ToString()), Convert.ToDateTime(row["timeres_jefecyc"].ToString()), DateTime.Now, DateTime.Now, 0, Convert.ToInt32(row["vbo_gerente"].ToString()),
+                                //    Convert.ToString(row["comentario_gerente"].ToString()), Convert.ToDateTime(row["timeres_gerente"].ToString()), DateTime.Now, 0, DateTime.Now, 0, Convert.ToDateTime(row["altahora_pedido"].ToString()),
+                                //    0, 0, Convert.ToInt32(row["encbandera_especial"].ToString()), Convert.ToInt32(row["encbandera_especial"].ToString()), 0, 0, "", DateTime.Now, Convert.ToString(row["opCFDI"].ToString()),
+                                //    "", Convert.ToString(row["MTDPG"].ToString()), 0, 0, "", 0, "");
 
 
 
-                            ACCION_PRODUCTOS_PEDIDOS INSERT_PROD = new ACCION_PRODUCTOS_PEDIDOS(NUEVA_REMISION);
-                                        INSERT_PROD.RECORRER_PRODUCTOS();
-
-                                        ///***** REVISAR QUE SE CARGO EL PEDIDO
-                                        if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
-                                          { }
-
-                                }
 
 
+                                ACCION_PRODUCTOS_PEDIDOS INSERT_PROD = new ACCION_PRODUCTOS_PEDIDOS(NUEVA_REMISION);
+                                INSERT_PROD.RECORRER_PRODUCTOS();
+
+                                ///***** REVISAR QUE SE CARGO EL PEDIDO
+                                if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
+                                { }
+
+                            }
+
+                        }
 
                             }
                             catch (Exception e)
