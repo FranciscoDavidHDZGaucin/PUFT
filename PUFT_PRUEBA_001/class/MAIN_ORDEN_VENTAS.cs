@@ -147,7 +147,7 @@ namespace PUFT_PRUEBA_001
                                         Convert.ToDateTime(row["timeres_gestor"]), Convert.ToDateTime(row["timeres_jefecyc"]),
                                         Convert.ToString(row["comentario_gerente"]), Convert.ToDateTime(row["timeres_gerente"]),
                                         Convert.ToInt32(row["encbandera_especial"]), Convert.ToInt32(row["encbandera_especial"]), Convert.ToString(row["opCFDI"]),
-                                        Convert.ToString(row["MTDPG"]));
+                                        Convert.ToString(row["MTDPG"]), row["ID_SALESFORECE"].ToString());
 
                                 }
                                 catch (Exception e)
@@ -168,7 +168,12 @@ namespace PUFT_PRUEBA_001
 
                                 ///***** REVISAR QUE SE CARGO EL PEDIDO
                                 if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
-                                { }
+                                {
+
+                                    ctrl_GUARDAR_FOLIO(NUEVA_REMISION, N_AGENTE);
+
+
+                                }
 
                             }
                         }
@@ -259,6 +264,12 @@ namespace PUFT_PRUEBA_001
             }
             catch (Exception e)
             {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR  GET_NEW_REMISION", e.ToString(), thisDay);
+
 
 
 
@@ -297,6 +308,12 @@ namespace PUFT_PRUEBA_001
             }
             catch (Exception e)
             {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR  GENERAR_CONTROL_OBJECTO", e.ToString(), thisDay);
+
 
             }
             return ctrl; 
@@ -362,7 +379,15 @@ namespace PUFT_PRUEBA_001
 
             }
             catch (Exception e)
-            {            }
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR vALIDAR_NEW_PEDIDO", e.ToString(), thisDay);
+
+
+            }
 
                  return RESP_VALIDA; 
         }
@@ -379,5 +404,87 @@ namespace PUFT_PRUEBA_001
             }
             return perInsert; 
         }
+
+        public Boolean ctrl_GUARDAR_FOLIO(CTRL_OBJET CTRL,Int64 cve_agente)
+        {
+
+            ///*CALL pedidos.`SP_FOLIO_GUARDAR_PEDIDOS`( 142, 1422020257 ) ;
+            Boolean RESP_VALIDA = false;
+
+            try
+            {
+
+                string connection =
+                                   System.Configuration.ConfigurationManager.
+                                   ConnectionStrings["Server80"].ConnectionString;
+
+                using (MySqlConnection coneccmys = new MySqlConnection(connection))
+                {
+                    coneccmys.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("SP_FOLIO_GUARDAR_PEDIDOS", coneccmys))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new MySqlParameter("NEW_REMISION", MySqlDbType.Int32)).Value = CTRL.REMISION;
+                
+                        cmd.Parameters.Add(new MySqlParameter("agent_ventas", MySqlDbType.Int64)).Value = cve_agente;
+
+
+
+                        DataTable dt_table = new DataTable();
+                        MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
+
+                        APSTER.Fill(dt_table);
+                        if (dt_table.Rows.Count > 0)
+                        {
+                            foreach (DataRow row in dt_table.Rows)
+                            {
+
+                                ///MAIN_PEDIDO EXIS_DETALLE  EXIS_ENCABEZA
+                                int main_ctrl = Convert.ToInt32(row["MAIN_PEDIDO"]);
+                                int encabeza_ctrl = Convert.ToInt32(row["EXIS_DETALLE"]);
+                                int detalle_ctrl = Convert.ToInt32(row["EXIS_ENCABEZA"]);
+                                if (main_ctrl == 1 && encabeza_ctrl == 1 && detalle_ctrl == 1)
+                                {
+
+                                    RESP_VALIDA = true;
+
+
+                                }
+
+
+
+
+                            }
+
+                        }
+                    }
+                    coneccmys.Close();
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR ctrl_GUARDAR_FOLIO", e.ToString(), thisDay);
+
+
+            }
+
+
+            return RESP_VALIDA;
+
+        }
+
+
+
+
+
+
+
     }
 }
