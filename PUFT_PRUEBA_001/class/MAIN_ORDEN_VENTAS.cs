@@ -106,42 +106,50 @@ namespace PUFT_PRUEBA_001
                                 CTRL_OBJET NUEVA_REMISION = null;
 
 
-                                if (ORDEN_VENTA > 0) { existe_ORDENVNETA = true; }
-                                if (N_AGENTE > 0) { exis_agnete = true; control_agente_new_remi = 888; }
+                        if (ORDEN_VENTA == 13062 || ORDEN_VENTA == 13063)
+                        {
+                            if (ORDEN_VENTA > 0) { existe_ORDENVNETA = true; }
+                            if (N_AGENTE > 0) { exis_agnete = true; control_agente_new_remi = 888; }
 
-                                    if (existe_ORDENVNETA == true && exis_agnete)
-                                    {
-                                        NUEVA_REMISION = GENERAR_CONTROL_OBJECTO(ORDEN_VENTA, N_AGENTE, exis_agnete, existe_ORDENVNETA, control_agente_new_remi);
-                                    }
-                                ///*********** Esta permitido  Insertar 
-                                if (ctrl_ESTA_PERMITIDO_INSERTAR (existe_ORDENVNETA, exis_agnete, NUEVA_REMISION))
+                            if (existe_ORDENVNETA == true && exis_agnete)
+                            {
+                                NUEVA_REMISION = GENERAR_CONTROL_OBJECTO(ORDEN_VENTA, N_AGENTE, exis_agnete, existe_ORDENVNETA, control_agente_new_remi);
+                            }
+                            ///*********** Esta permitido  Insertar 
+                            if (ctrl_ESTA_PERMITIDO_INSERTAR(existe_ORDENVNETA, exis_agnete, NUEVA_REMISION))
+                            {
+                                try
                                 {
-
-                            var pr = new cmdsForm();
-                            pr.insertarDatosEncabeza(NUEVA_REMISION.REMISION, Convert.ToDateTime(row["fecha_alta"].ToString()), row["cve_cte"].ToString(),
-                                Convert.ToString(row["CardName"].ToString()), "", "", "", "", Convert.ToString(row["estatus"].ToString()), Convert.ToInt32(row["n_agente"].ToString()),
-                                Convert.ToString(row["nom_age"].ToString()), Convert.ToString(row["comentario"].ToString()), Convert.ToInt32(row["moneda"].ToString()),
-                                Convert.ToInt32(row["plazo"].ToString()), Convert.ToInt32(row["tipo_venta"].ToString()), Convert.ToInt32(row["toal"].ToString()),
-                                Convert.ToString(row["medio_pago"].ToString()), Convert.ToInt32(row["cuenta"].ToString()), Convert.ToString(row["destino"].ToString()),
-                                Convert.ToInt32(row["tipo_agente"].ToString()), Convert.ToInt32(row["total_p"].ToString()), "", "", 0, "", Convert.ToInt32(row["vbo_gestor"].ToString()),
-                                Convert.ToString(row["comentario_gestor"].ToString()), Convert.ToInt32(row["vbo_jefecyc"].ToString()), Convert.ToString(row["comentario_jefecyc"].ToString()),
-                                0, "", 0, "", Convert.ToDateTime(row["timeres_gestor"].ToString()), Convert.ToDateTime(row["timeres_jefecyc"].ToString()), DateTime.Now, DateTime.Now, 0, Convert.ToInt32(row["vbo_gerente"].ToString()),
-                                Convert.ToString(row["comentario_gerente"].ToString()), Convert.ToDateTime(row["timeres_gerente"].ToString()), DateTime.Now, 0, DateTime.Now, 0, Convert.ToDateTime(row["altahora_pedido"].ToString()),
-                                0, 0, Convert.ToInt32(row["encbandera_especial"].ToString()), Convert.ToInt32(row["encbandera_especial"].ToString()), 0, 0, "", DateTime.Now, Convert.ToString(row["opCFDI"].ToString()),
-                                "", Convert.ToString(row["MTDPG"].ToString()), 0, 0, "", 0, "");
-
-
-
-
-
-                            ACCION_PRODUCTOS_PEDIDOS INSERT_PROD = new ACCION_PRODUCTOS_PEDIDOS(NUEVA_REMISION);
-                                        INSERT_PROD.RECORRER_PRODUCTOS();
-
-                                        ///***** REVISAR QUE SE CARGO EL PEDIDO
-                                        if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
-                                          { }
+                                    var pr = new cmdsForm();
+                                    pr.insertarDatosEncabeza(NUEVA_REMISION.REMISION, Convert.ToDateTime(row["fecha_alta"]), row["cve_cte"].ToString(),
+                                        Convert.ToString(row["CardName"]), Convert.ToString(row["estatus"]), Convert.ToInt32(row["n_agente"]),
+                                        Convert.ToString(row["nom_age"]), Convert.ToString(row["comentario"]), Convert.ToInt32(row["moneda"]),
+                                        Convert.ToInt32(row["plazo"]), Convert.ToInt32(row["tipo_venta"]), Convert.ToDouble(row["toal"]),
+                                        Convert.ToString(row["medio_pago"]), Convert.ToString(row["destino"]),
+                                        Convert.ToInt32(row["tipo_agente"]), Convert.ToDouble(row["total_p"]), Convert.ToInt32(row["vbo_gestor"]),
+                                        Convert.ToString(row["comentario_gestor"]), Convert.ToInt32(row["vbo_jefecyc"].ToString()), Convert.ToString(row["comentario_jefecyc"]),
+                                        Convert.ToDateTime(row["timeres_gestor"]), Convert.ToDateTime(row["timeres_jefecyc"]),
+                                        Convert.ToString(row["comentario_gerente"]), Convert.ToDateTime(row["timeres_gerente"]),
+                                        Convert.ToInt32(row["encbandera_especial"]), Convert.ToInt32(row["encbandera_especial"]), Convert.ToString(row["opCFDI"]),
+                                        Convert.ToString(row["MTDPG"]));
 
                                 }
+                                catch (Exception e)
+                                {
+                                    var exc = e.ToString();
+                                }
+
+
+
+                                //ACCION_PRODUCTOS_PEDIDOS INSERT_PROD = new ACCION_PRODUCTOS_PEDIDOS(NUEVA_REMISION);
+                                //            INSERT_PROD.RECORRER_PRODUCTOS();
+
+                                ///***** REVISAR QUE SE CARGO EL PEDIDO
+                                if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
+                                { }
+
+                            }
+                        }
 
 
 
