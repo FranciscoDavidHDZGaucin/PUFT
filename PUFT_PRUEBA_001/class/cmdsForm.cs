@@ -184,7 +184,7 @@ namespace PUFT_PRUEBA_001
         public bool insertarDatosEncabeza(Int64 n_remision , DateTime fecha_alta , string cve_cte ,string nom_cte,string estatus  , int n_agente ,string nom_age , string observacion, int moneda, int plazo, int tipo_venta, double total,string medio_pago,
              string destino ,int tipo_agente, double total_p ,int vbo_gestor,string comentario_gestor ,int vbo_jefecyc,
              string comentario_jefecyc, DateTime timeres_gestor, DateTime timeres_jefecyc,string comentario_gerente , DateTime timeres_gerente ,
-            int encbandera_especial,int encplazo_especial,string opCFDI ,string MTDPG )
+            int encbandera_especial,int encplazo_especial,string opCFDI ,string MTDPG, int salesforce_id )
         {
             conexion.Open();
 
@@ -222,6 +222,7 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("encplazo_especial", encplazo_especial);
                 command.Parameters.AddWithValue("opCFDI", opCFDI);
                 command.Parameters.AddWithValue("MTDPG", MTDPG);
+                command.Parameters.AddWithValue("SalesForce_id", salesforce_id);
                 if (command.ExecuteNonQuery() == 1)
                 {
                     exito = true;
@@ -230,6 +231,9 @@ namespace PUFT_PRUEBA_001
             catch (MySqlException e)
             {
                 exito = false;
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE insertarDatosEncabeza ", "ERROR  EN insertarDatosEncabeza  cmdsform, algun error en tipo de dato o en devolucion de dato", e.ToString(), thisDay);
             }
             finally
             {
