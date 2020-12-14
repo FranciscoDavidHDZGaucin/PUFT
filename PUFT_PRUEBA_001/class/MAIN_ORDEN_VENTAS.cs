@@ -157,7 +157,10 @@ namespace PUFT_PRUEBA_001
 
                                 ///***** REVISAR QUE SE CARGO EL PEDIDO
                                 if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
-                                { }
+                                {
+
+
+                                }
 
                             }
 
