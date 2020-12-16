@@ -147,7 +147,7 @@ namespace PUFT_PRUEBA_001
                                         Convert.ToDateTime(row["timeres_gestor"]), Convert.ToDateTime(row["timeres_jefecyc"]),
                                         Convert.ToString(row["comentario_gerente"]), Convert.ToDateTime(row["timeres_gerente"]),
                                         Convert.ToInt32(row["encbandera_especial"]), Convert.ToInt32(row["encbandera_especial"]), Convert.ToString(row["opCFDI"]),
-                                        Convert.ToString(row["MTDPG"]), Convert.ToInt32(row["ID_SALESFORECE"]));
+                                        Convert.ToString(row["MTDPG"]), Convert.ToString(row["ID_SALESFORECE"]));
 
                                 }
                                 catch (Exception e)
@@ -163,7 +163,7 @@ namespace PUFT_PRUEBA_001
                                 //            INSERT_PROD.RECORRER_PRODUCTOS();
 
                                 ///***** REVISAR QUE SE CARGO EL PEDIDO
-                                if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
+                                if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE, Convert.ToString(row["ID_SALESFORECE"])))
                                 { }
 
                             }
@@ -305,7 +305,7 @@ namespace PUFT_PRUEBA_001
         }
 
 
-        public Boolean vALIDAR_NEW_PEDIDO(CTRL_OBJET CTRL, Int32 cve_agente)
+        public Boolean vALIDAR_NEW_PEDIDO(CTRL_OBJET CTRL, Int32 cve_agente, String id_salesforce)
         {
             Boolean RESP_VALIDA = false;
 
@@ -325,6 +325,7 @@ namespace PUFT_PRUEBA_001
                         cmd.Parameters.Add(new MySqlParameter("_REMISION_MAIN", MySqlDbType.Int32)).Value = CTRL.REMISION;
                         cmd.Parameters.Add(new MySqlParameter("ordenventa", MySqlDbType.Int32)).Value = CTRL.ORD_VENTA;
                         cmd.Parameters.Add(new MySqlParameter("cve_agente", MySqlDbType.Int32)).Value = cve_agente;
+                        cmd.Parameters.Add(new MySqlParameter("cve_agente", MySqlDbType.Text)).Value = id_salesforce;
 
 
 
