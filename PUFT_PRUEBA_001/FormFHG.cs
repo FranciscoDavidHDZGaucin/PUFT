@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
 
 namespace PUFT_PRUEBA_001
 {
@@ -15,6 +16,7 @@ namespace PUFT_PRUEBA_001
         public FormFHG()
         {
             InitializeComponent();
+            show_errors();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -29,27 +31,27 @@ namespace PUFT_PRUEBA_001
             int time = Convert.ToInt32(tiempoExe.SelectedItem);
             if (time == 3)
             {
-                TIMER_CICLO_PUFT.Interval = 3000;
+                TIMER_CICLO_PUFT.Interval = 180000;
                 TIMER_CICLO_PUFT.Start();
             }
             if (time == 4)
             {
-                TIMER_CICLO_PUFT.Interval = 4000;
+                TIMER_CICLO_PUFT.Interval = 240000;
                 TIMER_CICLO_PUFT.Start();
             }
             if (time == 5)
             {
-                TIMER_CICLO_PUFT.Interval = 5000;
+                TIMER_CICLO_PUFT.Interval = 300000;
                 TIMER_CICLO_PUFT.Start();
             }
             if (time == 10)
             {
-                TIMER_CICLO_PUFT.Interval = 10000;
+                TIMER_CICLO_PUFT.Interval = 600000;
                 TIMER_CICLO_PUFT.Start();
             }
             if (time == 15)
             {
-                TIMER_CICLO_PUFT.Interval = 15000;
+                TIMER_CICLO_PUFT.Interval = 900000;
                 TIMER_CICLO_PUFT.Start();
             }
 
@@ -67,5 +69,27 @@ namespace PUFT_PRUEBA_001
         {
 
         }
+
+        private void show_errors()
+        {
+            string connStr =
+                                     System.Configuration.ConfigurationManager.
+                                     ConnectionStrings["Server80"].ConnectionString;
+            string query = "select msg_puft, class_puft, exception_puft, fecha_puft from TB_PUFT_ERROS;";
+            using (MySqlConnection conn = new MySqlConnection(connStr))
+            {
+                using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn))
+                {
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds);
+                    var bindingSource = new BindingSource();
+                    bindingSource.DataSource = ds.Tables[0];
+                    dataGridView1.DataSource = bindingSource;
+                }
+            }
+        }
+
+
+
     }
 }
