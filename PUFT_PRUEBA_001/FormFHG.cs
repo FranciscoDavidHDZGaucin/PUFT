@@ -61,8 +61,9 @@ namespace PUFT_PRUEBA_001
         {
             MAIN_ORDEN_VENTAS ORDENES_VENTAS = new MAIN_ORDEN_VENTAS();
             ORDENES_VENTAS.RECORRER_ORDEN_VENTAS();
-            
-          
+            show_errors();
+
+
         }
 
         private void label1_Click(object sender, EventArgs e)
