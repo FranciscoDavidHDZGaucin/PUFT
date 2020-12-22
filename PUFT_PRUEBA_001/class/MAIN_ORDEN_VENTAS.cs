@@ -11,58 +11,59 @@ namespace PUFT_PRUEBA_001
 {
     class respuesta_remi
     {
-       private  Int64 _remision ;
+        private Int64 _remision;
         private Boolean _existe_remi = false;
 
-        public respuesta_remi( Int64  REMISION , Boolean EXSITE ) {
-            this._remision = REMISION;  
+        public respuesta_remi(Int64 REMISION, Boolean EXSITE)
+        {
+            this._remision = REMISION;
             this._existe_remi = EXSITE;
-        } 
+        }
 
-        
+
         public Int64 RESP_REMISION
-        { get => _remision;  }
+        { get => _remision; }
         public Boolean REPS_ECISTE
-        { get => _existe_remi;  }
+        { get => _existe_remi; }
     }
 
     class MAIN_ORDEN_VENTAS
-{
+    {
         private DataTable TB_ORDVTS;
-    
+
 
         public MAIN_ORDEN_VENTAS()
 
         {
             try
             {
-                
-               
 
-                    TB_ORDVTS = new DataTable();
-                    try
-                    {
+
+
+                TB_ORDVTS = new DataTable();
+                try
+                {
                     string connection =
                                   System.Configuration.ConfigurationManager.
                                   ConnectionStrings["PUFT_PRUEBA_001.Properties.Settings.VRS_SALESFORCE"].ConnectionString;
                     using (SqlConnection CONECT = new SqlConnection(connection))
-                        {
-                            CONECT.Open();
-                            using (SqlCommand COMANDO = new SqlCommand("SP_PUFT_ORDENDEVENTA_PENDIENTE", CONECT))
-
-
-                            {
-                                COMANDO.CommandType = CommandType.StoredProcedure;
-                               
-                                TB_ORDVTS.Load(COMANDO.ExecuteReader());
-
-                                
-                            }
-                        }
-
-                    }
-                    catch (Exception e)
                     {
+                        CONECT.Open();
+                        using (SqlCommand COMANDO = new SqlCommand("SP_PUFT_ORDENDEVENTA_PENDIENTE", CONECT))
+
+
+                        {
+                            COMANDO.CommandType = CommandType.StoredProcedure;
+
+                            TB_ORDVTS.Load(COMANDO.ExecuteReader());
+
+
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
                     // Get the current date.
                     DateTime thisDay = DateTime.Today;
                     // Display the date in the default (general) format.
@@ -102,28 +103,25 @@ namespace PUFT_PRUEBA_001
         public void RECORRER_ORDEN_VENTAS()
         {
 
-           
-                if (TB_ORDVTS.Rows.Count > 0)
+
+            if (TB_ORDVTS.Rows.Count > 0)
+            {
+                foreach (DataRow row in TB_ORDVTS.Rows)
                 {
-                    foreach (DataRow row in TB_ORDVTS.Rows)
+                    try
                     {
-                            try
-                            {
-                                var prueba = row["ORDENDE_VENTA"].ToString();
+                        var prueba = row["ORDENDE_VENTA"].ToString();
 
-                                GET_NEW_REMISION(Convert.ToInt32(row["n_agente"]), 888);
+                        GET_NEW_REMISION(Convert.ToInt32(row["n_agente"]), 888);
 
-                                int ORDEN_VENTA = Convert.ToInt32(row["ORDENDE_VENTA"]);
-                                int N_AGENTE = Convert.ToInt32(row["n_agente"]);
-                                Boolean existe_ORDENVNETA = false;
-                                Boolean exis_agnete = false;
-                                int control_agente_new_remi = 0;
-                                CTRL_OBJET NUEVA_REMISION = null;
+                        int ORDEN_VENTA = Convert.ToInt32(row["ORDENDE_VENTA"]);
+                        int N_AGENTE = Convert.ToInt32(row["n_agente"]);
+                        Boolean existe_ORDENVNETA = false;
+                        Boolean exis_agnete = false;
+                        int control_agente_new_remi = 0;
+                        CTRL_OBJET NUEVA_REMISION = null;
 
-
-                  
-                        if (ORDEN_VENTA == 13065 || ORDEN_VENTA == 13067 || ORDEN_VENTA == 13066)
-                        {
+                        
                             if (ORDEN_VENTA > 0) { existe_ORDENVNETA = true; }
                             if (N_AGENTE > 0) { exis_agnete = true; control_agente_new_remi = 888; }
 
@@ -147,7 +145,7 @@ namespace PUFT_PRUEBA_001
                                         Convert.ToDateTime(row["timeres_gestor"]), Convert.ToDateTime(row["timeres_jefecyc"]),
                                         Convert.ToString(row["comentario_gerente"]), Convert.ToDateTime(row["timeres_gerente"]),
                                         Convert.ToInt32(row["encbandera_especial"]), Convert.ToInt32(row["encbandera_especial"]), Convert.ToString(row["opCFDI"]),
-                                        Convert.ToString(row["MTDPG"]));
+                                        Convert.ToString(row["MTDPG"]), row["ID_SALESFORECE"].ToString());
 
                                 }
                                 catch (Exception e)
@@ -167,17 +165,22 @@ namespace PUFT_PRUEBA_001
                                 INSERT_PROD.RECORRER_PRODUCTOS();
 
                                 ///***** REVISAR QUE SE CARGO EL PEDIDO
-                                if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE))
-                                { }
+                                if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE, row["ID_SALESFORECE"].ToString()))
+                                {
+
+                                    ctrl_GUARDAR_FOLIO(NUEVA_REMISION, N_AGENTE);
+
+
+                                }
 
                             }
-                        }
+                        
 
 
 
-                            }
-                            catch (Exception e)
-                            {
+                    }
+                    catch (Exception e)
+                    {
                         // Get the current date.
                         DateTime thisDay = DateTime.Today;
                         // Display the date in the default (general) format.
@@ -194,15 +197,15 @@ namespace PUFT_PRUEBA_001
 
             }
 
-            
+
 
         }
-        public respuesta_remi  GET_NEW_REMISION(int cve_agente     , int   exis_agen  )
+        public respuesta_remi GET_NEW_REMISION(int cve_agente, int exis_agen)
         {
-            Int64 new_REMISION = 0 ;
+            Int64 new_REMISION = 0;
             Boolean EXISTE_REMI = false;
 
-            respuesta_remi RESPUESTA = null ; 
+            respuesta_remi RESPUESTA = null;
 
             try
             {
@@ -210,9 +213,9 @@ namespace PUFT_PRUEBA_001
                                     System.Configuration.ConfigurationManager.
                                     ConnectionStrings["Server80"].ConnectionString;
 
-                using (MySqlConnection  coneccmys = new MySqlConnection(connection) )
+                using (MySqlConnection coneccmys = new MySqlConnection(connection))
                 {
-                    coneccmys.Open(); 
+                    coneccmys.Open();
                     using (MySqlCommand cmd = new MySqlCommand("SP_FOLIO_PEDIDOS", coneccmys))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
@@ -226,19 +229,20 @@ namespace PUFT_PRUEBA_001
                         {
                             foreach (DataRow row in dt_table.Rows)
                             {
-                               
+
                                 ///MAIN_PEDIDO EXIS_DETALLE  EXIS_ENCABEZA
                                 int main_ctrl = Convert.ToInt32(row["MAIN_PEDIDO"]);
                                 int encabeza_ctrl = Convert.ToInt32(row["EXIS_DETALLE"]);
                                 int detalle_ctrl = Convert.ToInt32(row["EXIS_ENCABEZA"]);
-                                if (main_ctrl == 0  && encabeza_ctrl == 0 && detalle_ctrl == 0 ) {
+                                if (main_ctrl == 0 && encabeza_ctrl == 0 && detalle_ctrl == 0)
+                                {
 
                                     new_REMISION = Convert.ToInt32(row["REMISION"]);
                                     EXISTE_REMI = true;
 
-                                    RESPUESTA = new respuesta_remi(new_REMISION, EXISTE_REMI); 
+                                    RESPUESTA = new respuesta_remi(new_REMISION, EXISTE_REMI);
 
-                                }    
+                                }
 
 
 
@@ -247,10 +251,10 @@ namespace PUFT_PRUEBA_001
 
                         }
                     }
-                    coneccmys.Close(); 
-                } 
+                    coneccmys.Close();
+                }
 
-                
+
 
                 return RESPUESTA;
 
@@ -259,6 +263,12 @@ namespace PUFT_PRUEBA_001
             }
             catch (Exception e)
             {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR  GET_NEW_REMISION", e.ToString(), thisDay);
+
 
 
 
@@ -271,16 +281,16 @@ namespace PUFT_PRUEBA_001
 
         }
 
-        public CTRL_OBJET GENERAR_CONTROL_OBJECTO(int _ordenventa, int cve_agente , Boolean exis_agnete ,Boolean  existe_ORDENVNETA ,int enter_cve_agente  )
+        public CTRL_OBJET GENERAR_CONTROL_OBJECTO(int _ordenventa, int cve_agente, Boolean exis_agnete, Boolean existe_ORDENVNETA, int enter_cve_agente)
         {
-            CTRL_OBJET ctrl = null  ;
+            CTRL_OBJET ctrl = null;
             respuesta_remi rem_respuesta = null;
 
             try
             {
                 if (exis_agnete == true && existe_ORDENVNETA == true)
                 {
-                    
+
 
                     rem_respuesta = GET_NEW_REMISION(Convert.ToInt32(cve_agente), enter_cve_agente);
                     if (rem_respuesta.REPS_ECISTE)
@@ -297,19 +307,25 @@ namespace PUFT_PRUEBA_001
             }
             catch (Exception e)
             {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR  GENERAR_CONTROL_OBJECTO", e.ToString(), thisDay);
+
 
             }
-            return ctrl; 
+            return ctrl;
 
         }
 
 
-        public Boolean vALIDAR_NEW_PEDIDO(CTRL_OBJET  CTRL,Int32  cve_agente )
+        public Boolean vALIDAR_NEW_PEDIDO(CTRL_OBJET CTRL, Int32 cve_agente, String ID_SALESFORCE)
         {
             Boolean RESP_VALIDA = false;
 
             try
-             {
+            {
 
                 string connection =
                                    System.Configuration.ConfigurationManager.
@@ -322,11 +338,12 @@ namespace PUFT_PRUEBA_001
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.Add(new MySqlParameter("_REMISION_MAIN", MySqlDbType.Int32)).Value = CTRL.REMISION;
-                        cmd.Parameters.Add(new MySqlParameter("ordenventa", MySqlDbType.Int32)).Value =  CTRL.ORD_VENTA;
+                        cmd.Parameters.Add(new MySqlParameter("ordenventa", MySqlDbType.Int32)).Value = CTRL.ORD_VENTA;
                         cmd.Parameters.Add(new MySqlParameter("cve_agente", MySqlDbType.Int32)).Value = cve_agente;
+                        cmd.Parameters.Add(new MySqlParameter("id_salesforce", MySqlDbType.Text)).Value = ID_SALESFORCE;
 
 
-                        
+
                         DataTable dt_table = new DataTable();
                         MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
 
@@ -343,7 +360,7 @@ namespace PUFT_PRUEBA_001
                                 if (main_ctrl == 1 && encabeza_ctrl == 1 && detalle_ctrl == 1)
                                 {
 
-                                    RESP_VALIDA= true;
+                                    RESP_VALIDA = true;
 
 
                                 }
@@ -362,22 +379,112 @@ namespace PUFT_PRUEBA_001
 
             }
             catch (Exception e)
-            {            }
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
 
-                 return RESP_VALIDA; 
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR vALIDAR_NEW_PEDIDO", e.ToString(), thisDay);
+
+
+            }
+
+            return RESP_VALIDA;
         }
 
 
 
-        public Boolean ctrl_ESTA_PERMITIDO_INSERTAR( Boolean existe_ORDENVNETA , Boolean  exis_agnete , CTRL_OBJET CTRL)
+        public Boolean ctrl_ESTA_PERMITIDO_INSERTAR(Boolean existe_ORDENVNETA, Boolean exis_agnete, CTRL_OBJET CTRL)
         {
             Boolean perInsert = false;
 
             if (existe_ORDENVNETA == true && exis_agnete == true && CTRL != null)
             {
-                perInsert = true; 
+                perInsert = true;
             }
-            return perInsert; 
+            return perInsert;
         }
+
+        public Boolean ctrl_GUARDAR_FOLIO(CTRL_OBJET CTRL, Int64 cve_agente)
+        {
+
+            ///*CALL pedidos.`SP_FOLIO_GUARDAR_PEDIDOS`( 142, 1422020257 ) ;
+            Boolean RESP_VALIDA = false;
+
+            try
+            {
+
+                string connection =
+                                   System.Configuration.ConfigurationManager.
+                                   ConnectionStrings["Server80"].ConnectionString;
+
+                using (MySqlConnection coneccmys = new MySqlConnection(connection))
+                {
+                    coneccmys.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("SP_FOLIO_GUARDAR_PEDIDOS", coneccmys))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new MySqlParameter("NEW_REMISION", MySqlDbType.Int32)).Value = CTRL.REMISION;
+
+                        cmd.Parameters.Add(new MySqlParameter("agent_ventas", MySqlDbType.Int64)).Value = cve_agente;
+
+
+
+                        DataTable dt_table = new DataTable();
+                        MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
+
+                        APSTER.Fill(dt_table);
+                        if (dt_table.Rows.Count > 0)
+                        {
+                            foreach (DataRow row in dt_table.Rows)
+                            {
+
+                                ///MAIN_PEDIDO EXIS_DETALLE  EXIS_ENCABEZA
+                                int main_ctrl = Convert.ToInt32(row["MAIN_PEDIDO"]);
+                                int encabeza_ctrl = Convert.ToInt32(row["EXIS_DETALLE"]);
+                                int detalle_ctrl = Convert.ToInt32(row["EXIS_ENCABEZA"]);
+                                if (main_ctrl == 1 && encabeza_ctrl == 1 && detalle_ctrl == 1)
+                                {
+
+                                    RESP_VALIDA = true;
+
+
+                                }
+
+
+
+
+                            }
+
+                        }
+                    }
+                    coneccmys.Close();
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR ctrl_GUARDAR_FOLIO", e.ToString(), thisDay);
+
+
+            }
+
+
+            return RESP_VALIDA;
+
+        }
+
+
+
+
+
+
+
     }
 }
