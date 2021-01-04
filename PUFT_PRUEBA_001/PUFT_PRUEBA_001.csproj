@@ -88,6 +88,7 @@
   <ItemGroup>
     <Compile Include="class\ACCION_PRODUCTOS_PEDIDOS.cs" />
     <Compile Include="class\cmdsForm.cs" />
+    <Compile Include="class\CTRL_FACTURA_OBJET.cs" />
     <Compile Include="class\CTRL_OBJET.cs" />
     <Compile Include="class\MAIN_ORDEN_VENTAS.cs" />
     <Compile Include="class\PUFT_ERRORS.cs" />
