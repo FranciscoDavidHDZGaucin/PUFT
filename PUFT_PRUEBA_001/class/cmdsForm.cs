@@ -86,7 +86,8 @@ namespace PUFT_PRUEBA_001
               , string entrega,*/
 
              DateTime fecha_autorizajefecomer, DateTime fecha_autorizanalisajr,
-             string ID_SALESFORCE
+             string ID_SALESFORCE ,
+             int LineNum 
 
              /*, string cancela_coment_soporte, string abasto_inicial*/)
         {
@@ -162,7 +163,7 @@ namespace PUFT_PRUEBA_001
                 //command.Parameters.AddWithValue("cancela_coment_soporte", cancela_coment_soporte);
                 //command.Parameters.AddWithValue("abasto_inicial", abasto_inicial);
                 command.Parameters.AddWithValue("IDSALESFORCE", ID_SALESFORCE);
-
+                command.Parameters.AddWithValue("SAP_LINENUM", LineNum);
                 if (command.ExecuteNonQuery() == 1)
                 {
                     exito = true;

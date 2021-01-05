@@ -86,6 +86,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="class\ACCION_ENTREGAS_PRODUCTOS.cs" />
     <Compile Include="class\ACCION_PRODUCTOS_PEDIDOS.cs" />
     <Compile Include="class\cmdsForm.cs" />
     <Compile Include="class\CTRL_ENTREGA_OBJET.cs" />

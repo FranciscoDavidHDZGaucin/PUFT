@@ -112,7 +112,7 @@ namespace PUFT_PRUEBA_001
                     {
                         var prueba = row["ORDENDE_VENTA"].ToString();
 
-                        GET_NEW_REMISION(Convert.ToInt32(row["n_agente"]), 888);
+                        //GET_NEW_REMISION(Convert.ToInt32(row["n_agente"]), 888);
 
                         int ORDEN_VENTA = Convert.ToInt32(row["ORDENDE_VENTA"]);
                         int N_AGENTE = Convert.ToInt32(row["n_agente"]);

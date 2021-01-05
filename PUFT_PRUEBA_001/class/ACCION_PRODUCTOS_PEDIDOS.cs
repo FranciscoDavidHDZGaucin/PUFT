@@ -91,7 +91,8 @@ namespace PUFT_PRUEBA_001{
                         {
                             var prueba = row["ORDENDE_VENTA"].ToString();
                             var notifica_p = Convert.ToInt32(row["notifica_p"]);
-                            var SALES = row["ID_SALESFORECE"].ToString(); 
+                            var SALES = row["ID_SALESFORECE"].ToString();
+                            var LINENUM = Convert.ToInt32(row["LineNum"]);
                             //// METER KLA CLASE DE INSERTSIO DE   PRODUCTOS  
                             ///
                             var pr = new cmdsForm();
@@ -158,8 +159,9 @@ namespace PUFT_PRUEBA_001{
                                 Convert.ToDateTime(row["fecha_autorizajefecomer"]),
                                 Convert.ToDateTime(row["fecha_autorizanalisajr"]),
                                 //row["cancela_coment_soporte"].ToString(),
-                                //row["abasto_inicial"].ToString()
-                                row["ID_SALESFORECE"].ToString()
+                                //row["abasto_inicial"].ToString()  0Q0S0000000OJksKAG
+                                row["ID_SALESFORECE"].ToString(),
+                                 Convert.ToInt32(row["LineNum"])
                                 );
                         }
                           catch (Exception e)
