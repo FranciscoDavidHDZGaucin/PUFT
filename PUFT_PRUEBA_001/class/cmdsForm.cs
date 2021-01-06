@@ -247,10 +247,26 @@ namespace PUFT_PRUEBA_001
 
         public bool insertarDatosEntrega(double id_detalle, Int64 n_remision, Int64 n_agente, string nom_age, DateTime fecha_alta, string cve_cte
 , string nom_cte, string cve_prod, string nom_prod, double cant_prod, double cant_original, double precio_prod, double dcto_prod, double ieps, double iva, double total_prod
-, Int64 moneda_prod, double cant_falta, double tipo_cambio, double precio_condcto, double precio_politica, string bonificacion, DateTime fecha_factura, DateTime fecha_autoriza, DateTime fecha_entrega, DateTime fecha_salida
-, Int64 n_factura, Int64 id_transporte, string guia, string condiciones, string comentariof, string comentariol, DateTime fecha_sc, string factura_proveedor ,Int64 envio_mailcte , string factura_cortasap
-, string whscode , string whsname , string block , string city , string state , Int64 acuse, Int64 condiciones_optimas,Int64 entrega , string confirmacion , string comentarios_nuevos
-, DateTime fecha_mov, Int64 indica_entrega, string bodega_entrega , Int64 id_pedido, string logistica_entregascol , Int64 existencia_sap)
+, Int64 moneda_prod, double cant_falta, double tipo_cambio, double precio_condcto, double precio_politica, string bonificacion, DateTime fecha_factura
+            /*, DateTime fecha_autoriza
+            , DateTime fecha_entrega
+            , DateTime fecha_salida*/
+            , Int64 n_factura
+            
+           /* , Int64 id_transporte
+            , string guia*/
+            , string condiciones, string comentariof, string comentariol
+            /*, DateTime fecha_sc, string factura_proveedor ,Int64 envio_mailcte , string factura_cortasap*/
+            , string whscode , string whsname , string block , string city , string state 
+          /*  , Int64 acuse, Int64 condiciones_optimas */ 
+            ,Int64 entrega 
+            /*, string confirmacion , string comentarios_nuevos
+            , DateTime fecha_mov*/
+            , Int64 indica_entrega /*, string bodega_entrega */
+            , Int64 id_pedido
+            /*, string logistica_entregascol , Int64 existencia_sap*/
+            
+            )
         {
             conexion.Open();
 
@@ -281,37 +297,44 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("tipo_cambio", tipo_cambio);
                 command.Parameters.AddWithValue("precio_condcto", precio_condcto);
                 command.Parameters.AddWithValue("precio_politica", precio_politica);
+
                 command.Parameters.AddWithValue("bonificacion", bonificacion);
                 command.Parameters.AddWithValue("fecha_factura", fecha_factura);
-                command.Parameters.AddWithValue("fecha_autoriza", fecha_autoriza);
+
+              /*   command.Parameters.AddWithValue("fecha_autoriza", fecha_autoriza);
                 command.Parameters.AddWithValue("fecha_entrega", fecha_entrega);
                 command.Parameters.AddWithValue("fecha_salida", fecha_salida);
+              */
                 command.Parameters.AddWithValue("n_factura", n_factura);
-                command.Parameters.AddWithValue("id_transporte", id_transporte);
-                command.Parameters.AddWithValue("guia", guia);
+              //  command.Parameters.AddWithValue("id_transporte", id_transporte);
+              ///  command.Parameters.AddWithValue("guia", guia);
                 command.Parameters.AddWithValue("condiciones", condiciones);
                 command.Parameters.AddWithValue("comentariof", comentariof);
                 command.Parameters.AddWithValue("comentariol", comentariol);
+
+                /*
                 command.Parameters.AddWithValue("fecha_sc", fecha_sc);
                 command.Parameters.AddWithValue("factura_proveedor", factura_proveedor);
                 command.Parameters.AddWithValue("envio_mailcte", envio_mailcte);
                 command.Parameters.AddWithValue("factura_cortasap", factura_cortasap);
+                */
                 command.Parameters.AddWithValue("whscode", whscode);
                 command.Parameters.AddWithValue("whsname", whsname);
                 command.Parameters.AddWithValue("block", block);
                 command.Parameters.AddWithValue("city", city);
                 command.Parameters.AddWithValue("state", state);
-                command.Parameters.AddWithValue("acuse", acuse);
-                command.Parameters.AddWithValue("condiciones_optimas", condiciones_optimas);
+
+              //  command.Parameters.AddWithValue("acuse", acuse);
+               // command.Parameters.AddWithValue("condiciones_optimas", condiciones_optimas);
                 command.Parameters.AddWithValue("entrega", entrega);
-                command.Parameters.AddWithValue("confirmacion", confirmacion);
-                command.Parameters.AddWithValue("comentarios_nuevos", comentarios_nuevos);
-                command.Parameters.AddWithValue("fecha_mov", fecha_mov);
+               /// command.Parameters.AddWithValue("confirmacion", confirmacion);
+               /// command.Parameters.AddWithValue("comentarios_nuevos", comentarios_nuevos);
+              ///  command.Parameters.AddWithValue("fecha_mov", fecha_mov);
                 command.Parameters.AddWithValue("indica_entrega", indica_entrega);
-                command.Parameters.AddWithValue("bodega_entrega", bodega_entrega);
+                ///command.Parameters.AddWithValue("bodega_entrega", bodega_entrega);
                 command.Parameters.AddWithValue("id_pedido", id_pedido);
-                command.Parameters.AddWithValue("logistica_entregascol", logistica_entregascol);
-                command.Parameters.AddWithValue("existencia_sap", existencia_sap);
+                ///command.Parameters.AddWithValue("logistica_entregascol", logistica_entregascol);
+                ///command.Parameters.AddWithValue("existencia_sap", existencia_sap);
                 if (command.ExecuteNonQuery() == 1)
                 {
                     exito = true;
@@ -336,8 +359,13 @@ namespace PUFT_PRUEBA_001
         public bool insertarDatosFactura(double id_detalle, Int64 n_remision, Int64 n_agente, string nom_age, DateTime fecha_alta, string cve_cte, string nom_cte, string cve_prod,
                  string nom_prod, double cant_prod, double cant_original, double precio_prod, double dcto_prod, double ieps, double iva, double total_prod,
                  Int64 moneda_prod, double cant_falta, double tipo_cambio, double precio_condcto, double precio_politica, string bonificacion,
-                 DateTime fecha_factura, DateTime fecha_autoriza, DateTime fecha_entrega, DateTime fecha_salida, Int64 n_factura, Int64 id_transporte,
-                 string guia, string condiciones, string comentariof, string comentariol, DateTime fecha_sc, DateTime factura_proveedor, Int64 envio_mailcte,
+                 DateTime fecha_factura
+               , DateTime fecha_autoriza
+                , DateTime fecha_entrega
+                , DateTime fecha_salida
+                , Int64 n_factura
+              , Int64 id_transporte
+                 ,string guia, string condiciones, string comentariof, string comentariol, DateTime fecha_sc, DateTime factura_proveedor, Int64 envio_mailcte,
                  DateTime factura_cortasap, string whscode, string whsname, string block, string city, string state, Int64 acuse, Int64 condiciones_optimas,
                  Int64 entrega, string confirmacion, string comentarios_nuevos, Int64 indica_entrega, string bodega_entrega,
                  Int64 id_pedido, Int64 n_entrega)

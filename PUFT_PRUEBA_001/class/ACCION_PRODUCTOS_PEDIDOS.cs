@@ -78,8 +78,9 @@ namespace PUFT_PRUEBA_001{
             
         }
 
-        public  void  RECORRER_PRODUCTOS()
+        public  Boolean   RECORRER_PRODUCTOS()
        {
+            Boolean CTRL_PROD = true ; 
 
             if (_CONTROL_ORDEVENTA.CONTROL_MAIN)
             {
@@ -89,10 +90,10 @@ namespace PUFT_PRUEBA_001{
                     {
                         try
                         {
-                            var prueba = row["ORDENDE_VENTA"].ToString();
-                            var notifica_p = Convert.ToInt32(row["notifica_p"]);
-                            var SALES = row["ID_SALESFORECE"].ToString();
-                            var LINENUM = Convert.ToInt32(row["LineNum"]);
+                            string  prueba = row["ORDENDE_VENTA"].ToString();
+                            int  notifica_p = Convert.ToInt32(row["notifica_p"]);
+                            string SALES = row["ID_SALESFORECE"].ToString();
+                            int  LINENUM = Convert.ToInt32(row["LineNum"]);
                             //// METER KLA CLASE DE INSERTSIO DE   PRODUCTOS  
                             ///
                             var pr = new cmdsForm();
@@ -166,6 +167,7 @@ namespace PUFT_PRUEBA_001{
                         }
                           catch (Exception e)
                         {
+                            CTRL_PROD = false; 
 
                             var resultado = e.ToString();
                             // Get the current date.
@@ -173,6 +175,7 @@ namespace PUFT_PRUEBA_001{
                             // Display the date in the default (general) format.
 
                             PUFT_ERRORS error = new PUFT_ERRORS("CLASSE ACCION_PRODUCTOS_PEDIDOS ", "ERROR  EN RECORRER_PRODUCTOS DENTRO DEL FORE ", e.ToString(), thisDay);
+                            break;
                         }
                         //pr.insertarDatosEncabeza(Convert.ToInt32(row["n_remision"].ToString()), Convert.ToInt32(row["fecha_alta"].ToString()), row["cve_cte"].ToString(),
                         //    Convert.ToDateTime(row["CardName"].ToString()), Convert.ToString(row["estatus"].ToString()), Convert.ToString(row["n_agente"].ToString()),
@@ -204,7 +207,7 @@ namespace PUFT_PRUEBA_001{
                 }
 
             }
-
+            return CTRL_PROD;
         }
 
 

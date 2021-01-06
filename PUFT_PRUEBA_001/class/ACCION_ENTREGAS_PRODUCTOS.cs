@@ -18,7 +18,7 @@ namespace PUFT_PRUEBA_001
 
 
 
-        public ACCION_ENTREGAS_PRODUCTOS(respuesta_entrega _NUEVA_ENTREGA  , DataRow _PARTIDA_PRODUCTO)
+        public ACCION_ENTREGAS_PRODUCTOS(respuesta_entrega _NUEVA_ENTREGA  ,ref  DataRow _PARTIDA_PRODUCTO)
         {
             this.NUEVA_ENTREGA = _NUEVA_ENTREGA;
             this.PARTIDA_PRODUCTO_SAP = _PARTIDA_PRODUCTO;
@@ -99,7 +99,15 @@ namespace PUFT_PRUEBA_001
 
 
                 var sap_total_prod = PARTIDA_PRODUCTO_SAP["total_prod"];
+                var sap_moneda = PARTIDA_PRODUCTO_SAP["moneda"];
+                var sap_cant_falta= PARTIDA_PRODUCTO_SAP["cant_falta"];
+                var sap_tipo_cambio = PARTIDA_PRODUCTO_SAP["tipo_cambio"];
+                var sap_precio_condcto = PARTIDA_PRODUCTO_SAP["precio_condcto"];
+                var sap_precio_politica = PARTIDA_PRODUCTO_SAP["precio_politica"];
 
+
+                var sap_bonificacion = PARTIDA_PRODUCTO_SAP["bonificacion"];
+                var sap_fecha_factura = PARTIDA_PRODUCTO_SAP["fecha_factura"];
 
 
             }

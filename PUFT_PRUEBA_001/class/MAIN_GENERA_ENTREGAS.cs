@@ -101,16 +101,18 @@ namespace PUFT_PRUEBA_001
                 foreach (DataRow row in TB_FACTURAS_PENDIENTES.Rows)
                 {
                     try {
+                        DataRow accion_row = row; 
                         if (row["ID_PEDIDOS"] != null  )
                          {
                             var prueba = row["ORDEN_VENTA"].ToString();
+                            Int64 sap_n_remision = row["n_remision"] is null ? 0 : Convert.ToInt64(row["n_remision"]);
 
                             respuesta_entrega resultado_entrega = GET_NEW_ENTREGA(Convert.ToInt32(row["ID_PEDIDOS"]), 888);
                             ///VALIDAMOS QUE EXISTA LA  NUEVA ENTREGA
                             if (resultado_entrega.EXISTE_ENTREGA)
                             {
 
-                                ACCION_ENTREGAS_PRODUCTOS acc_entregas = new ACCION_ENTREGAS_PRODUCTOS(resultado_entrega, row);
+                                ACCION_ENTREGAS_PRODUCTOS acc_entregas = new ACCION_ENTREGAS_PRODUCTOS(resultado_entrega, ref accion_row);
 
                                 acc_entregas.INSERT_ENTREGA();
                             }
