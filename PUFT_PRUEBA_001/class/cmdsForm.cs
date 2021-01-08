@@ -12,12 +12,30 @@ namespace PUFT_PRUEBA_001
     class cmdsForm { 
 
     private string connection = string.Empty;
-    MySqlConnection conexion = new MySqlConnection(ConfigurationManager.ConnectionStrings["Server80"].ConnectionString);
-        private MySqlCommand cmd;
+        MySqlConnection conexion = null;     
+            private MySqlCommand cmd;
         private MySqlCommandBuilder cmbuilder;
         private MySqlDataAdapter da;
         private DataSet ds;
         private DataTable dt;
+
+        public cmdsForm()
+        {
+            try
+            {
+                this.conexion = new MySqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Server80"].ConnectionString);
+            }
+            catch (Exception e)
+            {
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE cmdsForm ", "ERROR  cmdsForm", e.ToString(), thisDay);
+
+            }
+
+        }
+
+
 
         public bool Conectar()
         {
@@ -245,10 +263,15 @@ namespace PUFT_PRUEBA_001
             return exito;
         }
 
-        public bool insertarDatosEntrega(double id_detalle, Int64 n_remision, Int64 n_agente, string nom_age, DateTime fecha_alta, string cve_cte
+        public bool insertarDatosEntrega(Int64 id_detalle
+            , Int64 n_remision
+            , int  n_agente
+            , string nom_age
+            , DateTime fecha_alta, string cve_cte
 , string nom_cte, string cve_prod, string nom_prod, double cant_prod, double cant_original, double precio_prod, double dcto_prod, double ieps, double iva, double total_prod
-, Int64 moneda_prod, double cant_falta, double tipo_cambio, double precio_condcto, double precio_politica, string bonificacion, DateTime fecha_factura
+, int moneda_prod, double cant_falta, double tipo_cambio, double precio_condcto, double precio_politica, string bonificacion, DateTime fecha_factura
             /*, DateTime fecha_autoriza
+            , DateTime fecha_entrega
             , DateTime fecha_entrega
             , DateTime fecha_salida*/
             , Int64 n_factura
@@ -262,10 +285,11 @@ namespace PUFT_PRUEBA_001
             ,Int64 entrega 
             /*, string confirmacion , string comentarios_nuevos
             , DateTime fecha_mov*/
-            , Int64 indica_entrega /*, string bodega_entrega */
+            , int indica_entrega /*, string bodega_entrega */
             , Int64 id_pedido
             /*, string logistica_entregascol , Int64 existencia_sap*/
-            
+            , string id_salesforce 
+            ,int LineNum
             )
         {
             conexion.Open();
@@ -276,41 +300,41 @@ namespace PUFT_PRUEBA_001
                 MySqlCommand command = new MySqlCommand("SP_INSERT_ENTREGAS_PUFT", conexion);
                 command.Connection = conexion;
                 command.CommandType = CommandType.StoredProcedure;
-                command.Parameters.AddWithValue("id_detalle", id_detalle);
-                command.Parameters.AddWithValue("n_remision", n_remision);
-                command.Parameters.AddWithValue("n_agente", n_agente);
-                command.Parameters.AddWithValue("nom_age", nom_age);
-                command.Parameters.AddWithValue("fecha_alta", fecha_alta);
-                command.Parameters.AddWithValue("cve_cte", cve_cte);
-                command.Parameters.AddWithValue("nom_cte", nom_cte);
-                command.Parameters.AddWithValue("cve_prod", cve_prod);
-                command.Parameters.AddWithValue("nom_prod", nom_prod);
-                command.Parameters.AddWithValue("cant_prod", cant_prod);
-                command.Parameters.AddWithValue("cant_original", cant_original);
-                command.Parameters.AddWithValue("precio_prod", precio_prod);
-                command.Parameters.AddWithValue("dcto_prod", dcto_prod);
-                command.Parameters.AddWithValue("ieps", ieps);
-                command.Parameters.AddWithValue("iva", iva);
-                command.Parameters.AddWithValue("total_prod", total_prod);
-                command.Parameters.AddWithValue("moneda_prod", moneda_prod);
-                command.Parameters.AddWithValue("cant_falta", cant_falta);
-                command.Parameters.AddWithValue("tipo_cambio", tipo_cambio);
-                command.Parameters.AddWithValue("precio_condcto", precio_condcto);
-                command.Parameters.AddWithValue("precio_politica", precio_politica);
+                command.Parameters.AddWithValue("sap_id_detalle", id_detalle);
+                command.Parameters.AddWithValue("sap_n_remision", n_remision);
+                command.Parameters.AddWithValue("sap_n_agente", n_agente);
+                command.Parameters.AddWithValue("sap_nom_age", nom_age);
+                command.Parameters.AddWithValue("sap_fecha_alta", fecha_alta);
+                command.Parameters.AddWithValue("sap_cve_cte", cve_cte);
+                command.Parameters.AddWithValue("sap_nom_cte", nom_cte);
+                command.Parameters.AddWithValue("sap_cve_prod", cve_prod);
+                command.Parameters.AddWithValue("sap_nom_prod", nom_prod);
+                command.Parameters.AddWithValue("sap_cant_prod", cant_prod);
+                command.Parameters.AddWithValue("sap_cant_original", cant_original);
+                command.Parameters.AddWithValue("sap_precio_prod", precio_prod);
+                command.Parameters.AddWithValue("sap_dcto_prod", dcto_prod);
+                command.Parameters.AddWithValue("sap_ieps", ieps);
+                command.Parameters.AddWithValue("sap_iva", iva);
+                command.Parameters.AddWithValue("sap_total_prod", total_prod);
+                command.Parameters.AddWithValue("sap_moneda_prod", moneda_prod);
+                command.Parameters.AddWithValue("sap_cant_falta", cant_falta);
+                command.Parameters.AddWithValue("sap_tipo_cambio", tipo_cambio);
+                command.Parameters.AddWithValue("sap_precio_condcto", precio_condcto);
+                command.Parameters.AddWithValue("sap_precio_politica", precio_politica);
 
-                command.Parameters.AddWithValue("bonificacion", bonificacion);
-                command.Parameters.AddWithValue("fecha_factura", fecha_factura);
+                command.Parameters.AddWithValue("sap_bonificacion", bonificacion);
+                command.Parameters.AddWithValue("sap_fecha_factura", fecha_factura);
 
               /*   command.Parameters.AddWithValue("fecha_autoriza", fecha_autoriza);
                 command.Parameters.AddWithValue("fecha_entrega", fecha_entrega);
                 command.Parameters.AddWithValue("fecha_salida", fecha_salida);
               */
-                command.Parameters.AddWithValue("n_factura", n_factura);
+                command.Parameters.AddWithValue("sap_n_factura", n_factura);
               //  command.Parameters.AddWithValue("id_transporte", id_transporte);
               ///  command.Parameters.AddWithValue("guia", guia);
-                command.Parameters.AddWithValue("condiciones", condiciones);
-                command.Parameters.AddWithValue("comentariof", comentariof);
-                command.Parameters.AddWithValue("comentariol", comentariol);
+                command.Parameters.AddWithValue("sap_condiciones", condiciones);
+                command.Parameters.AddWithValue("sap_comentariof", comentariof);
+                command.Parameters.AddWithValue("sap_comentariol", comentariol);
 
                 /*
                 command.Parameters.AddWithValue("fecha_sc", fecha_sc);
@@ -318,26 +342,35 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("envio_mailcte", envio_mailcte);
                 command.Parameters.AddWithValue("factura_cortasap", factura_cortasap);
                 */
-                command.Parameters.AddWithValue("whscode", whscode);
-                command.Parameters.AddWithValue("whsname", whsname);
-                command.Parameters.AddWithValue("block", block);
-                command.Parameters.AddWithValue("city", city);
-                command.Parameters.AddWithValue("state", state);
+                command.Parameters.AddWithValue("sap_whscode", whscode);
+                command.Parameters.AddWithValue("sap_whsname", whsname);
+                command.Parameters.AddWithValue("sap_block", block);
+                command.Parameters.AddWithValue("sap_city", city);
+                command.Parameters.AddWithValue("sap_state", state);
 
               //  command.Parameters.AddWithValue("acuse", acuse);
                // command.Parameters.AddWithValue("condiciones_optimas", condiciones_optimas);
-                command.Parameters.AddWithValue("entrega", entrega);
+                command.Parameters.AddWithValue("sap_entrega", entrega);
                /// command.Parameters.AddWithValue("confirmacion", confirmacion);
                /// command.Parameters.AddWithValue("comentarios_nuevos", comentarios_nuevos);
               ///  command.Parameters.AddWithValue("fecha_mov", fecha_mov);
-                command.Parameters.AddWithValue("indica_entrega", indica_entrega);
+                command.Parameters.AddWithValue("sap_indica_entrega", indica_entrega);
                 ///command.Parameters.AddWithValue("bodega_entrega", bodega_entrega);
-                command.Parameters.AddWithValue("id_pedido", id_pedido);
+                command.Parameters.AddWithValue("sap_id_pedido", id_pedido);
                 ///command.Parameters.AddWithValue("logistica_entregascol", logistica_entregascol);
                 ///command.Parameters.AddWithValue("existencia_sap", existencia_sap);
+               command.Parameters.AddWithValue("sap_id_salesforce", id_salesforce);
+                command.Parameters.AddWithValue("sap_LineNum", LineNum);
                 if (command.ExecuteNonQuery() == 1)
                 {
                     exito = true;
+                    // Get the current date.
+                    DateTime thisDay = DateTime.Today;
+                    // Display the date in the default (general) format.
+
+                    PUFT_ERRORS error = new PUFT_ERRORS("ENTREGA AGREGADA", "CORRECTO",entrega.ToString() , thisDay);
+
+
                 }
             }
             catch (MySqlException e)
@@ -345,7 +378,7 @@ namespace PUFT_PRUEBA_001
                 exito = false;
                 DateTime thisDay = DateTime.Today;
                 // Display the date in the default (general) format.
-                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE insertarDatosEncabeza ", "ERROR  EN insertarDatosEncabeza  cmdsform, algun error en tipo de dato o en devolucion de dato", e.ToString(), thisDay);
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE insertarDatosEntrega ", "ERROR  EN insertarDatosEncabeza  cmdsform, algun error en tipo de dato o en devolucion de dato", e.ToString(), thisDay);
             }
             finally
             {

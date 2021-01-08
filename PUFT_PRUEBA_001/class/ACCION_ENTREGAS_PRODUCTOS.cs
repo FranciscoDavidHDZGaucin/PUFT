@@ -52,6 +52,7 @@ namespace PUFT_PRUEBA_001
                         PARTIDA_CRONOS = PARTIDA_PRODUCTO_CRONOS.Rows[0];
 
                     }
+                    coneccmys.Close();
                 }
 
 
@@ -74,41 +75,96 @@ namespace PUFT_PRUEBA_001
         {
             try
             {
+                         
+
+                double sap_cant_prod = 0;
+                double sap_cant_original = 0;
+
+                var id_detalle = Convert.ToInt64(PARTIDA_CRONOS["id_detalle"]);
+                   Convert.ToInt64(PARTIDA_PRODUCTO_SAP["n_remision"]);
+                   Convert.ToInt32(PARTIDA_PRODUCTO_SAP["n_agente"]);
+                   PARTIDA_PRODUCTO_SAP["nom_age"].ToString();
+                   Convert.ToDateTime(PARTIDA_PRODUCTO_SAP["fecha_alta"]);
+                   PARTIDA_PRODUCTO_SAP["cve_cte"].ToString();
+                   PARTIDA_PRODUCTO_SAP["CardName"].ToString();
+                   PARTIDA_PRODUCTO_SAP["cve_prod"].ToString();
+                   PARTIDA_PRODUCTO_SAP["nom_prod"].ToString();
+                  
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["precio_prod"]);
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["dcto_prod"]);
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["ieps"]);
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["iva"]);
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["total_prod"]);
+                   Convert.ToInt32(PARTIDA_PRODUCTO_SAP["moneda"]);
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["cant_falta"]);
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["tipo_cambio"]);
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["precio_condcto"]);
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["precio_politica"]);
+                    PARTIDA_PRODUCTO_SAP["bonificacion"].ToString();
+                   Convert.ToDateTime(PARTIDA_PRODUCTO_SAP["fecha_factura"]);
+
+                    Convert.ToInt64(PARTIDA_PRODUCTO_SAP["n_factura"]);
+                    PARTIDA_PRODUCTO_SAP["condiciones"].ToString();
+                   PARTIDA_PRODUCTO_SAP["comentariof"].ToString();
+                   PARTIDA_PRODUCTO_SAP["comentariol"].ToString();
+
+                   PARTIDA_PRODUCTO_SAP["WhsCode"].ToString();
+                   PARTIDA_PRODUCTO_SAP["WhsName"].ToString();
+                   PARTIDA_PRODUCTO_SAP["block"].ToString();
+                   PARTIDA_PRODUCTO_SAP["City"].ToString();
+                   PARTIDA_PRODUCTO_SAP["State"].ToString();
+                 var ebte =   NUEVA_ENTREGA.NUEVA_ENTREGA;
+                    Convert.ToInt32(PARTIDA_PRODUCTO_SAP["indica_entrega"]);
+                var ebte00 = 0; //Convert.ToInt64(PARTIDA_CRONOS["id_pedido"]);
+                Convert.ToInt32(PARTIDA_PRODUCTO_SAP["LineNum"]);
+
+
+
+
+
+
                 var pr = new cmdsForm();
+                pr.insertarDatosEntrega(
+                   Convert.ToInt64(PARTIDA_CRONOS["id_detalle"]),
+                   Convert.ToInt64(PARTIDA_PRODUCTO_SAP["n_remision"]),
+                   Convert.ToInt32(PARTIDA_PRODUCTO_SAP["n_agente"]),
+                   PARTIDA_PRODUCTO_SAP["nom_age"].ToString(),
+                   Convert.ToDateTime(PARTIDA_PRODUCTO_SAP["fecha_alta"]),
+                   PARTIDA_PRODUCTO_SAP["cve_cte"].ToString(),
+                   PARTIDA_PRODUCTO_SAP["CardName"].ToString(),
+                   PARTIDA_PRODUCTO_SAP["cve_prod"].ToString(),
+                   PARTIDA_PRODUCTO_SAP["nom_prod"].ToString(),
+                   sap_cant_prod,
+                   sap_cant_original,
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["precio_prod"]),
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["dcto_prod"]),
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["ieps"]),
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["iva"]),
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["total_prod"]),
+                   Convert.ToInt32(PARTIDA_PRODUCTO_SAP["moneda"]),
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["cant_falta"]),
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["tipo_cambio"]),
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["precio_condcto"]),
+                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["precio_politica"]),
+                    PARTIDA_PRODUCTO_SAP["bonificacion"].ToString(),
+                   Convert.ToDateTime(PARTIDA_PRODUCTO_SAP["fecha_factura"]),
 
-                var cro_id_detalle  = PARTIDA_CRONOS["id_detalle"];
-                var sap_n_remision = PARTIDA_PRODUCTO_SAP["n_remision"]; 
-                var sap_n_agente = PARTIDA_PRODUCTO_SAP["n_agente"];
-                var sap_nom_age = PARTIDA_PRODUCTO_SAP["nom_age"];
-                var sap_fecha_alta = PARTIDA_PRODUCTO_SAP["fecha_alta"];
+                    Convert.ToInt64(PARTIDA_PRODUCTO_SAP["n_factura"]),
+                    PARTIDA_PRODUCTO_SAP["condiciones"].ToString(),
+                   PARTIDA_PRODUCTO_SAP["comentariof"].ToString(),
+                   PARTIDA_PRODUCTO_SAP["comentariol"].ToString(),
 
-                var sap_cve_cte = PARTIDA_PRODUCTO_SAP["cve_cte"];
-                var sap_CardName = PARTIDA_PRODUCTO_SAP["CardName"];
-                var sap_cve_prod = PARTIDA_PRODUCTO_SAP["cve_prod"];
-                var sap_nom_prod = PARTIDA_PRODUCTO_SAP["nom_prod"];
-
-
-                var sap_cant_prod = 0;
-                var sap_cant_original = 0;
-
-                var sap_precio_prod = PARTIDA_PRODUCTO_SAP["precio_prod"];
-                var sap_dcto_prod = PARTIDA_PRODUCTO_SAP["dcto_prod"];
-
-                var sap_ieps = PARTIDA_PRODUCTO_SAP["ieps"];
-                var sap_iva = PARTIDA_PRODUCTO_SAP["iva"];
-
-
-                var sap_total_prod = PARTIDA_PRODUCTO_SAP["total_prod"];
-                var sap_moneda = PARTIDA_PRODUCTO_SAP["moneda"];
-                var sap_cant_falta= PARTIDA_PRODUCTO_SAP["cant_falta"];
-                var sap_tipo_cambio = PARTIDA_PRODUCTO_SAP["tipo_cambio"];
-                var sap_precio_condcto = PARTIDA_PRODUCTO_SAP["precio_condcto"];
-                var sap_precio_politica = PARTIDA_PRODUCTO_SAP["precio_politica"];
-
-
-                var sap_bonificacion = PARTIDA_PRODUCTO_SAP["bonificacion"];
-                var sap_fecha_factura = PARTIDA_PRODUCTO_SAP["fecha_factura"];
-
+                   PARTIDA_PRODUCTO_SAP["WhsCode"].ToString(),
+                   PARTIDA_PRODUCTO_SAP["WhsName"].ToString(),
+                   PARTIDA_PRODUCTO_SAP["block"].ToString(),
+                   PARTIDA_PRODUCTO_SAP["City"].ToString(),
+                   PARTIDA_PRODUCTO_SAP["State"].ToString(),
+                    NUEVA_ENTREGA.NUEVA_ENTREGA,
+                    Convert.ToInt32(PARTIDA_PRODUCTO_SAP["indica_entrega"]),
+                   0, //Convert.ToInt64(PARTIDA_CRONOS["id_pedido"]),
+                    PARTIDA_PRODUCTO_SAP["ID_SALESFORECE"].ToString(),
+                    Convert.ToInt32(PARTIDA_PRODUCTO_SAP["LineNum"])
+                    );
 
             }
             catch (Exception e)
