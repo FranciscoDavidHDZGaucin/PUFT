@@ -44,8 +44,9 @@ namespace PUFT_PRUEBA_001
                         cmd.Parameters.Add(new MySqlParameter("ENTREGA_NUEVO", MySqlDbType.Int64)).Value = NUEVA_ENTREGA.NUEVA_ENTREGA;
                         cmd.Parameters.Add(new MySqlParameter("SAP_ORDEN_VENTA", MySqlDbType.Int32)).Value = Convert.ToInt64(this.PARTIDA_PRODUCTO_SAP["ORDEN_VENTA"]);
                         cmd.Parameters.Add(new MySqlParameter("LINE_NUM", MySqlDbType.Int32)).Value = Convert.ToInt32(this.PARTIDA_PRODUCTO_SAP["LineNum"]);
-                        DataTable PARTIDA_PRODUCTO_CRONOS = new DataTable();
-                        MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
+                        cmd.Parameters.Add(new MySqlParameter("SAP_CVE_PRODUCTO", MySqlDbType.VarChar)).Value = this.PARTIDA_PRODUCTO_SAP["cve_prod"].ToString();
+                        DataTable PARTIDA_PRODUCTO_CRONOS = new DataTable(); 
+                         MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
 
                         APSTER.Fill(PARTIDA_PRODUCTO_CRONOS);
 
@@ -120,6 +121,10 @@ namespace PUFT_PRUEBA_001
 
 
 
+                PROD_QUATITY  CANTIDA_CALCULADA =    CALCULO_CANTIDADES_DE_ENTREGA( ref  PARTIDA_CRONOS, ref PARTIDA_PRODUCTO_SAP);
+                sap_cant_prod = CANTIDA_CALCULADA.CANTIDAD_SOLICITADA_FACTURA_SAP;
+                sap_cant_original = Convert.ToInt64(PARTIDA_CRONOS["cant_prod"]);
+
 
 
 
@@ -142,7 +147,7 @@ namespace PUFT_PRUEBA_001
                    Convert.ToDouble(PARTIDA_PRODUCTO_SAP["iva"]),
                    Convert.ToDouble(PARTIDA_PRODUCTO_SAP["total_prod"]),
                    Convert.ToInt32(PARTIDA_PRODUCTO_SAP["moneda"]),
-                   Convert.ToDouble(PARTIDA_PRODUCTO_SAP["cant_falta"]),
+                   CANTIDA_CALCULADA.CANTIDAD_FALTANTE_MAIN, // PARTIDA_PRODUCTO_SAP["cant_falta"]
                    Convert.ToDouble(PARTIDA_PRODUCTO_SAP["tipo_cambio"]),
                    Convert.ToDouble(PARTIDA_PRODUCTO_SAP["precio_condcto"]),
                    Convert.ToDouble(PARTIDA_PRODUCTO_SAP["precio_politica"]),
@@ -166,6 +171,11 @@ namespace PUFT_PRUEBA_001
                     Convert.ToInt32(PARTIDA_PRODUCTO_SAP["LineNum"])
                     );
 
+
+                CANTIDA_CALCULADA.MODIFICAR_CANTIDADES_DETALLE_PEDIDO(Convert.ToInt64(PARTIDA_CRONOS["id_detalle"]), NUEVA_ENTREGA.NUEVA_ENTREGA);
+
+
+
             }
             catch (Exception e)
             {
@@ -184,7 +194,118 @@ namespace PUFT_PRUEBA_001
 
         }
 
+        public PROD_QUATITY  CALCULO_CANTIDADES_DE_ENTREGA( ref DataRow detalle_pedido , ref DataRow sap_factura)
+        {
+
+            PROD_QUATITY resultado; 
+            Int64 CAN_SOLIC_FACTURA = Convert.ToInt64(sap_factura["cant_prod"]);
+            Int64 CANTIDAD_FALTANTE = 0;
+            Double TOTAL_PROD = 0; 
+            if (Convert.ToInt64(detalle_pedido["cant_prod"]) == Convert.ToInt64(detalle_pedido["cant_falta"]))
+            {
+                CANTIDAD_FALTANTE = Convert.ToInt64(detalle_pedido["cant_prod"]) - CAN_SOLIC_FACTURA;
+
+
+            }
+            else
+            {
+                CANTIDAD_FALTANTE = Convert.ToInt64(detalle_pedido["cant_falta"]) - CAN_SOLIC_FACTURA;
+
+
+            }
+
+            return resultado = new PROD_QUATITY(CAN_SOLIC_FACTURA, CANTIDAD_FALTANTE);
+
+
+
+
+        }
 
 
     }
+
+    class PROD_QUATITY
+    {
+        private    Int64 CAN_SOLIC_FACTURA ;
+        private Int64 CANTIDAD_FALTANTE = 0;
+       
+
+        public PROD_QUATITY( Int64 sap_CAN_SOLIC_FACTURA,  Int64 main_CANTIDAD_FALTANTE  )
+        {
+            this.CAN_SOLIC_FACTURA = sap_CAN_SOLIC_FACTURA;
+            this.CANTIDAD_FALTANTE = main_CANTIDAD_FALTANTE; 
+         }
+
+
+        public Boolean MODIFICAR_CANTIDADES_DETALLE_PEDIDO(Int64 CTRL_ID_DETALLE , Int64 NEW_EMNTREGA )
+        {
+
+            Boolean resulta = false;
+
+            try
+            {
+                string connection =
+                                   System.Configuration.ConfigurationManager.
+                                   ConnectionStrings["Server80"].ConnectionString;
+
+                using (MySqlConnection coneccmys = new MySqlConnection(connection))
+                {
+                    coneccmys.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("SP_PUFT_UPDATE_DETALLE_PEDIDO_CANFALTANTE_ESTATUS", coneccmys))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new MySqlParameter("CTRL_ID_DETALLE", MySqlDbType.Int64)).Value = CTRL_ID_DETALLE ;
+                        cmd.Parameters.Add(new MySqlParameter("NEW_EMNTREGA", MySqlDbType.Int64)).Value = NEW_EMNTREGA ;
+                        cmd.Parameters.Add(new MySqlParameter("MAIN_CANTIDAD_FALTANTE", MySqlDbType.Int32)).Value = this.CANTIDAD_FALTANTE;
+                      
+                        DataTable PARTIDA_PRODUCTO_CRONOS = new DataTable();
+                        MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
+
+                        APSTER.Fill(PARTIDA_PRODUCTO_CRONOS);
+                        if (PARTIDA_PRODUCTO_CRONOS.Rows.Count > 0)
+                        {
+                            foreach (DataRow row in PARTIDA_PRODUCTO_CRONOS.Rows)
+                            {
+                                if (Convert.ToInt32(row["CORRECT_CTRL"]) == 8888)
+                                {
+                                    resulta = true;
+
+                                }
+                                
+
+                            }
+
+                        }
+
+
+                    }
+                    coneccmys.Close();
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE PROD_QUATITY ", "ERROR MODIFICAR_CANTIDADES_DETALLE_PEDIDO", e.ToString(), thisDay);
+
+
+            }
+
+            return resulta;
+        }
+
+
+
+        public Int64 CANTIDAD_SOLICITADA_FACTURA_SAP { get => CAN_SOLIC_FACTURA; }
+        public Int64 CANTIDAD_FALTANTE_MAIN { get => CANTIDAD_FALTANTE; }
+
+    }
+
+
+
+
 }

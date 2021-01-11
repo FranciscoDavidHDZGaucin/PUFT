@@ -274,55 +274,57 @@ namespace PUFT_PRUEBA_001
         public Boolean  RECORRER_FACTURAS_PENDIENTES(respuesta_entrega resultado_entrega , Int64 _facturas)
         {
             Boolean resultadoinser_prod = true;
-              DataTable TB_FACTURAS_PENDIENTES =  GET_PRODUCTOS_FACTURA(_facturas); 
-            if (TB_FACTURAS_PENDIENTES.Rows.Count > 0 && TB_FACTURAS_PENDIENTES !=  null )
-            {
-                
-
-                
-
-                foreach (DataRow row in TB_FACTURAS_PENDIENTES.Rows)
+         
+                DataTable TB_FACTURAS_PENDIENTES = GET_PRODUCTOS_FACTURA(_facturas);
+                if (TB_FACTURAS_PENDIENTES.Rows.Count > 0 && TB_FACTURAS_PENDIENTES != null)
                 {
-                    try {
-                        DataRow accion_row = row; 
-                        if (row["ID_PEDIDOS"] != null  )
-                         {
-                            var prueba = row["ORDEN_VENTA"].ToString();
-                            Int64 sap_n_remision = row["n_remision"] is null ? 0 : Convert.ToInt64(row["n_remision"]);
 
-                          
-                            ///VALIDAMOS QUE EXISTA LA  NUEVA ENTREGA
-                            if (resultado_entrega.EXISTE_ENTREGA)
+
+
+
+                    foreach (DataRow row in TB_FACTURAS_PENDIENTES.Rows)
+                    {
+                        try
+                        {
+                            DataRow accion_row = row;
+                            if (row["ID_PEDIDOS"] != null)
                             {
+                                var prueba = row["ORDEN_VENTA"].ToString();
+                                Int64 sap_n_remision = row["n_remision"] is null ? 0 : Convert.ToInt64(row["n_remision"]);
 
-                                ACCION_ENTREGAS_PRODUCTOS acc_entregas = new ACCION_ENTREGAS_PRODUCTOS(resultado_entrega, ref accion_row);
 
-                                acc_entregas.INSERT_ENTREGA();
+                                ///VALIDAMOS QUE EXISTA LA  NUEVA ENTREGA
+                                if (resultado_entrega.EXISTE_ENTREGA)
+                                {
+
+                                    ACCION_ENTREGAS_PRODUCTOS acc_entregas = new ACCION_ENTREGAS_PRODUCTOS(resultado_entrega, ref accion_row);
+
+                                    acc_entregas.INSERT_ENTREGA();
+                                }
                             }
+
+                        }
+                        catch (Exception e)
+                        {
+                            resultadoinser_prod = false;
+                            // Get the current date.
+                            DateTime thisDay = DateTime.Today;
+                            // Display the date in the default (general) format.
+
+                            PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS ", "ERROR  EN NEW RECORRER_FACTURAS_PENDIENTES  DENTRO DEL  RECORRIDO  DE ORDNES DE FACTRUAS  PENDIENTES", e.ToString(), thisDay);
+
+                            break;
+
                         }
 
                     }
-                    catch (Exception e)
-                    {
-                        resultadoinser_prod = false;
-                        // Get the current date.
-                        DateTime thisDay = DateTime.Today;
-                        // Display the date in the default (general) format.
 
-                        PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS ", "ERROR  EN NEW RECORRER_FACTURAS_PENDIENTES  DENTRO DEL  RECORRIDO  DE ORDNES DE FACTRUAS  PENDIENTES", e.ToString(), thisDay);
 
-                        break;
 
-                    }
+
 
                 }
-
-
-
-
-
-            }
-
+            
            return  resultadoinser_prod;
 
         }

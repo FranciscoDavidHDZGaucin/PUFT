@@ -63,7 +63,7 @@
             "15"});
             this.tiempoExe.Location = new System.Drawing.Point(37, 157);
             this.tiempoExe.Name = "tiempoExe";
-            this.tiempoExe.Size = new System.Drawing.Size(171, 21);
+            this.tiempoExe.Size = new System.Drawing.Size(112, 21);
             this.tiempoExe.TabIndex = 1;
             this.tiempoExe.Text = "Selecciona intervalo de tiempo";
             // 
@@ -79,16 +79,16 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(57, 249);
+            this.dataGridView1.Location = new System.Drawing.Point(155, 12);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(639, 169);
+            this.dataGridView1.Size = new System.Drawing.Size(1027, 426);
             this.dataGridView1.TabIndex = 3;
             // 
             // FormFHG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1194, 450);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tiempoExe);
