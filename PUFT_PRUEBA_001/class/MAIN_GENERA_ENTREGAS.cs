@@ -35,7 +35,7 @@ namespace PUFT_PRUEBA_001
     class MAIN_GENERA_ENTREGAS
     {
       private  DataTable TB_FACTURAS_A_GENERAR_ENTREGAS;
-      
+        private DataTable sap_FACTURA_PENDIENTE;
 
         public MAIN_GENERA_ENTREGAS ()
         {
@@ -75,12 +75,12 @@ namespace PUFT_PRUEBA_001
            
 
         }
-        public DataTable GET_PRODUCTOS_FACTURA(Int64 _FACTURA_SAP)
+        public void  GET_PRODUCTOS_FACTURA(Int64 _FACTURA_SAP)
         {
-            DataTable _TB_FACTURAS_PENDIENTES = new DataTable();
+             sap_FACTURA_PENDIENTE = new DataTable();
             try
             {
-                
+              
 
                 try
                 {
@@ -91,12 +91,10 @@ namespace PUFT_PRUEBA_001
                     {
                         CONECT.Open();
                         using (SqlCommand COMANDO = new SqlCommand("SP_PUFT_FACTURAS_PENDIENTES", CONECT))
-
-
-                        {
+                            {
                             COMANDO.CommandType = CommandType.StoredProcedure;
                             COMANDO.Parameters.Add("@FACTURA_SAP", SqlDbType.BigInt).Value = _FACTURA_SAP;
-                            _TB_FACTURAS_PENDIENTES.Load(COMANDO.ExecuteReader());
+                            sap_FACTURA_PENDIENTE.Load(COMANDO.ExecuteReader());
 
 
                         }
@@ -113,7 +111,7 @@ namespace PUFT_PRUEBA_001
 
 
 
-                    _TB_FACTURAS_PENDIENTES = null;
+                    sap_FACTURA_PENDIENTE = null;
                 }
             }
             catch (Exception e)
@@ -125,14 +123,13 @@ namespace PUFT_PRUEBA_001
 
                 PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS ", "ERROR  EN ", e.ToString(), thisDay);
 
-
+                sap_FACTURA_PENDIENTE = null;
             }
 
 
 
 
-            return _TB_FACTURAS_PENDIENTES;
-
+           
         }
         public void GENERAR_ENTREGAS_CON_FACTURA()
         {
@@ -162,6 +159,13 @@ namespace PUFT_PRUEBA_001
                                     // Display the date in the default (general) format.
 
                                     PUFT_ERRORS error = new PUFT_ERRORS("CORRECTO SE GENERO  ENTREGA:" + resultado_entrega.NUEVA_ENTREGA.ToString(), "CON ORDEN DE VENTA" + row["ORDEN_VENTA"].ToString(), "CORRECTO", thisDay);
+
+
+                                }
+                                else {
+
+
+                                    ELIMINAR_ENTREGA_FALLIDA(resultado_entrega, Convert.ToInt64(row["n_factura"]), sap_n_remision);
 
 
                                 }
@@ -213,7 +217,7 @@ namespace PUFT_PRUEBA_001
 
                                         PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS ", "SE CARGO CORRECTAMENTE ", resultado_entrega.NUEVA_ENTREGA.ToString(), thisDay);
 
-
+                                        resulta = true;
                                     }
                                     else
                                     {
@@ -274,8 +278,8 @@ namespace PUFT_PRUEBA_001
         public Boolean  RECORRER_FACTURAS_PENDIENTES(respuesta_entrega resultado_entrega , Int64 _facturas)
         {
             Boolean resultadoinser_prod = true;
-         
-                DataTable TB_FACTURAS_PENDIENTES = GET_PRODUCTOS_FACTURA(_facturas);
+            GET_PRODUCTOS_FACTURA(_facturas);
+                DataTable TB_FACTURAS_PENDIENTES = this.sap_FACTURA_PENDIENTE ;
                 if (TB_FACTURAS_PENDIENTES.Rows.Count > 0 && TB_FACTURAS_PENDIENTES != null)
                 {
 
@@ -290,7 +294,10 @@ namespace PUFT_PRUEBA_001
                             if (row["ID_PEDIDOS"] != null)
                             {
                                 var prueba = row["ORDEN_VENTA"].ToString();
-                                Int64 sap_n_remision = row["n_remision"] is null ? 0 : Convert.ToInt64(row["n_remision"]);
+                            
+                            Int64  sap_n_remision = 0;
+                           
+                                sap_n_remision =Convert.ToInt64(row["n_remision"]);
 
 
                                 ///VALIDAMOS QUE EXISTA LA  NUEVA ENTREGA
@@ -299,8 +306,14 @@ namespace PUFT_PRUEBA_001
 
                                     ACCION_ENTREGAS_PRODUCTOS acc_entregas = new ACCION_ENTREGAS_PRODUCTOS(resultado_entrega, ref accion_row);
 
-                                    acc_entregas.INSERT_ENTREGA();
+                                    if (acc_entregas.INSERT_ENTREGA() == false)
+                                    {
+                                        ELIMINAR_ENTREGA_FALLIDA(resultado_entrega, _facturas, sap_n_remision);
+                                        resultadoinser_prod = false;
+
+                                    }
                                 }
+                            
                             }
 
                         }
@@ -484,7 +497,7 @@ namespace PUFT_PRUEBA_001
                                         DateTime thisDay = DateTime.Today;
                                         // Display the date in the default (general) format.
 
-                                        PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS", "NO EXISTE  LA  SIGIENTE  FACTURA =" + FACTURA.ToString(), "SE CARGA LA  FACTURA=" + FACTURA.ToString() + " CON LA ENTREGA=" + resultado_entrega.NUEVA_ENTREGA.ToString(), thisDay);
+                                        PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS", "CORRECTO NO EXISTE  LA  SIGIENTE  FACTURA =" + FACTURA.ToString()+"  EN TABLA DE  ENTREGAS SE AGREGARA", "SE CARGA LA  FACTURA=" + FACTURA.ToString() + " CON LA ENTREGA=" + resultado_entrega.NUEVA_ENTREGA.ToString(), thisDay);
 
 
                                     }
@@ -536,6 +549,87 @@ namespace PUFT_PRUEBA_001
 
             return resulta;
         }
+
+        public Boolean   ELIMINAR_ENTREGA_FALLIDA (respuesta_entrega resultado_entrega, Int64 FACTURA , Int64  N_REMISION)
+        {
+            Boolean resulta = false;
+            try
+            {
+                string connection =
+                              System.Configuration.ConfigurationManager.
+                              ConnectionStrings["Server80"].ConnectionString;
+
+                using (MySqlConnection coneccmys = new MySqlConnection(connection))
+                {
+                    coneccmys.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("SP_PUFT_ELIMINAR_ENTREGA_FALLIDA", coneccmys))
+                    {
+                        try
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add(new MySqlParameter("NEW_ENTREGA", MySqlDbType.Int64)).Value = resultado_entrega.NUEVA_ENTREGA;
+                            cmd.Parameters.Add(new MySqlParameter("SAP_FACTURA", MySqlDbType.Int64)).Value = FACTURA;
+                            cmd.Parameters.Add(new MySqlParameter("CTRL_DELETE", MySqlDbType.String)).Value = "V3rs@";
+                            cmd.Parameters.Add(new MySqlParameter("PLAT_REMISION", MySqlDbType.Int64)).Value = N_REMISION;
+                            DataTable dt_table = new DataTable();
+                            MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
+
+                            APSTER.Fill(dt_table);
+                            if (dt_table.Rows.Count > 0)
+                            {
+                                foreach (DataRow row in dt_table.Rows)
+                                {
+                                    if (Convert.ToInt32(row["CTRLRESUL"]) == 8888)
+
+                                    {
+                                        resulta = true;
+                                    }
+                                    
+
+
+                                }
+
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            // Get the current date.
+                            DateTime thisDay = DateTime.Today;
+                            // Display the date in the default (general) format.
+
+                            PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS ", "NO REGRESAMOS LA  ENTREGA ", e.ToString(), thisDay);
+
+
+                        }
+                    }
+                    coneccmys.Close();
+                }
+
+
+
+
+
+
+            }
+            catch (Exception e)
+            {
+
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS ", "ERROR  REGRESO LA ENTREGA DE LA TABLA", resultado_entrega.NUEVA_ENTREGA.ToString(), thisDay);
+
+
+
+            }
+
+
+
+
+            return resulta;
+        }
+
 
 
     }

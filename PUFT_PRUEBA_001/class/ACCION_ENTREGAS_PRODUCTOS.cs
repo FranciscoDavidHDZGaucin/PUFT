@@ -72,8 +72,9 @@ namespace PUFT_PRUEBA_001
 
         }
 
-        public void INSERT_ENTREGA()
+        public Boolean  INSERT_ENTREGA()
         {
+            Boolean RESULT_INSERT = false; 
             try
             {
                          
@@ -129,7 +130,7 @@ namespace PUFT_PRUEBA_001
 
 
                 var pr = new cmdsForm();
-                pr.insertarDatosEntrega(
+                RESULT_INSERT = pr.insertarDatosEntrega(
                    Convert.ToInt64(PARTIDA_CRONOS["id_detalle"]),
                    Convert.ToInt64(PARTIDA_PRODUCTO_SAP["n_remision"]),
                    Convert.ToInt32(PARTIDA_PRODUCTO_SAP["n_agente"]),
@@ -184,13 +185,13 @@ namespace PUFT_PRUEBA_001
                 // Display the date in the default (general) format.
 
                 PUFT_ERRORS error = new PUFT_ERRORS("CLASSE ACCION_ENTREGAS_PRODUCTOS ", "ERROR  EN INSERT_ENTREGA", e.ToString(), thisDay);
-
+                RESULT_INSERT = false;
 
 
             }
 
 
-
+            return RESULT_INSERT;
 
         }
 
