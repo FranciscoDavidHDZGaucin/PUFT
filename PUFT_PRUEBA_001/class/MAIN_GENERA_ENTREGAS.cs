@@ -490,7 +490,7 @@ namespace PUFT_PRUEBA_001
                             {
                                 foreach (DataRow row in dt_table.Rows)
                                 {
-                                    if (Convert.ToInt32(row["EXISTE_FACTURA"]) != 1)
+                                    if (Convert.ToInt32(row["EXISTE_FACTURA"]) == 0)
 
                                     {
                                         // Get the current date.
