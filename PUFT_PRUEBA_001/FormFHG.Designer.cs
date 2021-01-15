@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormFHG));
             this.button1 = new System.Windows.Forms.Button();
             this.TIMER_CICLO_PUFT = new System.Windows.Forms.Timer(this.components);
             this.tiempoExe = new System.Windows.Forms.ComboBox();
@@ -43,7 +44,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 57);
             this.button1.TabIndex = 0;
-            this.button1.Text = "Iniciar  Cada 2 Minutos";
+            this.button1.Text = "Iniciar Ciclo  Puft";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -78,23 +79,27 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(155, 12);
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeight = 25;
+            this.dataGridView1.Location = new System.Drawing.Point(155, 25);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(1027, 426);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(1113, 533);
             this.dataGridView1.TabIndex = 3;
             // 
             // FormFHG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1194, 450);
+            this.BackgroundImage = global::PUFT_PRUEBA_001.Properties.Resources.b7eb6c689c037217079766fdb77c3bac3e51cb4c;
+            this.ClientSize = new System.Drawing.Size(1280, 586);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tiempoExe);
             this.Controls.Add(this.button1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormFHG";
-            this.Text = "Form2";
+            this.Text = "VRS PUFT";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

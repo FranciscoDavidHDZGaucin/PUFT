@@ -160,7 +160,7 @@ namespace PUFT_PRUEBA_001
 
                                     PUFT_ERRORS error = new PUFT_ERRORS("CORRECTO SE GENERO  ENTREGA:" + resultado_entrega.NUEVA_ENTREGA.ToString(), "CON ORDEN DE VENTA" + row["ORDEN_VENTA"].ToString(), "CORRECTO", thisDay);
 
-
+                                    CONVERTIR_ENTREGA_A_FACTURA(resultado_entrega, Convert.ToInt64(row["n_factura"]));
                                 }
                                 else {
 
@@ -630,6 +630,70 @@ namespace PUFT_PRUEBA_001
             return resulta;
         }
 
+
+        public void  CONVERTIR_ENTREGA_A_FACTURA(respuesta_entrega resultado_entrega, Int64 FACTURA)
+        {
+          
+            try
+            {
+                string connection =
+                              System.Configuration.ConfigurationManager.
+                              ConnectionStrings["Server80"].ConnectionString;
+
+                using (MySqlConnection coneccmys = new MySqlConnection(connection))
+                {
+                    coneccmys.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("SP_INSERT_FACTURAS_PUFT", coneccmys))
+                    {
+                        try
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.Add(new MySqlParameter("ENTREGA", MySqlDbType.Int64)).Value = resultado_entrega.NUEVA_ENTREGA;
+                            cmd.Parameters.Add(new MySqlParameter("FACTURA", MySqlDbType.Int64)).Value = FACTURA;
+                            DataTable dt_table = new DataTable();
+                            MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
+
+                            APSTER.Fill(dt_table);
+                           
+                        }
+                        catch (Exception e)
+                        {
+                            // Get the current date.
+                            DateTime thisDay = DateTime.Today;
+                            // Display the date in the default (general) format.
+
+                            PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS ", "ERROR  GURADAR FACTURAS ", e.ToString(), thisDay);
+
+
+                        }
+                    }
+                    coneccmys.Close();
+                }
+
+
+
+
+
+
+            }
+            catch (Exception e)
+            {
+
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_GENERA_ENTREGAS ", "ERROR NO CARGO  FACTURA", resultado_entrega.NUEVA_ENTREGA.ToString(), thisDay);
+
+
+
+            }
+
+
+
+
+          
+        }
 
 
     }

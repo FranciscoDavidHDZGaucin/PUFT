@@ -116,6 +116,9 @@ namespace PUFT_PRUEBA_001
                     var bindingSource = new BindingSource();
                     bindingSource.DataSource = ds.Tables[0];
                     dataGridView1.DataSource = bindingSource;
+
+
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
                 }
             }
         }
