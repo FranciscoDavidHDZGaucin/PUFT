@@ -5,9 +5,9 @@
     <Setting Name="VRS_SALESFORCE" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=192.168.101.22;database=BDSALESFORCE20200526;uid=sa;password=DB@gr0V3rs@;&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;server=192.168.101.22;database=AGROVERSA_PRODUCTIVA;uid=sa;password=DB@gr0V3rs@;&lt;/ConnectionString&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=192.168.101.22;database=BDSALESFORCE20200526;uid=sa;password=DB@gr0V3rs@;</Value>
+      <Value Profile="(Default)">server=192.168.101.22;database=AGROVERSA_PRODUCTIVA;uid=sa;password=DB@gr0V3rs@;</Value>
     </Setting>
   </Settings>
 </SettingsFile>

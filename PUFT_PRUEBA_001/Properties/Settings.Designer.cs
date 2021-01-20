@@ -26,7 +26,7 @@ namespace PUFT_PRUEBA_001.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=192.168.101.22;database=BDSALESFORCE20200526;uid=sa;password=DB@gr0V3rs@;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=192.168.101.22;database=AGROVERSA_PRODUCTIVA;uid=sa;password=DB@gr0V3rs@;")]
         public string VRS_SALESFORCE {
             get {
                 return ((string)(this["VRS_SALESFORCE"]));

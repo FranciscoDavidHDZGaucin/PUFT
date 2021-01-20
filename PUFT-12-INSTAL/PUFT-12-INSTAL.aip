@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<DOCUMENT Type="Advanced Installer" CreateVersion="17.8" version="17.8" Modules="professional" RootPath="." Language="en" Id="{86484F0F-352E-4C13-A416-FB1CC854C5A3}">
+  <COMPONENT cid="caphyon.advinst.msicomp.ProjectOptionsComponent">
+    <ROW Name="MigrationUninstallCode" Value="{DAACC0C4-A5DA-45C6-A46D-13E2DF088BBF}"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiPropsComponent">
+    <ROW Property="AI_BITMAP_DISPLAY_MODE" Value="0"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_BouncyCastle.Crypto.dll" Value="..\packages\BouncyCastle.1.8.3.1\lib"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Google.Protobuf.dll" Value="..\packages\Google.Protobuf.3.11.4\lib\net45"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_K4os.Compression.LZ4.Streams.dll" Value="..\packages\K4os.Compression.LZ4.Streams.1.1.11\lib\net46"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_K4os.Compression.LZ4.dll" Value="..\packages\K4os.Compression.LZ4.1.1.11\lib\net46"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_K4os.Hash.xxHash.dll" Value="..\packages\K4os.Hash.xxHash.1.0.6\lib\net46"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_MySql.Data.dll" Value="..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 6.10.8\Assemblies\v4.5.2"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_PUFT_PRUEBA_001.exe" Value="..\PUFT_PRUEBA_001\bin\Release"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_PUFT_PRUEBA_001.exe.config" Value="..\PUFT_PRUEBA_001\bin\Release"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_PUFT_PRUEBA_001.pdb" Value="..\PUFT_PRUEBA_001\bin\Release"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Renci.SshNet.dll" Value="..\packages\SSH.NET.2016.1.0\lib\net40"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Buffers.dll" Value="..\packages\System.Buffers.4.5.1\lib\netstandard1.1"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Memory.dll" Value="..\packages\System.Memory.4.5.3\lib\netstandard1.1"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll" Value="..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Ubiety.Dns.Core.dll" Value="..\packages\MySql.Data.8.0.22\lib\net452"/>
+    <ROW Property="AI_PROPPATH_DIR_PERBUILD_Zstandard.Net.dll" Value="..\packages\MySql.Data.8.0.22\lib\net452"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll" Value="BouncyCastle.Crypto.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Google.Protobuf.dll" Value="Google.Protobuf.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_K4os.Compression.LZ4.Streams.dll" Value="K4os.Compression.LZ4.Streams.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_K4os.Compression.LZ4.dll" Value="K4os.Compression.LZ4.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_K4os.Hash.xxHash.dll" Value="K4os.Hash.xxHash.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_MySql.Data.dll" Value="MySql.Data.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_PUFT_PRUEBA_001.exe" Value="PUFT_PRUEBA_001.exe"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_PUFT_PRUEBA_001.exe.config" Value="PUFT_PRUEBA_001.exe.config"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_PUFT_PRUEBA_001.pdb" Value="PUFT_PRUEBA_001.pdb"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Renci.SshNet.dll" Value="Renci.SshNet.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Buffers.dll" Value="System.Buffers.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Memory.dll" Value="System.Memory.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll" Value="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Ubiety.Dns.Core.dll" Value="Ubiety.Dns.Core.dll"/>
+    <ROW Property="AI_PROPPATH_FILENAME_PERBUILD_Zstandard.Net.dll" Value="Zstandard.Net.dll"/>
+    <ROW Property="ALLUSERS" Value="1"/>
+    <ROW Property="ARPCOMMENTS" Value="This installer database contains the logic and data required to install [|ProductName]." ValueLocId="*"/>
+    <ROW Property="ARPPRODUCTICON" Value="icono_versa_46px_Mesadetrabajo1.exe" Type="8"/>
+    <ROW Property="AiSkipExitDlg" Value="1"/>
+    <ROW Property="CTRLS" Value="2"/>
+    <ROW Property="Manufacturer" Value="VERSA TI"/>
+    <ROW Property="ProductCode" Value="1033:{EDB38D26-CAFF-4D02-BDF7-8F1F8DD9C2F7} " Type="16"/>
+    <ROW Property="ProductLanguage" Value="1033"/>
+    <ROW Property="ProductName" Value="PUFT TI"/>
+    <ROW Property="ProductVersion" Value="1.0.0" Type="32"/>
+    <ROW Property="SecureCustomProperties" Value="OLDPRODUCTS;AI_NEWERPRODUCTFOUND"/>
+    <ROW Property="UpgradeCode" Value="{DAACC0C4-A5DA-45C6-A46D-13E2DF088BBF}"/>
+    <ROW Property="WindowsType9X" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsType9XDisplay" MultiBuildValue="DefaultBuild:Windows 9x/ME" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT40Display" MultiBuildValue="DefaultBuild:Windows NT 4.0" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT50Display" MultiBuildValue="DefaultBuild:Windows 2000" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5X" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+    <ROW Property="WindowsTypeNT5XDisplay" MultiBuildValue="DefaultBuild:Windows XP/2003" ValueLocId="-"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiDirsComponent">
+    <ROW Directory="APPDIR" Directory_Parent="TARGETDIR" DefaultDir="APPDIR:." IsPseudoRoot="1"/>
+    <ROW Directory="Assets" Directory_Parent="TARGETDIR" DefaultDir="Assets" IsPseudoRoot="1"/>
+    <ROW Directory="PUFT_PRUEBA_001_Dir" Directory_Parent="APPDIR" DefaultDir="PUFT_P~1|PUFT_PRUEBA_001"/>
+    <ROW Directory="SHORTCUTDIR" Directory_Parent="TARGETDIR" DefaultDir="SHORTC~1|SHORTCUTDIR" IsPseudoRoot="1"/>
+    <ROW Directory="TARGETDIR" DefaultDir="SourceDir"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCompsComponent">
+    <ROW Component="APPDIR" ComponentId="{8E70D03E-7E69-4001-956D-780B46B8F029}" Directory_="APPDIR" Attributes="0"/>
+    <ROW Component="PUFT_PRUEBA_001_PrimaryOutput" ComponentId="{490C4AEE-216E-4C6C-8683-234BC217A138}" Directory_="PUFT_PRUEBA_001_Dir" Attributes="0" KeyPath="PUFT_PRUEBA_001.exe"/>
+    <ROW Component="PUFT_PRUEBA_001_References" ComponentId="{7F3F8BA4-FCAF-463C-B7D9-EAB383975588}" Directory_="PUFT_PRUEBA_001_Dir" Attributes="0" KeyPath="Zstandard.Net.dll"/>
+    <ROW Component="PUFT_PRUEBA_001_SymbolsOutput" ComponentId="{06366F27-8807-4BBB-8CA7-63F45AD3F7A0}" Directory_="PUFT_PRUEBA_001_Dir" Attributes="0" KeyPath="PUFT_PRUEBA_001.pdb"/>
+    <ROW Component="ProductInformation" ComponentId="{19E4D040-295A-4DD9-B337-F9735C51890E}" Directory_="APPDIR" Attributes="4" KeyPath="Version"/>
+    <ROW Component="SHORTCUTDIR" ComponentId="{9B78CF70-1E97-4132-A328-40C049392B7F}" Directory_="SHORTCUTDIR" Attributes="0"/>
+    <ROW Component="Square50x50Logo.scale100.png" ComponentId="{E8F8EBB4-67B1-46B5-9D35-9FE7810B58FB}" Directory_="Assets" Attributes="0" KeyPath="Square50x50Logo.scale100.png" Type="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatsComponent">
+    <ROW Feature="AiAppXAssets" Title="AiAppXAssets" Description="Description" Display="3" Level="0" Directory_="APPDIR" Attributes="0" Options="271" Builds="BuildUwpAppX"/>
+    <ROW Feature="MainFeature" Title="MainFeature" Description="Description" Display="1" Level="1" Directory_="APPDIR" Attributes="0"/>
+    <ATTRIBUTE name="CurrentFeature" value="MainFeature"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFilesComponent">
+    <ROW File="PUFT_PRUEBA_001.exe" Component_="PUFT_PRUEBA_001_PrimaryOutput" FileName="PUFT_P~2.EXE|[|AI_PROPPATH_FILENAME_PERBUILD_PUFT_PRUEBA_001.exe]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_PUFT_PRUEBA_001.exe&gt;" SelfReg="false" DigSign="true"/>
+    <ROW File="PUFT_PRUEBA_001.exe.config" Component_="PUFT_PRUEBA_001_PrimaryOutput" FileName="PUFT_P~2.CON|[|AI_PROPPATH_FILENAME_PERBUILD_PUFT_PRUEBA_001.exe.config]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_PUFT_PRUEBA_001.exe.config&gt;" SelfReg="false"/>
+    <ROW File="BouncyCastle.Crypto.dll" Component_="PUFT_PRUEBA_001_References" FileName="BOUNCY~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_BouncyCastle.Crypto.dll&gt;" SelfReg="false"/>
+    <ROW File="Google.Protobuf.dll" Component_="PUFT_PRUEBA_001_References" FileName="GOOGLE~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Google.Protobuf.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Google.Protobuf.dll&gt;" SelfReg="false"/>
+    <ROW File="K4os.Compression.LZ4.dll" Component_="PUFT_PRUEBA_001_References" FileName="K4OSCO~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_K4os.Compression.LZ4.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_K4os.Compression.LZ4.dll&gt;" SelfReg="false"/>
+    <ROW File="K4os.Compression.LZ4.Streams.dll" Component_="PUFT_PRUEBA_001_References" FileName="K4OSCO~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_K4os.Compression.LZ4.Streams.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_K4os.Compression.LZ4.Streams.dll&gt;" SelfReg="false"/>
+    <ROW File="K4os.Hash.xxHash.dll" Component_="PUFT_PRUEBA_001_References" FileName="K4OSHA~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_K4os.Hash.xxHash.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_K4os.Hash.xxHash.dll&gt;" SelfReg="false"/>
+    <ROW File="MySql.Data.dll" Component_="PUFT_PRUEBA_001_References" FileName="MYSQLD~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_MySql.Data.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_MySql.Data.dll&gt;" SelfReg="false"/>
+    <ROW File="Renci.SshNet.dll" Component_="PUFT_PRUEBA_001_References" FileName="RENCIS~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Renci.SshNet.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Renci.SshNet.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Buffers.dll" Component_="PUFT_PRUEBA_001_References" FileName="SYSTEM~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Buffers.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Buffers.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Memory.dll" Component_="PUFT_PRUEBA_001_References" FileName="SYSTEM~3.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Memory.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Memory.dll&gt;" SelfReg="false"/>
+    <ROW File="System.Runtime.CompilerServices.Unsafe.dll" Component_="PUFT_PRUEBA_001_References" FileName="SYSTEM~4.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll&gt;" SelfReg="false"/>
+    <ROW File="Ubiety.Dns.Core.dll" Component_="PUFT_PRUEBA_001_References" FileName="UBIETY~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Ubiety.Dns.Core.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Ubiety.Dns.Core.dll&gt;" SelfReg="false"/>
+    <ROW File="Zstandard.Net.dll" Component_="PUFT_PRUEBA_001_References" FileName="ZSTAND~2.DLL|[|AI_PROPPATH_FILENAME_PERBUILD_Zstandard.Net.dll]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_Zstandard.Net.dll&gt;" SelfReg="false"/>
+    <ROW File="PUFT_PRUEBA_001.pdb" Component_="PUFT_PRUEBA_001_SymbolsOutput" FileName="PUFT_P~2.PDB|[|AI_PROPPATH_FILENAME_PERBUILD_PUFT_PRUEBA_001.pdb]" Attributes="0" SourcePath="&lt;AI_APPPATH_PERBUILD_PUFT_PRUEBA_001.pdb&gt;" SelfReg="false"/>
+    <ROW File="Square50x50Logo.scale100.png" Component_="Square50x50Logo.scale100.png" FileName="SQUARE~1.PNG|Square50x50Logo.scale-100.png" Attributes="0" SourcePath="..\..\..\..\Desktop\icono_versa_46px_Mesa de trabajo 1.ico" SelfReg="false"/>
+    <ROW File="PUFTPRUEBASquare44x44Logo.scale100.png" Component_="Square50x50Logo.scale100.png" FileName="PUFTPR~1.PNG|PUFTPRUEBASquare44x44Logo.scale-100.png" Attributes="0" SourcePath="&lt;AI_RES&gt;appx\SmallLogo10.png" SelfReg="false"/>
+    <ROW File="PUFTPRUEBASquare150x150Logo.scale100.png" Component_="Square50x50Logo.scale100.png" FileName="PUFTPR~2.PNG|PUFTPRUEBASquare150x150Logo.scale-100.png" Attributes="0" SourcePath="&lt;AI_RES&gt;appx\Logo.png" SelfReg="false"/>
+    <ATTRIBUTE name="IcoToPng" value="Square50x50Logo.scale100.png:0:50"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AppPathsComponent">
+    <ROW Name="AI_APPPATH_PERBUILD_BouncyCastle.Crypto.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_BouncyCastle.Crypto.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_BouncyCastle.Crypto.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Google.Protobuf.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Google.Protobuf.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Google.Protobuf.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_K4os.Compression.LZ4.Streams.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_K4os.Compression.LZ4.Streams.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_K4os.Compression.LZ4.Streams.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_K4os.Compression.LZ4.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_K4os.Compression.LZ4.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_K4os.Compression.LZ4.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_K4os.Hash.xxHash.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_K4os.Hash.xxHash.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_K4os.Hash.xxHash.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_MySql.Data.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_MySql.Data.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_MySql.Data.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_PUFT_PRUEBA_001.exe" Path="[|AI_PROPPATH_DIR_PERBUILD_PUFT_PRUEBA_001.exe]\[|AI_PROPPATH_FILENAME_PERBUILD_PUFT_PRUEBA_001.exe]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_PUFT_PRUEBA_001.exe.config" Path="[|AI_PROPPATH_DIR_PERBUILD_PUFT_PRUEBA_001.exe.config]\[|AI_PROPPATH_FILENAME_PERBUILD_PUFT_PRUEBA_001.exe.config]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_PUFT_PRUEBA_001.pdb" Path="[|AI_PROPPATH_DIR_PERBUILD_PUFT_PRUEBA_001.pdb]\[|AI_PROPPATH_FILENAME_PERBUILD_PUFT_PRUEBA_001.pdb]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Renci.SshNet.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Renci.SshNet.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Renci.SshNet.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Buffers.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Buffers.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Buffers.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Memory.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Memory.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Memory.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_System.Runtime.CompilerServices.Unsafe.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Ubiety.Dns.Core.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Ubiety.Dns.Core.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Ubiety.Dns.Core.dll]" Type="2" Content="0"/>
+    <ROW Name="AI_APPPATH_PERBUILD_Zstandard.Net.dll" Path="[|AI_PROPPATH_DIR_PERBUILD_Zstandard.Net.dll]\[|AI_PROPPATH_FILENAME_PERBUILD_Zstandard.Net.dll]" Type="2" Content="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.AppXCfgComponent">
+    <ROW ID="Configuration" Order="1" ManifestFile="AppxManifest.xml" TargetOs="4" AutoUpdatesFrequency="0" AutoUpdatesOptions="0" ManifestBundleFile="AppxBundleManifest.xml"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BootstrOptComponent">
+    <ROW BootstrOptKey="GlobalOptions" DownloadFolder="[AppDataFolder][|Manufacturer]\[|ProductName]\prerequisites" Options="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.BuildComponent">
+    <ROW BuildKey="BuildUwpAppX" BuildName="BuildUwpAppX" BuildOrder="2" BuildType="7" PackageFolder="BuildUwpAppXSetupFiles" Languages="en" UwpTargetDesktop="TargetDeviceFamily" UwpAutoUpdatesFrequency="2097210"/>
+    <ROW BuildKey="BuildUwpAppXSubBuild" BuildName="x64" BuildOrder="3" BuildType="8" ParentBuild="BuildUwpAppX"/>
+    <ROW BuildKey="DefaultBuild" BuildName="DefaultBuild" BuildOrder="1" BuildType="1" Languages="en" InstallationType="4" UseLargeSchema="true"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.DictionaryComponent">
+    <ROW Path="&lt;AI_DICTS&gt;ui.ail"/>
+    <ROW Path="&lt;AI_DICTS&gt;ui_en.ail"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.FragmentComponent">
+    <ROW Fragment="CommonUI.aip" Path="&lt;AI_FRAGS&gt;CommonUI.aip"/>
+    <ROW Fragment="FolderDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\FolderDlg.aip"/>
+    <ROW Fragment="MaintenanceTypeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceTypeDlg.aip"/>
+    <ROW Fragment="MaintenanceWelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\MaintenanceWelcomeDlg.aip"/>
+    <ROW Fragment="SequenceDialogs.aip" Path="&lt;AI_THEMES&gt;classic\fragments\SequenceDialogs.aip"/>
+    <ROW Fragment="Sequences.aip" Path="&lt;AI_FRAGS&gt;Sequences.aip"/>
+    <ROW Fragment="StaticUIStrings.aip" Path="&lt;AI_FRAGS&gt;StaticUIStrings.aip"/>
+    <ROW Fragment="UI.aip" Path="&lt;AI_THEMES&gt;classic\fragments\UI.aip"/>
+    <ROW Fragment="Validation.aip" Path="&lt;AI_FRAGS&gt;Validation.aip"/>
+    <ROW Fragment="VerifyRemoveDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRemoveDlg.aip"/>
+    <ROW Fragment="VerifyRepairDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\VerifyRepairDlg.aip"/>
+    <ROW Fragment="WelcomeDlg.aip" Path="&lt;AI_THEMES&gt;classic\fragments\WelcomeDlg.aip"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.GenericXmlAttributeComponent">
+    <ROW XmlAttribute="BackgroundColor" XmlElement="VisualElements" Name="BackgroundColor" Flags="0" Order="0" Value="transparent"/>
+    <ROW XmlAttribute="Category" XmlElement="Extension" Name="Category" Flags="0" Order="0" Value="windows.desktopAppMigration"/>
+    <ROW XmlAttribute="Description" XmlElement="VisualElements" Name="Description" Flags="0" Order="0" Value="PUFT_PRUEBA_001"/>
+    <ROW XmlAttribute="DisplayName" XmlElement="VisualElements" Name="DisplayName" Flags="0" Order="0" Value="PUFT_PRUEBA_001"/>
+    <ROW XmlAttribute="EntryPoint" XmlElement="Application" Name="EntryPoint" Flags="0" Order="0" Value="Windows.FullTrustApplication"/>
+    <ROW XmlAttribute="EntryPoint_1" XmlElement="Extension" Name="EntryPoint" Flags="0" Order="0" Value="Windows.FullTrustApplication"/>
+    <ROW XmlAttribute="Executable" XmlElement="Application" Name="Executable" Flags="0" Order="0" FileId="PUFT_PRUEBA_001.exe"/>
+    <ROW XmlAttribute="Executable_1" XmlElement="Extension" Name="Executable" Flags="0" Order="0" FileId="PUFT_PRUEBA_001.exe"/>
+    <ROW XmlAttribute="Id" XmlElement="Application" Name="Id" Flags="0" Order="0" Value="PUFTPRUEBA"/>
+    <ROW XmlAttribute="Language" XmlElement="Resource" Name="Language" Flags="0" Order="0" Value="en-US"/>
+    <ROW XmlAttribute="MaxVersionTested" XmlElement="TargetDeviceFamily" Name="MaxVersionTested" Flags="0" Order="0" Value="10.0.19041.0"/>
+    <ROW XmlAttribute="MinVersion" XmlElement="TargetDeviceFamily" Name="MinVersion" Flags="0" Order="0" Value="10.0.17763.0"/>
+    <ROW XmlAttribute="Name" XmlElement="Identity" Name="Name" Flags="0" Order="0" Value="VERSATI.PUFTTI"/>
+    <ROW XmlAttribute="Name_1" XmlElement="Capability" Name="Name" Flags="0" Order="0" Value="runFullTrust"/>
+    <ROW XmlAttribute="Name_2" XmlElement="TargetDeviceFamily" Name="Name" Flags="0" Order="0" Value="Windows.Desktop"/>
+    <ROW XmlAttribute="Preference" XmlElement="Rotation" Name="Preference" Flags="0" Order="0" Value="portrait"/>
+    <ROW XmlAttribute="Preference_1" XmlElement="Rotation_1" Name="Preference" Flags="0" Order="0" Value="landscape"/>
+    <ROW XmlAttribute="ProcessorArchitecture" XmlElement="Identity" Name="ProcessorArchitecture" Flags="0" Order="0" Value="x64"/>
+    <ROW XmlAttribute="Publisher" XmlElement="Identity" Name="Publisher" Flags="0" Order="0" Value="CN=VERSA TI"/>
+    <ROW XmlAttribute="ShortcutPath" XmlElement="DesktopApp" Name="ShortcutPath" Flags="0" Order="0" Value="%APPDATA%\Microsoft\Windows\Start Menu\Programs\PUFT TI\PUFT_PRUEBA_001.lnk"/>
+    <ROW XmlAttribute="ShortcutPath_1" XmlElement="DesktopApp_1" Name="ShortcutPath" Flags="0" Order="0" Value="%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\PUFT TI\PUFT_PRUEBA_001.lnk"/>
+    <ROW XmlAttribute="Square150x150Logo" XmlElement="VisualElements" Name="Square150x150Logo" Flags="0" Order="0" FileId="PUFTPRUEBASquare150x150Logo.scale100.png"/>
+    <ROW XmlAttribute="Square44x44Logo" XmlElement="VisualElements" Name="Square44x44Logo" Flags="0" Order="0" FileId="PUFTPRUEBASquare44x44Logo.scale100.png"/>
+    <ROW XmlAttribute="Version" XmlElement="Identity" Name="Version" Flags="0" Order="0" Value="1.0.0.0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.GenericXmlElementComponent">
+    <ROW XmlElement="Application" ParentElement="Applications" Name="Application" Order="0" Flags="0" Type="4"/>
+    <ROW XmlElement="Applications" ParentElement="Package" Name="Applications" Order="3" Flags="0" Type="3"/>
+    <ROW XmlElement="Bundle" Name="Bundle" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="Capabilities" ParentElement="Package" Name="Capabilities" Order="4" Flags="0" Type="0"/>
+    <ROW XmlElement="Capability" ParentElement="Capabilities" Name="Capability" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="Dependencies" ParentElement="Package" Name="Dependencies" Order="5" Flags="0" Type="0"/>
+    <ROW XmlElement="DesktopApp" ParentElement="DesktopAppMigration" Name="DesktopApp" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="DesktopAppMigration" ParentElement="Extension" Name="DesktopAppMigration" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="DesktopApp_1" ParentElement="DesktopAppMigration" Name="DesktopApp" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="DisplayName" ParentElement="Properties" Name="DisplayName" Order="1" Flags="0" Text="PUFT TI" Type="0"/>
+    <ROW XmlElement="Extension" ParentElement="Extensions" Name="Extension" Order="0" Flags="0" Type="55"/>
+    <ROW XmlElement="Extensions" ParentElement="Application" Name="Extensions" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="Identity" ParentElement="Package" Name="Identity" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="InitialRotationPreference" ParentElement="VisualElements" Name="InitialRotationPreference" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="Logo" ParentElement="Properties" Name="Logo" Order="2" Flags="0" FileId="Square50x50Logo.scale100.png" Type="0"/>
+    <ROW XmlElement="Package" Name="Package" Order="0" Flags="0" Type="6"/>
+    <ROW XmlElement="Properties" ParentElement="Package" Name="Properties" Order="2" Flags="0" Type="0"/>
+    <ROW XmlElement="PublisherDisplayName" ParentElement="Properties" Name="PublisherDisplayName" Order="0" Flags="0" Text="VERSA TI" Type="0"/>
+    <ROW XmlElement="Resource" ParentElement="Resources" Name="Resource" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="Resources" ParentElement="Package" Name="Resources" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="Rotation" ParentElement="InitialRotationPreference" Name="Rotation" Order="0" Flags="0" Type="0"/>
+    <ROW XmlElement="Rotation_1" ParentElement="InitialRotationPreference" Name="Rotation" Order="1" Flags="0" Type="0"/>
+    <ROW XmlElement="TargetDeviceFamily" ParentElement="Dependencies" Name="TargetDeviceFamily" Order="0" Flags="0" Type="28"/>
+    <ROW XmlElement="VisualElements" ParentElement="Application" Name="VisualElements" Order="0" Flags="0" Type="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.GenericXmlFileComponent">
+    <ROW XmlFile="AppxBundleManifest.xml" FileName="AppxBundleManifest.xml" RootElement="Bundle" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+    <ROW XmlFile="AppxManifest.xml" FileName="AppxManifest.xml" RootElement="Package" Flags="89" Version="1.0" Encoding="UTF-8" IndentUnits="2"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiBinaryComponent">
+    <ROW Name="aicustact.dll" SourcePath="&lt;AI_CUSTACTS&gt;aicustact.dll"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiControlEventComponent">
+    <ROW Dialog_="WelcomeDlg" Control_="Next" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="FolderDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="FolderDlg" Control_="Back" Event="NewDialog" Argument="WelcomeDlg" Condition="AI_INSTALL" Ordering="1"/>
+    <ROW Dialog_="MaintenanceWelcomeDlg" Control_="Next" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="99"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_MAINT" Ordering="198"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="202"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_INSTALL" Ordering="197"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="FolderDlg" Condition="AI_INSTALL" Ordering="201"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_MAINT" Ordering="101"/>
+    <ROW Dialog_="CustomizeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="ChangeButton" Event="NewDialog" Argument="CustomizeDlg" Condition="AI_MAINT" Ordering="501"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceWelcomeDlg" Condition="AI_MAINT" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RemoveButton" Event="NewDialog" Argument="VerifyRemoveDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="1"/>
+    <ROW Dialog_="MaintenanceTypeDlg" Control_="RepairButton" Event="NewDialog" Argument="VerifyRepairDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="601"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Back" Event="NewDialog" Argument="MaintenanceTypeDlg" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="1"/>
+    <ROW Dialog_="VerifyRepairDlg" Control_="Repair" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Repair&quot;" Ordering="399" Options="1"/>
+    <ROW Dialog_="VerifyRemoveDlg" Control_="Remove" Event="EndDialog" Argument="Return" Condition="AI_MAINT AND InstallMode=&quot;Remove&quot;" Ordering="299" Options="1"/>
+    <ROW Dialog_="PatchWelcomeDlg" Control_="Next" Event="NewDialog" Argument="VerifyReadyDlg" Condition="AI_PATCH" Ordering="201"/>
+    <ROW Dialog_="ResumeDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_RESUME" Ordering="299"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Install" Event="EndDialog" Argument="Return" Condition="AI_PATCH" Ordering="199"/>
+    <ROW Dialog_="VerifyReadyDlg" Control_="Back" Event="NewDialog" Argument="PatchWelcomeDlg" Condition="AI_PATCH" Ordering="203"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCreateFolderComponent">
+    <ROW Directory_="APPDIR" Component_="APPDIR" ManualDelete="true"/>
+    <ROW Directory_="SHORTCUTDIR" Component_="SHORTCUTDIR" ManualDelete="false"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiCustActComponent">
+    <ROW Action="AI_DOWNGRADE" Type="19" Target="4010"/>
+    <ROW Action="AI_DpiContentScale" Type="1" Source="aicustact.dll" Target="DpiContentScale"/>
+    <ROW Action="AI_EnableDebugLog" Type="321" Source="aicustact.dll" Target="EnableDebugLog"/>
+    <ROW Action="AI_FinishActions" Type="1" Source="aicustact.dll" Target="RunAllExitActions"/>
+    <ROW Action="AI_InstallModeCheck" Type="1" Source="aicustact.dll" Target="UpdateInstallMode" WithoutSeq="true"/>
+    <ROW Action="AI_LaunchApp" Type="1" Source="aicustact.dll" Target="[#PUFT_PRUEBA_001.exe]"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Type="65" Source="aicustact.dll" Target="PrepareUpgrade"/>
+    <ROW Action="AI_RESTORE_LOCATION" Type="65" Source="aicustact.dll" Target="RestoreLocation"/>
+    <ROW Action="AI_ResolveKnownFolders" Type="1" Source="aicustact.dll" Target="AI_ResolveKnownFolders"/>
+    <ROW Action="AI_SHOW_LOG" Type="65" Source="aicustact.dll" Target="LaunchLogFile" WithoutSeq="true"/>
+    <ROW Action="AI_STORE_LOCATION" Type="51" Source="ARPINSTALLLOCATION" Target="[APPDIR]"/>
+    <ROW Action="SET_APPDIR" Type="307" Source="APPDIR" Target="[ProgramFilesFolder][Manufacturer]\[ProductName]" MultiBuildTarget="BuildUwpAppX:"/>
+    <ROW Action="SET_SHORTCUTDIR" Type="307" Source="SHORTCUTDIR" Target="[ProgramMenuFolder][ProductName]"/>
+    <ROW Action="SET_TARGETDIR_TO_APPDIR" Type="51" Source="TARGETDIR" Target="[APPDIR]"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiFeatCompsComponent">
+    <ROW Feature_="MainFeature" Component_="APPDIR"/>
+    <ROW Feature_="MainFeature" Component_="ProductInformation"/>
+    <ROW Feature_="MainFeature" Component_="PUFT_PRUEBA_001_PrimaryOutput"/>
+    <ROW Feature_="MainFeature" Component_="SHORTCUTDIR"/>
+    <ROW Feature_="MainFeature" Component_="PUFT_PRUEBA_001_References"/>
+    <ROW Feature_="MainFeature" Component_="PUFT_PRUEBA_001_SymbolsOutput"/>
+    <ROW Feature_="AiAppXAssets" Component_="Square50x50Logo.scale100.png"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiIconsComponent">
+    <ROW Name="icono_versa_46px_Mesadetrabajo1.exe" SourcePath="..\..\..\..\Desktop\icono_versa_46px_Mesa de trabajo 1.ico" Index="0"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstExSeqComponent">
+    <ROW Action="AI_DOWNGRADE" Condition="AI_NEWERPRODUCTFOUND AND (UILevel &lt;&gt; 5)" Sequence="210"/>
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_STORE_LOCATION" Condition="(Not Installed) OR REINSTALL" Sequence="1501"/>
+    <ROW Action="AI_PREPARE_UPGRADE" Condition="AI_UPGRADE=&quot;No&quot; AND (Not Installed)" Sequence="1399"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiInstallUISequenceComponent">
+    <ROW Action="AI_RESTORE_LOCATION" Condition="APPDIR=&quot;&quot;" Sequence="749"/>
+    <ROW Action="AI_ResolveKnownFolders" Sequence="53"/>
+    <ROW Action="AI_DpiContentScale" Sequence="52"/>
+    <ROW Action="AI_EnableDebugLog" Sequence="51"/>
+    <ROW Action="AI_FinishActions" Condition="AI_INSTALL AND AiSkipExitDlg" Sequence="1301"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiLaunchConditionsComponent">
+    <ROW Condition="((VersionNT &lt;&gt; 501) AND (VersionNT &lt;&gt; 502))" Description="[ProductName] cannot be installed on [WindowsTypeNT5XDisplay]." DescriptionLocId="AI.LaunchCondition.NoNT5X" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 400)" Description="[ProductName] cannot be installed on [WindowsTypeNT40Display]." DescriptionLocId="AI.LaunchCondition.NoNT40" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="(VersionNT &lt;&gt; 500)" Description="[ProductName] cannot be installed on [WindowsTypeNT50Display]." DescriptionLocId="AI.LaunchCondition.NoNT50" IsPredefined="true" Builds="DefaultBuild"/>
+    <ROW Condition="VersionNT" Description="[ProductName] cannot be installed on [WindowsType9XDisplay]." DescriptionLocId="AI.LaunchCondition.No9X" IsPredefined="true" Builds="DefaultBuild"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiRegsComponent">
+    <ROW Registry="Path" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Path" Value="[APPDIR]" Component_="ProductInformation"/>
+    <ROW Registry="Version" Root="-1" Key="Software\[Manufacturer]\[ProductName]" Name="Version" Value="[ProductVersion]" Component_="ProductInformation"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiShortsComponent">
+    <ROW Shortcut="PUFT_PRUEBA_001" Directory_="SHORTCUTDIR" Name="PUFT_P~1|PUFT_PRUEBA_001" Component_="PUFT_PRUEBA_001_PrimaryOutput" Target="[#PUFT_PRUEBA_001.exe]" Hotkey="0" IconIndex="0" ShowCmd="1"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiThemeComponent">
+    <ATTRIBUTE name="UsedTheme" value="classic"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.MsiUpgradeComponent">
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="0.0.1" VersionMax="[|ProductVersion]" Attributes="257" ActionProperty="OLDPRODUCTS"/>
+    <ROW UpgradeCode="[|UpgradeCode]" VersionMin="[|ProductVersion]" Attributes="2" ActionProperty="AI_NEWERPRODUCTFOUND"/>
+  </COMPONENT>
+  <COMPONENT cid="caphyon.advinst.msicomp.VsProjectComponent">
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="PrimaryOutput" OutputFile="PUFT_PRUEBA_001.exe" OutputFileShortcut="PUFT_PRUEBA_001"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="PrimaryOutput" OutputFile="PUFT_PRUEBA_001.exe.config"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="BouncyCastle.Crypto.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="Google.Protobuf.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="K4os.Compression.LZ4.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="K4os.Compression.LZ4.Streams.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="K4os.Hash.xxHash.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="MySql.Data.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="Renci.SshNet.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="System.Buffers.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="System.Memory.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="System.Runtime.CompilerServices.Unsafe.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="Ubiety.Dns.Core.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="References" OutputFile="Zstandard.Net.dll"/>
+    <ROW ProjectId="{1d03d7a9-13e6-4994-9d4a-49b0cb73c51d}" ProjectName="PUFT_PRUEBA_001" OutputGroup="SymbolsOutput" OutputFile="PUFT_PRUEBA_001.pdb"/>
+  </COMPONENT>
+</DOCUMENT>
