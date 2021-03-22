@@ -120,53 +120,53 @@ namespace PUFT_PRUEBA_001
                         Boolean exis_agnete = false;
                         int control_agente_new_remi = 0;
                         CTRL_OBJET NUEVA_REMISION = null;
+                       
 
-                        
                             if (ORDEN_VENTA > 0) { existe_ORDENVNETA = true; }
                             if (N_AGENTE > 0) { exis_agnete = true; control_agente_new_remi = 888; }
 
                             if (existe_ORDENVNETA == true && exis_agnete)
                             {
-                                NUEVA_REMISION = GENERAR_CONTROL_OBJECTO(ORDEN_VENTA, N_AGENTE, exis_agnete, existe_ORDENVNETA, control_agente_new_remi);
+                                NUEVA_REMISION = GENERAR_CONTROL_OBJECTO(ORDEN_VENTA, N_AGENTE, ref exis_agnete, ref existe_ORDENVNETA, control_agente_new_remi);
                             }
                             ///*********** Esta permitido  Insertar 
                             if (ctrl_ESTA_PERMITIDO_INSERTAR(existe_ORDENVNETA, exis_agnete, NUEVA_REMISION))
                             {
 
-                            ACCION_PRODUCTOS_PEDIDOS INSERT_PROD = new ACCION_PRODUCTOS_PEDIDOS(NUEVA_REMISION);
+                                ACCION_PRODUCTOS_PEDIDOS INSERT_PROD = new ACCION_PRODUCTOS_PEDIDOS(NUEVA_REMISION);
 
-                            if (INSERT_PROD.RECORRER_PRODUCTOS())
-                            {
-                                try
+                                if (INSERT_PROD.RECORRER_PRODUCTOS())
                                 {
-                                    var pr = new cmdsForm();
-                                    pr.insertarDatosEncabeza(NUEVA_REMISION.REMISION, Convert.ToDateTime(row["fecha_alta"]), row["cve_cte"].ToString(),
-                                        Convert.ToString(row["CardName"]), Convert.ToString(row["estatus"]), Convert.ToInt32(row["n_agente"]),
-                                        Convert.ToString(row["nom_age"]), Convert.ToString(row["comentario"]), Convert.ToInt32(row["moneda"]),
-                                        Convert.ToInt32(row["plazo"]), Convert.ToInt32(row["tipo_venta"]), Convert.ToDouble(row["toal"]),
-                                        Convert.ToString(row["medio_pago"]), Convert.ToString(row["destino"]),
-                                        Convert.ToInt32(row["tipo_agente"]), Convert.ToDouble(row["total_p"]), Convert.ToInt32(row["vbo_gestor"]),
-                                        Convert.ToString(row["comentario_gestor"]), Convert.ToInt32(row["vbo_jefecyc"].ToString()), Convert.ToString(row["comentario_jefecyc"]),
-                                        Convert.ToDateTime(row["timeres_gestor"]), Convert.ToDateTime(row["timeres_jefecyc"]),
-                                        Convert.ToString(row["comentario_gerente"]), Convert.ToDateTime(row["timeres_gerente"]),
-                                        Convert.ToInt32(row["encbandera_especial"]), Convert.ToInt32(row["encbandera_especial"]), Convert.ToString(row["opCFDI"]),
-                                        Convert.ToString(row["MTDPG"]), row["ID_SALESFORECE"].ToString());
+                                    try
+                                    {
+                                        var pr = new cmdsForm();
+                                        pr.insertarDatosEncabeza(NUEVA_REMISION.REMISION, Convert.ToDateTime(row["fecha_alta"]), row["cve_cte"].ToString(),
+                                            Convert.ToString(row["CardName"]), Convert.ToString(row["estatus"]), Convert.ToInt32(row["n_agente"]),
+                                            Convert.ToString(row["nom_age"]), Convert.ToString(row["comentario"]), Convert.ToInt32(row["moneda"]),
+                                            Convert.ToInt32(row["plazo"]), Convert.ToInt32(row["tipo_venta"]), Convert.ToDouble(row["toal"]),
+                                            Convert.ToString(row["medio_pago"]), Convert.ToString(row["destino"]),
+                                            Convert.ToInt32(row["tipo_agente"]), Convert.ToDouble(row["total_p"]), Convert.ToInt32(row["vbo_gestor"]),
+                                            Convert.ToString(row["comentario_gestor"]), Convert.ToInt32(row["vbo_jefecyc"].ToString()), Convert.ToString(row["comentario_jefecyc"]),
+                                            Convert.ToDateTime(row["timeres_gestor"]), Convert.ToDateTime(row["timeres_jefecyc"]),
+                                            Convert.ToString(row["comentario_gerente"]), Convert.ToDateTime(row["timeres_gerente"]),
+                                            Convert.ToInt32(row["encbandera_especial"]), Convert.ToInt32(row["encbandera_especial"]), Convert.ToString(row["opCFDI"]),
+                                            Convert.ToString(row["MTDPG"]), row["ID_SALESFORECE"].ToString());
+
+                                    }
+                                    catch (Exception e)
+                                    {
+                                        var exc = e.ToString();
+                                        // Get the current date.
+                                        DateTime thisDay = DateTime.Today;
+                                        // Display the date in the default (general) format.
+
+                                        PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR PRCCESO  DE INSERCION ENCABEZADO ", e.ToString(), thisDay);
+
+                                    }
 
                                 }
-                                catch (Exception e)
-                                {
-                                    var exc = e.ToString();
-                                    // Get the current date.
-                                    DateTime thisDay = DateTime.Today;
-                                    // Display the date in the default (general) format.
 
-                                    PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR PRCCESO  DE INSERCION ENCABEZADO ", e.ToString(), thisDay);
 
-                                }
-
-                            }
-
-                               
 
                                 ///***** REVISAR QUE SE CARGO EL PEDIDO
                                 if (vALIDAR_NEW_PEDIDO(NUEVA_REMISION, N_AGENTE, row["ID_SALESFORECE"].ToString()))
@@ -174,10 +174,15 @@ namespace PUFT_PRUEBA_001
 
                                     ctrl_GUARDAR_FOLIO(NUEVA_REMISION, N_AGENTE);
                                 }
+                                else
+                                {
+
+                                    REGRESAR_REMISION(NUEVA_REMISION, row["ID_SALESFORECE"].ToString());
+                                }
 
                             }
-                        
 
+                        
 
 
                     }
@@ -245,6 +250,16 @@ namespace PUFT_PRUEBA_001
                                     RESPUESTA = new respuesta_remi(new_REMISION, EXISTE_REMI);
 
                                 }
+                                else {
+
+                                    // Get the current date.
+                                    DateTime thisDay = DateTime.Today;
+                                    // Display the date in the default (general) format.
+
+                                    PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS //  GET_NEW_REMISION ", "ERROR REMISION  DUPLICADA NO CARGARA PUFT", "AGENTE" + cve_agente.ToString(), thisDay);
+
+
+                                }
 
 
 
@@ -283,21 +298,23 @@ namespace PUFT_PRUEBA_001
 
         }
 
-        public CTRL_OBJET GENERAR_CONTROL_OBJECTO(int _ordenventa, int cve_agente, Boolean exis_agnete, Boolean existe_ORDENVNETA, int enter_cve_agente)
+        public CTRL_OBJET GENERAR_CONTROL_OBJECTO(int _ordenventa, int cve_agente, ref  Boolean GEN_exis_agnete, ref  Boolean GEN_existe_ORDENVNETA, int enter_cve_agente)
         {
-            CTRL_OBJET ctrl = null;
-            respuesta_remi rem_respuesta = null;
 
+            //CTRL_OBJET ctrl = new CTRL_OBJET();
             try
             {
-                if (exis_agnete == true && existe_ORDENVNETA == true)
+                
+                
+
+                if (GEN_exis_agnete == true && GEN_existe_ORDENVNETA == true)
                 {
 
 
-                    rem_respuesta = GET_NEW_REMISION(Convert.ToInt32(cve_agente), enter_cve_agente);
+                    respuesta_remi rem_respuesta = GET_NEW_REMISION(Convert.ToInt32(cve_agente), enter_cve_agente);
                     if (rem_respuesta.REPS_ECISTE)
                     {
-                        ctrl = new CTRL_OBJET(_ordenventa, existe_ORDENVNETA, rem_respuesta.RESP_REMISION, rem_respuesta.REPS_ECISTE);
+                        CTRL_OBJET ctrl = new CTRL_OBJET(_ordenventa, GEN_existe_ORDENVNETA, rem_respuesta.RESP_REMISION, rem_respuesta.REPS_ECISTE);
 
                         if (ctrl.CONTROL_MAIN)
                         {
@@ -315,9 +332,9 @@ namespace PUFT_PRUEBA_001
 
                 PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR  GENERAR_CONTROL_OBJECTO", e.ToString(), thisDay);
 
-
+                return null ;
             }
-            return ctrl;
+            return null;
 
         }
 
@@ -339,7 +356,7 @@ namespace PUFT_PRUEBA_001
                     using (MySqlCommand cmd = new MySqlCommand("SP_PUFT_SE_CARGO_REMISION_NUEVA", coneccmys))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new MySqlParameter("_REMISION_MAIN", MySqlDbType.Int32)).Value = CTRL.REMISION;
+                        cmd.Parameters.Add(new MySqlParameter("_REMISION_MAIN", MySqlDbType.Int64)).Value = CTRL.REMISION;
                         cmd.Parameters.Add(new MySqlParameter("ordenventa", MySqlDbType.Int32)).Value = CTRL.ORD_VENTA;
                         cmd.Parameters.Add(new MySqlParameter("cve_agente", MySqlDbType.Int32)).Value = cve_agente;
                         cmd.Parameters.Add(new MySqlParameter("id_salesforce", MySqlDbType.Text)).Value = ID_SALESFORCE;
@@ -359,10 +376,23 @@ namespace PUFT_PRUEBA_001
                                 int main_ctrl = Convert.ToInt32(row["MAIN_PEDIDO"]);
                                 int encabeza_ctrl = Convert.ToInt32(row["EXIS_DETALLE"]);
                                 int detalle_ctrl = Convert.ToInt32(row["EXIS_ENCABEZA"]);
+                                // Get the current date.
+                                DateTime thisDay = DateTime.Today;
                                 if (main_ctrl == 1 && encabeza_ctrl == 1 && detalle_ctrl == 1)
                                 {
 
                                     RESP_VALIDA = true;
+
+                                    
+                                    // Display the date in the default (general) format.
+
+                               PUFT_ERRORS error = new PUFT_ERRORS("APROVADA SE CARGO ENTA TABLAS PRINCIPALES LA REMISION"+ CTRL.REMISION.ToString(), "CORRECTO vALIDAR_NEW_PEDIDO", "CORRECTO", thisDay);
+
+                                }
+                                else
+                                {
+
+                                    PUFT_ERRORS error = new PUFT_ERRORS("ERROR  REMISION" + CTRL.REMISION.ToString()+ "NO PASO  LA  VALIDACION ", "NO PASO vALIDAR_NEW_PEDIDO", "FALSO", thisDay);
 
 
                                 }
@@ -445,10 +475,22 @@ namespace PUFT_PRUEBA_001
                                 int main_ctrl = Convert.ToInt32(row["MAIN_PEDIDO"]);
                                 int encabeza_ctrl = Convert.ToInt32(row["EXIS_DETALLE"]);
                                 int detalle_ctrl = Convert.ToInt32(row["EXIS_ENCABEZA"]);
+                                // Get the current date.
+                                DateTime thisDay = DateTime.Today;
                                 if (main_ctrl == 1 && encabeza_ctrl == 1 && detalle_ctrl == 1)
                                 {
 
                                     RESP_VALIDA = true;
+                                    PUFT_ERRORS error = new PUFT_ERRORS("SE GUARDO EL REMISION", "SE CARGO EN CONTROL DE REMISIONES EN LA SIGUIENTE REMISION:" + CTRL.REMISION.ToString(), "RESMISION:" + CTRL.REMISION.ToString() + " NUM AGENTE " + cve_agente.ToString(), thisDay);
+
+
+                                }
+                                else
+                                {
+                                    
+                                   
+
+                                    PUFT_ERRORS error = new PUFT_ERRORS("ERROR NO SE  GUARDO EL REMISION", "NO SE CARGO EN CONTROL DE REMISIONES LA SIGUIENTE REMISION:" + CTRL.REMISION.ToString(),"RESMISION:" + CTRL.REMISION.ToString()+" NUM AGENTE "+ cve_agente.ToString(), thisDay);
 
 
                                 }
@@ -482,6 +524,56 @@ namespace PUFT_PRUEBA_001
 
         }
 
+        public void  REGRESAR_REMISION (CTRL_OBJET CTRL, String id_salesforce )
+        {
+
+            
+            try
+            {
+
+                string connection =
+                                   System.Configuration.ConfigurationManager.
+                                   ConnectionStrings["Server80"].ConnectionString;
+
+                using (MySqlConnection coneccmys = new MySqlConnection(connection))
+                {
+                    coneccmys.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("SP_PUFT_REGRESAR_REMISION_FAIL", coneccmys))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new MySqlParameter("puft_remio", MySqlDbType.Int64)).Value = CTRL.REMISION;
+
+                        cmd.Parameters.Add(new MySqlParameter("idsalesforce", MySqlDbType.String)).Value = id_salesforce;
+                        cmd.Parameters.Add(new MySqlParameter("puftcrl", MySqlDbType.String)).Value = "V3rs@";
+                        
+
+                        DataTable dt_table = new DataTable();
+                        MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
+
+                        APSTER.Fill(dt_table);
+                       
+                    }
+                    coneccmys.Close();
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR REGRESAR REMISION", e.ToString(), thisDay);
+
+
+            }
+
+
+           
+
+        }
 
 
 

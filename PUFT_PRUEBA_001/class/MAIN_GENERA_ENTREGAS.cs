@@ -138,7 +138,7 @@ namespace PUFT_PRUEBA_001
                 foreach (DataRow row in TB_FACTURAS_A_GENERAR_ENTREGAS.Rows)
                 {
                     DataRow accion_row = row;
-                   
+
                     if (row["ID_PEDIDOS"] != null    )
                     {
                         var prueba = row["ORDEN_VENTA"].ToString();

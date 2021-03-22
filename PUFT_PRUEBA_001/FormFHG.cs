@@ -106,7 +106,7 @@ namespace PUFT_PRUEBA_001
             string connStr =
                                      System.Configuration.ConfigurationManager.
                                      ConnectionStrings["Server80"].ConnectionString;
-            string query = "select msg_puft, class_puft, exception_puft, fecha_puft from TB_PUFT_ERROS ORDER BY  fecha_puft DESC ";
+            string query = "select msg_puft, class_puft, exception_puft, fecha_puft from TB_PUFT_ERROS ORDER BY  fecha_puft DESC DESC limit 100 ";
             using (MySqlConnection conn = new MySqlConnection(connStr))
             {
                 using (MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn))
