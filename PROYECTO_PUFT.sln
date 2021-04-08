@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PUFT_PRUEBA_001", "PUFT_PRUEBA_001\PUFT_PRUEBA_001.csproj", "{1D03D7A9-13E6-4994-9D4A-49B0CB73C51D}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "INSTALER_VRS_21", "INSTALER_VRS_21\INSTALER_VRS_21.vdproj", "{0C2BDF89-6D46-4451-B5A5-D1FD22C5B15B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		All|Any CPU = All|Any CPU
@@ -18,6 +20,9 @@ Global
 		{1D03D7A9-13E6-4994-9D4A-49B0CB73C51D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D03D7A9-13E6-4994-9D4A-49B0CB73C51D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D03D7A9-13E6-4994-9D4A-49B0CB73C51D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C2BDF89-6D46-4451-B5A5-D1FD22C5B15B}.All|Any CPU.ActiveCfg = Release
+		{0C2BDF89-6D46-4451-B5A5-D1FD22C5B15B}.Debug|Any CPU.ActiveCfg = Debug
+		{0C2BDF89-6D46-4451-B5A5-D1FD22C5B15B}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
