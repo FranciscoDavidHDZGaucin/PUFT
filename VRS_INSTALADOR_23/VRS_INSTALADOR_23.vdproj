@@ -550,12 +550,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_FCF77E3F19B76C2FBD971F6E1DF2D71D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D3DACE95C97943488D12B4000A35A8E3"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -979,6 +973,12 @@
         "OwnerKey" = "8:_21D21494DEF332BB519500EE79DD3312"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_FCF77E3F19B76C2FBD971F6E1DF2D71D"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -997,6 +997,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -1013,6 +1021,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -3375,9 +3391,9 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_A401D3284F5248CA95E776ECFFAEF6F3"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder][VRSPUFT]\\[ProductName]"
             "Name" = "8:#1925"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:TARGETDIR"
@@ -3388,7 +3404,7 @@
             "{1525181F-901A-416C-8A58-119130FE478E}:_C27BFB75BF8C40CB8237ADB305B0BC6D"
             {
             "Name" = "8:#1916"
-            "AlwaysCreate" = "11:FALSE"
+            "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:DesktopFolder"
@@ -3533,6 +3549,20 @@
         }
         "Shortcut"
         {
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_43E4370CDE364D0EB3E303AED5832C9E"
+            {
+            "Name" = "8:Shortcut to User's Desktop"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:0"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_C27BFB75BF8C40CB8237ADB305B0BC6D"
+            "Folder" = "8:_C27BFB75BF8C40CB8237ADB305B0BC6D"
+            "WorkingFolder" = "8:_C27BFB75BF8C40CB8237ADB305B0BC6D"
+            "Icon" = "8:"
+            "Feature" = "8:"
+            }
             "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5FF05D3538E14F939C3DCBB4DFF7B652"
             {
             "Name" = "8:PUFT"

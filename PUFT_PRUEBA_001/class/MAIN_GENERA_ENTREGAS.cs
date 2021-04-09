@@ -199,7 +199,7 @@ namespace PUFT_PRUEBA_001
                         try
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.Add(new MySqlParameter("NEW_ENTREGA", MySqlDbType.Int32)).Value = resultado_entrega.NUEVA_ENTREGA;
+                            cmd.Parameters.Add(new MySqlParameter("NEW_ENTREGA", MySqlDbType.Int64)).Value = resultado_entrega.NUEVA_ENTREGA;
                             cmd.Parameters.Add(new MySqlParameter("SAP_USUARIO", MySqlDbType.Int32)).Value = USU_LOGISTICA;
                             DataTable dt_table = new DataTable();
                             MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
@@ -480,8 +480,8 @@ namespace PUFT_PRUEBA_001
                         try
                         {
                             cmd.CommandType = CommandType.StoredProcedure;
-                            cmd.Parameters.Add(new MySqlParameter("NEW_ENTREGA", MySqlDbType.Int32)).Value = resultado_entrega.NUEVA_ENTREGA;
-                            cmd.Parameters.Add(new MySqlParameter("NEW_FACTURA", MySqlDbType.Int32)).Value = FACTURA;
+                            cmd.Parameters.Add(new MySqlParameter("NEW_ENTREGA", MySqlDbType.Int64)).Value = resultado_entrega.NUEVA_ENTREGA;
+                            cmd.Parameters.Add(new MySqlParameter("NEW_FACTURA", MySqlDbType.Int64)).Value = FACTURA;
                             DataTable dt_table = new DataTable();
                             MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
 
