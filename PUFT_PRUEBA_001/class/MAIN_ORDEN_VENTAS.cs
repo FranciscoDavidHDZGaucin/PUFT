@@ -150,7 +150,7 @@ namespace PUFT_PRUEBA_001
                                             Convert.ToDateTime(row["timeres_gestor"]), Convert.ToDateTime(row["timeres_jefecyc"]),
                                             Convert.ToString(row["comentario_gerente"]), Convert.ToDateTime(row["timeres_gerente"]),
                                             Convert.ToInt32(row["encbandera_especial"]), Convert.ToInt32(row["encbandera_especial"]), Convert.ToString(row["opCFDI"]),
-                                            Convert.ToString(row["MTDPG"]), row["ID_SALESFORECE"].ToString());
+                                            Convert.ToString(row["MTDPG"]), row["ID_SALESFORECE"].ToString(), Convert.ToDateTime(row["PosFechado"]));
 
                                     }
                                     catch (Exception e)

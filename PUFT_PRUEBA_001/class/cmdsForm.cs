@@ -203,7 +203,7 @@ namespace PUFT_PRUEBA_001
         public bool insertarDatosEncabeza(Int64 n_remision , DateTime fecha_alta , string cve_cte ,string nom_cte,string estatus  , int n_agente ,string nom_age , string observacion, int moneda, int plazo, int tipo_venta, double total,string medio_pago,
              string destino ,int tipo_agente, double total_p ,int vbo_gestor,string comentario_gestor ,int vbo_jefecyc,
              string comentario_jefecyc, DateTime timeres_gestor, DateTime timeres_jefecyc,string comentario_gerente , DateTime timeres_gerente ,
-            int encbandera_especial,int encplazo_especial,string opCFDI ,string MTDPG, string salesforce_id )
+            int encbandera_especial,int encplazo_especial,string opCFDI ,string MTDPG, string salesforce_id , DateTime PosFechado)
         {
             conexion.Open();
 
@@ -241,7 +241,8 @@ namespace PUFT_PRUEBA_001
                 command.Parameters.AddWithValue("encplazo_especial", encplazo_especial);
                 command.Parameters.AddWithValue("opCFDI", opCFDI);
                 command.Parameters.AddWithValue("MTDPG", MTDPG);
-                command.Parameters.AddWithValue("SalesForce_id", salesforce_id);
+                command.Parameters.AddWithValue("SalesForce_id", salesforce_id); 
+                    command.Parameters.AddWithValue("PosFechado", PosFechado);
                 if (command.ExecuteNonQuery() == 1)
                 {
                     exito = true;
