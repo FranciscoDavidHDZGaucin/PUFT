@@ -143,35 +143,39 @@ namespace PUFT_PRUEBA_001
                     {
                         var prueba = row["ORDEN_VENTA"].ToString();
                         Int64 sap_n_remision = row["n_remision"] is null ? 0 : Convert.ToInt64(row["n_remision"]);
-
-                        respuesta_entrega resultado_entrega = GET_NEW_ENTREGA(Convert.ToInt32(row["ID_PEDIDOS"]), 888);
-                        if (EXISTE_FACTURA_CREADA(resultado_entrega, Convert.ToInt64(row["n_factura"])) == false )
-                        {
-
-                            if (RECORRER_FACTURAS_PENDIENTES(resultado_entrega, Convert.ToInt64(row["n_factura"])))
+                    
+                      //if(Convert.ToInt64(row["n_factura"])== 130064190) 
+                      //{
+                            respuesta_entrega resultado_entrega = GET_NEW_ENTREGA(Convert.ToInt32(row["ID_PEDIDOS"]), 888);
+                            if (EXISTE_FACTURA_CREADA(resultado_entrega, Convert.ToInt64(row["n_factura"])) == false)
                             {
-                                //`SP_PUFT_GUARDAR_FOLIO_ENTREGA`(NEW_ENTREGA BIGINT, SAP_USUARIO INT)
-                                if (GUARDAR_ENTREGA_CTRL(resultado_entrega, Convert.ToInt32(row["ID_PEDIDOS"])))
+
+                                if (RECORRER_FACTURAS_PENDIENTES(resultado_entrega, Convert.ToInt64(row["n_factura"])))
                                 {
+                                    //`SP_PUFT_GUARDAR_FOLIO_ENTREGA`(NEW_ENTREGA BIGINT, SAP_USUARIO INT)
+                                    if (GUARDAR_ENTREGA_CTRL(resultado_entrega, Convert.ToInt32(row["ID_PEDIDOS"])))
+                                    {
 
-                                    // Get the current date.
-                                    DateTime thisDay = DateTime.Today;
-                                    // Display the date in the default (general) format.
+                                        // Get the current date.
+                                        DateTime thisDay = DateTime.Today;
+                                        // Display the date in the default (general) format.
 
-                                    PUFT_ERRORS error = new PUFT_ERRORS("CORRECTO SE GENERO  ENTREGA:" + resultado_entrega.NUEVA_ENTREGA.ToString(), "CON ORDEN DE VENTA" + row["ORDEN_VENTA"].ToString(), "CORRECTO", thisDay);
+                                        PUFT_ERRORS error = new PUFT_ERRORS("CORRECTO SE GENERO  ENTREGA:" + resultado_entrega.NUEVA_ENTREGA.ToString(), "CON ORDEN DE VENTA" + row["ORDEN_VENTA"].ToString(), "CORRECTO", thisDay);
 
-                                    CONVERTIR_ENTREGA_A_FACTURA(resultado_entrega, Convert.ToInt64(row["n_factura"]));
+                                        CONVERTIR_ENTREGA_A_FACTURA(resultado_entrega, Convert.ToInt64(row["n_factura"]));
+                                    }
+                                    else {
+
+
+                                        ELIMINAR_ENTREGA_FALLIDA(resultado_entrega, Convert.ToInt64(row["n_factura"]), sap_n_remision);
+
+
+                                    }
+
                                 }
-                                else {
-
-
-                                    ELIMINAR_ENTREGA_FALLIDA(resultado_entrega, Convert.ToInt64(row["n_factura"]), sap_n_remision);
-
-
-                                }
-
                             }
-                        }
+                        //}
+
                     }
 
                 }
