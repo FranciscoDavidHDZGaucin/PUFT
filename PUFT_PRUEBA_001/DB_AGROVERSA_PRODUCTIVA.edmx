@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model_AGROVERSA_PRODUCTIVA.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_DIRECCIONES_SAP' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_PUFT_DIRECCIONES_SAP">
+          <Key>
+            <PropertyRef Name="CardCode" />
+            <PropertyRef Name="AdresType" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="CardCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="LineNum" Type="int" />
+          <Property Name="AdresType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="U_IDSFDC" Type="nvarchar" MaxLength="32" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="nvarchar" MaxLength="100" />
+          <Property Name="Block" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="Country" Type="nvarchar" MaxLength="3" />
+          <Property Name="State" Type="nvarchar" MaxLength="3" />
+          <Property Name="LogInstanc" Type="int" />
+          <Property Name="ObjType" Type="nvarchar" MaxLength="20" />
+          <Property Name="LicTradNum" Type="nvarchar" MaxLength="32" />
+          <Property Name="TaxCode" Type="nvarchar" MaxLength="8" />
+          <Property Name="Building" Type="ntext" />
+          <Property Name="StreetNo" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_DIREC' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="VW_PUFT_VALI_INSER_DIREC">
+          <Key>
+            <PropertyRef Name="CardCode" />
+            <PropertyRef Name="AdresType" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="APLI_INSERT" />
+          </Key>
+          <Property Name="CardCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="LineNum" Type="int" />
+          <Property Name="AdresType" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="U_IDSFDC" Type="nvarchar" MaxLength="32" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MyLineNum" Type="int" />
+          <Property Name="cve_cte" Type="nvarchar" MaxLength="200" />
+          <Property Name="UID_SFDC" Type="nvarchar" MaxLength="100" />
+          <Property Name="APLI_INSERT" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Model_AGROVERSA_PRODUCTIVAStoreContainer">
+          <EntitySet Name="VW_PUFT_DIRECCIONES_SAP" EntityType="Self.VW_PUFT_DIRECCIONES_SAP" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_PUFT_DIRECCIONES_SAP].[CardCode] AS [CardCode], 
+    [VW_PUFT_DIRECCIONES_SAP].[LineNum] AS [LineNum], 
+    [VW_PUFT_DIRECCIONES_SAP].[AdresType] AS [AdresType], 
+    [VW_PUFT_DIRECCIONES_SAP].[U_IDSFDC] AS [U_IDSFDC], 
+    [VW_PUFT_DIRECCIONES_SAP].[Address] AS [Address], 
+    [VW_PUFT_DIRECCIONES_SAP].[Street] AS [Street], 
+    [VW_PUFT_DIRECCIONES_SAP].[Block] AS [Block], 
+    [VW_PUFT_DIRECCIONES_SAP].[ZipCode] AS [ZipCode], 
+    [VW_PUFT_DIRECCIONES_SAP].[City] AS [City], 
+    [VW_PUFT_DIRECCIONES_SAP].[Country] AS [Country], 
+    [VW_PUFT_DIRECCIONES_SAP].[State] AS [State], 
+    [VW_PUFT_DIRECCIONES_SAP].[LogInstanc] AS [LogInstanc], 
+    [VW_PUFT_DIRECCIONES_SAP].[ObjType] AS [ObjType], 
+    [VW_PUFT_DIRECCIONES_SAP].[LicTradNum] AS [LicTradNum], 
+    [VW_PUFT_DIRECCIONES_SAP].[TaxCode] AS [TaxCode], 
+    [VW_PUFT_DIRECCIONES_SAP].[Building] AS [Building], 
+    [VW_PUFT_DIRECCIONES_SAP].[StreetNo] AS [StreetNo]
+    FROM [dbo].[VW_PUFT_DIRECCIONES_SAP] AS [VW_PUFT_DIRECCIONES_SAP]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_PUFT_VALI_INSER_DIREC" EntityType="Self.VW_PUFT_VALI_INSER_DIREC" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_PUFT_VALI_INSER_DIREC].[CardCode] AS [CardCode], 
+    [VW_PUFT_VALI_INSER_DIREC].[LineNum] AS [LineNum], 
+    [VW_PUFT_VALI_INSER_DIREC].[AdresType] AS [AdresType], 
+    [VW_PUFT_VALI_INSER_DIREC].[U_IDSFDC] AS [U_IDSFDC], 
+    [VW_PUFT_VALI_INSER_DIREC].[Address] AS [Address], 
+    [VW_PUFT_VALI_INSER_DIREC].[MyLineNum] AS [MyLineNum], 
+    [VW_PUFT_VALI_INSER_DIREC].[cve_cte] AS [cve_cte], 
+    [VW_PUFT_VALI_INSER_DIREC].[UID_SFDC] AS [UID_SFDC], 
+    [VW_PUFT_VALI_INSER_DIREC].[APLI_INSERT] AS [APLI_INSERT]
+    FROM [dbo].[VW_PUFT_VALI_INSER_DIREC] AS [VW_PUFT_VALI_INSER_DIREC]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model_AGROVERSA_PRODUCTIVA" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="VW_PUFT_DIRECCIONES_SAP">
+          <Key>
+            <PropertyRef Name="CardCode" />
+            <PropertyRef Name="AdresType" />
+            <PropertyRef Name="Address" />
+          </Key>
+          <Property Name="CardCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LineNum" Type="Int32" />
+          <Property Name="AdresType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="U_IDSFDC" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Block" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="LogInstanc" Type="Int32" />
+          <Property Name="ObjType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LicTradNum" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="TaxCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Building" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StreetNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="AGROVERSA_PRODUCTIVAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="VW_PUFT_DIRECCIONES_SAP" EntityType="Self.VW_PUFT_DIRECCIONES_SAP" />
+          <EntitySet Name="VW_PUFT_VALI_INSER_DIREC" EntityType="Model_AGROVERSA_PRODUCTIVA.VW_PUFT_VALI_INSER_DIREC" />
+        </EntityContainer>
+        <EntityType Name="VW_PUFT_VALI_INSER_DIREC">
+          <Key>
+            <PropertyRef Name="CardCode" />
+            <PropertyRef Name="AdresType" />
+            <PropertyRef Name="Address" />
+            <PropertyRef Name="APLI_INSERT" />
+          </Key>
+          <Property Name="CardCode" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="LineNum" Type="Int32" />
+          <Property Name="AdresType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="U_IDSFDC" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MyLineNum" Type="Int32" />
+          <Property Name="cve_cte" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UID_SFDC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="APLI_INSERT" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Model_AGROVERSA_PRODUCTIVAStoreContainer" CdmEntityContainer="AGROVERSA_PRODUCTIVAEntities">
+          <EntitySetMapping Name="VW_PUFT_DIRECCIONES_SAP">
+            <EntityTypeMapping TypeName="Model_AGROVERSA_PRODUCTIVA.VW_PUFT_DIRECCIONES_SAP">
+              <MappingFragment StoreEntitySet="VW_PUFT_DIRECCIONES_SAP">
+                <ScalarProperty Name="CardCode" ColumnName="CardCode" />
+                <ScalarProperty Name="LineNum" ColumnName="LineNum" />
+                <ScalarProperty Name="AdresType" ColumnName="AdresType" />
+                <ScalarProperty Name="U_IDSFDC" ColumnName="U_IDSFDC" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Block" ColumnName="Block" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="LogInstanc" ColumnName="LogInstanc" />
+                <ScalarProperty Name="ObjType" ColumnName="ObjType" />
+                <ScalarProperty Name="LicTradNum" ColumnName="LicTradNum" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+                <ScalarProperty Name="Building" ColumnName="Building" />
+                <ScalarProperty Name="StreetNo" ColumnName="StreetNo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_PUFT_VALI_INSER_DIREC">
+            <EntityTypeMapping TypeName="Model_AGROVERSA_PRODUCTIVA.VW_PUFT_VALI_INSER_DIREC">
+              <MappingFragment StoreEntitySet="VW_PUFT_VALI_INSER_DIREC">
+                <ScalarProperty Name="APLI_INSERT" ColumnName="APLI_INSERT" />
+                <ScalarProperty Name="UID_SFDC" ColumnName="UID_SFDC" />
+                <ScalarProperty Name="cve_cte" ColumnName="cve_cte" />
+                <ScalarProperty Name="MyLineNum" ColumnName="MyLineNum" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="U_IDSFDC" ColumnName="U_IDSFDC" />
+                <ScalarProperty Name="AdresType" ColumnName="AdresType" />
+                <ScalarProperty Name="LineNum" ColumnName="LineNum" />
+                <ScalarProperty Name="CardCode" ColumnName="CardCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
