@@ -45,11 +45,28 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
           <Property Name="AdresType" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="U_IDSFDC" Type="nvarchar" MaxLength="32" />
           <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CardName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Street" Type="nvarchar" MaxLength="100" />
+          <Property Name="Block" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="Country" Type="nvarchar" MaxLength="3" />
+          <Property Name="State" Type="nvarchar" MaxLength="3" />
+          <Property Name="LogInstanc" Type="int" />
+          <Property Name="ObjType" Type="nvarchar" MaxLength="20" />
+          <Property Name="LicTradNum" Type="nvarchar" MaxLength="32" />
+          <Property Name="TaxCode" Type="nvarchar" MaxLength="8" />
+          <Property Name="Building" Type="ntext" />
+          <Property Name="StreetNo" Type="nvarchar" MaxLength="100" />
           <Property Name="MyLineNum" Type="int" />
           <Property Name="cve_cte" Type="nvarchar" MaxLength="200" />
           <Property Name="UID_SFDC" Type="nvarchar" MaxLength="100" />
           <Property Name="APLI_INSERT" Type="int" Nullable="false" />
         </EntityType>
+        <Function Name="SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="INIC_DATE" Type="date" Mode="In" />
+          <Parameter Name="FIN_DATE" Type="date" Mode="In" />
+        </Function>
         <EntityContainer Name="Model_AGROVERSA_PRODUCTIVAStoreContainer">
           <EntitySet Name="VW_PUFT_DIRECCIONES_SAP" EntityType="Self.VW_PUFT_DIRECCIONES_SAP" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -79,6 +96,19 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
     [VW_PUFT_VALI_INSER_DIREC].[AdresType] AS [AdresType], 
     [VW_PUFT_VALI_INSER_DIREC].[U_IDSFDC] AS [U_IDSFDC], 
     [VW_PUFT_VALI_INSER_DIREC].[Address] AS [Address], 
+    [VW_PUFT_VALI_INSER_DIREC].[CardName] AS [CardName], 
+    [VW_PUFT_VALI_INSER_DIREC].[Street] AS [Street], 
+    [VW_PUFT_VALI_INSER_DIREC].[Block] AS [Block], 
+    [VW_PUFT_VALI_INSER_DIREC].[ZipCode] AS [ZipCode], 
+    [VW_PUFT_VALI_INSER_DIREC].[City] AS [City], 
+    [VW_PUFT_VALI_INSER_DIREC].[Country] AS [Country], 
+    [VW_PUFT_VALI_INSER_DIREC].[State] AS [State], 
+    [VW_PUFT_VALI_INSER_DIREC].[LogInstanc] AS [LogInstanc], 
+    [VW_PUFT_VALI_INSER_DIREC].[ObjType] AS [ObjType], 
+    [VW_PUFT_VALI_INSER_DIREC].[LicTradNum] AS [LicTradNum], 
+    [VW_PUFT_VALI_INSER_DIREC].[TaxCode] AS [TaxCode], 
+    [VW_PUFT_VALI_INSER_DIREC].[Building] AS [Building], 
+    [VW_PUFT_VALI_INSER_DIREC].[StreetNo] AS [StreetNo], 
     [VW_PUFT_VALI_INSER_DIREC].[MyLineNum] AS [MyLineNum], 
     [VW_PUFT_VALI_INSER_DIREC].[cve_cte] AS [cve_cte], 
     [VW_PUFT_VALI_INSER_DIREC].[UID_SFDC] AS [UID_SFDC], 
@@ -117,6 +147,10 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
         <EntityContainer Name="AGROVERSA_PRODUCTIVAEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="VW_PUFT_DIRECCIONES_SAP" EntityType="Self.VW_PUFT_DIRECCIONES_SAP" />
           <EntitySet Name="VW_PUFT_VALI_INSER_DIREC" EntityType="Model_AGROVERSA_PRODUCTIVA.VW_PUFT_VALI_INSER_DIREC" />
+          <FunctionImport Name="SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE" ReturnType="Collection(Model_AGROVERSA_PRODUCTIVA.SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE_Result2)">
+            <Parameter Name="INIC_DATE" Mode="In" Type="DateTime" />
+            <Parameter Name="FIN_DATE" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="VW_PUFT_VALI_INSER_DIREC">
           <Key>
@@ -134,7 +168,50 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
           <Property Name="cve_cte" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="UID_SFDC" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="APLI_INSERT" Type="Int32" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Block" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="LogInstanc" Type="Int32" />
+          <Property Name="ObjType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LicTradNum" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="TaxCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Building" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StreetNo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CardName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE_Result">
+          <Property Type="Int32" Name="n_factura" Nullable="true" />
+          <Property Type="Int64" Name="ORDEN_VENTA" Nullable="true" />
+          <Property Type="Int64" Name="n_remision" Nullable="true" />
+          <Property Type="Int32" Name="n_agente" Nullable="true" />
+          <Property Type="String" Name="ShipToCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cve_cte" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="LineNum" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE_Result1">
+          <Property Type="Int32" Name="n_factura" Nullable="true" />
+          <Property Type="Int64" Name="ORDEN_VENTA" Nullable="true" />
+          <Property Type="Int64" Name="n_remision" Nullable="true" />
+          <Property Type="Int32" Name="n_agente" Nullable="true" />
+          <Property Type="String" Name="ShipToCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cve_cte" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="LineNum" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE_Result2">
+          <Property Type="Int32" Name="n_factura" Nullable="true" />
+          <Property Type="Int64" Name="ORDEN_VENTA" Nullable="true" />
+          <Property Type="Int64" Name="n_remision" Nullable="true" />
+          <Property Type="Int32" Name="n_agente" Nullable="true" />
+          <Property Type="String" Name="ShipToCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cve_cte" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="LineNum" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -167,6 +244,19 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
           <EntitySetMapping Name="VW_PUFT_VALI_INSER_DIREC">
             <EntityTypeMapping TypeName="Model_AGROVERSA_PRODUCTIVA.VW_PUFT_VALI_INSER_DIREC">
               <MappingFragment StoreEntitySet="VW_PUFT_VALI_INSER_DIREC">
+                <ScalarProperty Name="CardName" ColumnName="CardName" />
+                <ScalarProperty Name="StreetNo" ColumnName="StreetNo" />
+                <ScalarProperty Name="Building" ColumnName="Building" />
+                <ScalarProperty Name="TaxCode" ColumnName="TaxCode" />
+                <ScalarProperty Name="LicTradNum" ColumnName="LicTradNum" />
+                <ScalarProperty Name="ObjType" ColumnName="ObjType" />
+                <ScalarProperty Name="LogInstanc" ColumnName="LogInstanc" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Block" ColumnName="Block" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
                 <ScalarProperty Name="APLI_INSERT" ColumnName="APLI_INSERT" />
                 <ScalarProperty Name="UID_SFDC" ColumnName="UID_SFDC" />
                 <ScalarProperty Name="cve_cte" ColumnName="cve_cte" />
@@ -179,6 +269,20 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE" FunctionName="Model_AGROVERSA_PRODUCTIVA.Store.SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE" >
+          <ResultMapping>
+              <ComplexTypeMapping TypeName="Model_AGROVERSA_PRODUCTIVA.SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE_Result2">
+                <ScalarProperty Name="n_factura" ColumnName="n_factura" />
+                <ScalarProperty Name="ORDEN_VENTA" ColumnName="ORDEN_VENTA" />
+                <ScalarProperty Name="n_remision" ColumnName="n_remision" />
+                <ScalarProperty Name="n_agente" ColumnName="n_agente" />
+                <ScalarProperty Name="ShipToCode" ColumnName="ShipToCode" />
+                <ScalarProperty Name="cve_cte" ColumnName="cve_cte" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LineNum" ColumnName="LineNum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

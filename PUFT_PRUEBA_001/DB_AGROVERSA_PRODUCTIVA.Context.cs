@@ -12,6 +12,8 @@ namespace PUFT_PRUEBA_001
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class AGROVERSA_PRODUCTIVAEntities : DbContext
     {
@@ -27,5 +29,18 @@ namespace PUFT_PRUEBA_001
     
         public virtual DbSet<VW_PUFT_DIRECCIONES_SAP> VW_PUFT_DIRECCIONES_SAP { get; set; }
         public virtual DbSet<VW_PUFT_VALI_INSER_DIREC> VW_PUFT_VALI_INSER_DIREC { get; set; }
+    
+        public virtual ObjectResult<SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE_Result2> SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE(Nullable<System.DateTime> iNIC_DATE, Nullable<System.DateTime> fIN_DATE)
+        {
+            var iNIC_DATEParameter = iNIC_DATE.HasValue ?
+                new ObjectParameter("INIC_DATE", iNIC_DATE) :
+                new ObjectParameter("INIC_DATE", typeof(System.DateTime));
+    
+            var fIN_DATEParameter = fIN_DATE.HasValue ?
+                new ObjectParameter("FIN_DATE", fIN_DATE) :
+                new ObjectParameter("FIN_DATE", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE_Result2>("SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE", iNIC_DATEParameter, fIN_DATEParameter);
+        }
     }
 }

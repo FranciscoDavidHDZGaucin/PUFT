@@ -122,7 +122,10 @@ namespace PUFT_PRUEBA_001
             }
         }
 
-
-
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormDirecciones frdire = new FormDirecciones();
+            frdire.Show();
+        }
     }
 }
