@@ -146,8 +146,32 @@
     <Compile Include="FormDAFH.Designer.cs">
       <DependentUpon>FormDAFH.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelAgroversa.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAgroversa.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAgroversa.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAgroversa.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAgroversa.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE_Result.cs">
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_PUFT_DIRECCIONES_SAP.cs">
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_PUFT_VALI_INSER_DIREC.cs">
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -170,6 +194,13 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EntityDeploy Include="ModelAgroversa.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelAgroversa.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelAgroversa.edmx.diagram">
+      <DependentUpon>ModelAgroversa.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -203,6 +234,18 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelAgroversa.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelAgroversa.edmx</DependentUpon>
+      <LastGenOutput>ModelAgroversa.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelAgroversa.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelAgroversa.edmx</DependentUpon>
+      <LastGenOutput>ModelAgroversa.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

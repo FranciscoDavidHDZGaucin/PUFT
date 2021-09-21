@@ -28,7 +28,7 @@ namespace PUFT_PRUEBA_001
         private void button1_Click(object sender, EventArgs e)
         {
             ///CTRL_DIRECCIONES CTRLDIRE = new CTRL_DIRECCIONES();
-            using (AGROVERSA_PRODUCTIVAEntities Dbo = new AGROVERSA_PRODUCTIVAEntities())
+            using (AGROVERSA_PRODUCTIVA Dbo = new AGROVERSA_PRODUCTIVA())
             {
 
                 gridDirecciones.DataSource = Dbo.VW_PUFT_VALI_INSER_DIREC.ToList(); 
@@ -58,11 +58,11 @@ namespace PUFT_PRUEBA_001
            var  INICIO =   inicidate.Value;
             var FIN = endDATE.Value;
 
-            using (AGROVERSA_PRODUCTIVAEntities Dbo = new AGROVERSA_PRODUCTIVAEntities())
+            using (AGROVERSA_PRODUCTIVA Dbo = new AGROVERSA_PRODUCTIVA())
             {
 
 
-                var Rsultado = Dbo.SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE(INICIO,
+                var Rsultado = Dbo.SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE(INICIO,
                       FIN);
 
                 GRIDMAIN.DataSource = Rsultado.ToList();

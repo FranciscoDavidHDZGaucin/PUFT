@@ -28,7 +28,7 @@ namespace PUFT_PRUEBA_001
         }
         public void AJUSTAR_DIRECCIONES_SAP_MYSQL()
         {
-            using (AGROVERSA_PRODUCTIVAEntities Dbo = new AGROVERSA_PRODUCTIVAEntities())
+            using ( AGROVERSA_PRODUCTIVA  Dbo = new AGROVERSA_PRODUCTIVA())
             {
 
 
@@ -60,16 +60,16 @@ namespace PUFT_PRUEBA_001
         public bool  AJUSTAR_FACTURASCON_DIRECCIONES( DateTime  INICIO , DateTime  FIN   )
          {
             bool resultado = false; 
-            using (AGROVERSA_PRODUCTIVAEntities Dbo = new AGROVERSA_PRODUCTIVAEntities())
+            using (AGROVERSA_PRODUCTIVA Dbo = new AGROVERSA_PRODUCTIVA())
             {
 
 
-                var Rsultado = Dbo.SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE(INICIO,
+                var Rsultado = Dbo.SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE(INICIO,
                       FIN);
 
 
 
-            foreach (SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE_Result2 row in Rsultado)
+            foreach (SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE_Result row in Rsultado)
             {
                 var ejem = row.cve_cte;
                     if (!this.UpdateDIreccionesPedidosFacturasEntregas(row))
@@ -90,7 +90,7 @@ namespace PUFT_PRUEBA_001
 
 
 
-        public bool UpdateDIreccionesPedidosFacturasEntregas(SP_PUFT_FACTURAS_DIRECCIONES_BY_DATE_Result2   Objt )
+        public bool UpdateDIreccionesPedidosFacturasEntregas(SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE_Result Objt )
         {
             bool EXITO = false; 
             try
@@ -106,7 +106,7 @@ namespace PUFT_PRUEBA_001
                     {  
 
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add(new MySqlParameter("VLN_FACTURA", MySqlDbType.Int64)).Value = Objt.n_factura;
+                        cmd.Parameters.Add(new MySqlParameter("VLN_FACTURA", MySqlDbType.Int64)).Value = 0;  // Objt.n_factura;
                         cmd.Parameters.Add(new MySqlParameter("VL_ORDEN_VENTA", MySqlDbType.Int32)).Value =Objt.ORDEN_VENTA;
                         cmd.Parameters.Add(new MySqlParameter("VL_NREMISION", MySqlDbType.Int64)).Value = Objt.n_remision;
                         cmd.Parameters.Add(new MySqlParameter("VL_AGENTE", MySqlDbType.Int32)).Value = Objt.n_agente;
@@ -127,7 +127,7 @@ namespace PUFT_PRUEBA_001
 
                                 if (Convert.ToInt32(row["MainResult"]) == 20210908)
                                 {
-                                    string VARIABLES = "Remision:" + Objt.n_remision.ToString() + "Factura:" + Objt.n_factura.ToString() + "Orden de Venta:" + Objt.ORDEN_VENTA;
+                                    string VARIABLES = "Remision:" + Objt.n_remision.ToString() + "Factura:NA NO APLICA   Orden de Venta:" + Objt.ORDEN_VENTA;
                                     PUFT_DIRECCIONES_ERRORS insertExisto = new PUFT_DIRECCIONES_ERRORS("Correcto .Net", "CORRECTO", VARIABLES);
                                     EXITO = true;
                                     CountDirreccionCorrec++; 
