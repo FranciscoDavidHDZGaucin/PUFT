@@ -10,6 +10,21 @@ using System.Threading.Tasks;
 namespace PUFT_PRUEBA_001
 {
 
+    /*
+     CLASE PARA ALMACENAR LA  INFORMACION NECESARAIA PARA  ASIGNAR  DIRECCION A UN  PEDIDO   GENERADO
+     EN PROCESO  AUTOMATICO
+         */ 
+    class DIRECCIO_ORDENVENTA
+    {
+        public int ORDEN_VENTA { get; set; }
+        public Nullable<long> n_remision { get; set; }
+        public string ShipToCode { get; set; }
+        public string cve_cte { get; set; }
+        public string Address { get; set; }
+        public Nullable<int> LineNum { get; set; }
+
+
+    }
 
 
 
@@ -20,7 +35,7 @@ namespace PUFT_PRUEBA_001
         public int CountDirreccionCorrec { get; set; }
 
       
-    public CTRL_DIRECCIONES()
+        public CTRL_DIRECCIONES()
         {
           
 
@@ -106,6 +121,7 @@ namespace PUFT_PRUEBA_001
                     {  
 
                         cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add(new MySqlParameter("CTRL_ACCION", MySqlDbType.VarChar)).Value = "UPDEREMI"; 
                         cmd.Parameters.Add(new MySqlParameter("VLN_FACTURA", MySqlDbType.Int64)).Value = 0;  // Objt.n_factura;
                         cmd.Parameters.Add(new MySqlParameter("VL_ORDEN_VENTA", MySqlDbType.Int32)).Value =Objt.ORDEN_VENTA;
                         cmd.Parameters.Add(new MySqlParameter("VL_NREMISION", MySqlDbType.Int64)).Value = Objt.n_remision;
@@ -132,7 +148,7 @@ namespace PUFT_PRUEBA_001
                                     EXITO = true;
                                     CountDirreccionCorrec++; 
                                 }
-                                else if (Convert.ToInt32(row["MainResult"]) == 904) // El registro  ya se le modifico la  direccion asi que homite 
+                                else if (Convert.ToInt32(row["MainResult"]) >= 904 && Convert.ToInt32(row["MainResult"]) <=  913) // El registro  ya se le modifico la  direccion asi que homite 
                                 {
                                     EXITO = true;
 
@@ -166,6 +182,8 @@ namespace PUFT_PRUEBA_001
 
             return EXITO;
         }
+
+        public 
 
 }
 }
