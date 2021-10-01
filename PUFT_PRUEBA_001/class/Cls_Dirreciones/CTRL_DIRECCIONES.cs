@@ -81,9 +81,6 @@ namespace PUFT_PRUEBA_001
 
                 var Rsultado = Dbo.SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE(INICIO,
                       FIN);
-
-
-
             foreach (SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE_Result row in Rsultado)
             {
                 var ejem = row.cve_cte;
@@ -101,8 +98,13 @@ namespace PUFT_PRUEBA_001
         }
 
 
-    }
+      }
+      public  void  GET_ORDEN_VENTA_DIRECC (   int ord_num)
+      {
 
+
+
+        }
 
 
         public bool UpdateDIreccionesPedidosFacturasEntregas(SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE_Result Objt )
@@ -183,7 +185,7 @@ namespace PUFT_PRUEBA_001
             return EXITO;
         }
 
-        public 
+         
 
 }
 }

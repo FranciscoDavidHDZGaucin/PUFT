@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AGROVERSA_PRODUCTIVAModevrs002.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="AGROVERSA_PRODUCTIVAModevrs002.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_DIRECCIONES_SAP' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="VW_PUFT_DIRECCIONES_SAP">
@@ -67,6 +67,9 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
           <Parameter Name="INIC_DATE" Type="date" Mode="In" />
           <Parameter Name="FIN_DATE" Type="date" Mode="In" />
         </Function>
+        <Function Name="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Num_entrega" Type="bigint" Mode="In" />
+        </Function>
         <EntityContainer Name="AGROVERSA_PRODUCTIVAModevrs002StoreContainer">
           <EntitySet Name="VW_PUFT_DIRECCIONES_SAP" EntityType="Self.VW_PUFT_DIRECCIONES_SAP" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -116,8 +119,7 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
     FROM [dbo].[VW_PUFT_VALI_INSER_DIREC] AS [VW_PUFT_VALI_INSER_DIREC]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="AGROVERSA_PRODUCTIVAModevrs002" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -182,11 +184,22 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
             <Parameter Name="INIC_DATE" Mode="In" Type="DateTime" />
             <Parameter Name="FIN_DATE" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta" ReturnType="Collection(AGROVERSA_PRODUCTIVAModevrs002.SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta_Result)">
+            <Parameter Name="Num_entrega" Mode="In" Type="Int64" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE_Result">
           <Property Type="Int32" Name="ORDEN_VENTA" Nullable="false" />
           <Property Type="Int64" Name="n_remision" Nullable="true" />
           <Property Type="Int32" Name="n_agente" Nullable="true" />
+          <Property Type="String" Name="ShipToCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="cve_cte" Nullable="true" MaxLength="15" />
+          <Property Type="String" Name="Address" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="LineNum" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta_Result">
+          <Property Type="Int32" Name="ORDEN_VENTA" Nullable="false" />
+          <Property Type="Int64" Name="n_remision" Nullable="true" />
           <Property Type="String" Name="ShipToCode" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="cve_cte" Nullable="true" MaxLength="15" />
           <Property Type="String" Name="Address" Nullable="false" MaxLength="50" />
@@ -255,6 +268,18 @@ advertencia 6002: La tabla o vista 'AGROVERSA_PRODUCTIVA.dbo.VW_PUFT_VALI_INSER_
                 <ScalarProperty Name="ORDEN_VENTA" ColumnName="ORDEN_VENTA" />
                 <ScalarProperty Name="n_remision" ColumnName="n_remision" />
                 <ScalarProperty Name="n_agente" ColumnName="n_agente" />
+                <ScalarProperty Name="ShipToCode" ColumnName="ShipToCode" />
+                <ScalarProperty Name="cve_cte" ColumnName="cve_cte" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="LineNum" ColumnName="LineNum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta" FunctionName="AGROVERSA_PRODUCTIVAModevrs002.Store.SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AGROVERSA_PRODUCTIVAModevrs002.SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta_Result">
+                <ScalarProperty Name="ORDEN_VENTA" ColumnName="ORDEN_VENTA" />
+                <ScalarProperty Name="n_remision" ColumnName="n_remision" />
                 <ScalarProperty Name="ShipToCode" ColumnName="ShipToCode" />
                 <ScalarProperty Name="cve_cte" ColumnName="cve_cte" />
                 <ScalarProperty Name="Address" ColumnName="Address" />

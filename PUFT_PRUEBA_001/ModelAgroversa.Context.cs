@@ -42,5 +42,14 @@ namespace PUFT_PRUEBA_001
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE_Result>("SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE", iNIC_DATEParameter, fIN_DATEParameter);
         }
+    
+        public virtual ObjectResult<SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta_Result> SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta(Nullable<long> num_entrega)
+        {
+            var num_entregaParameter = num_entrega.HasValue ?
+                new ObjectParameter("Num_entrega", num_entrega) :
+                new ObjectParameter("Num_entrega", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta_Result>("SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta", num_entregaParameter);
+        }
     }
 }

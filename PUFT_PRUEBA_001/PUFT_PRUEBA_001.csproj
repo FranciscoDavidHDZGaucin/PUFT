@@ -166,6 +166,9 @@
     <Compile Include="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE_Result.cs">
       <DependentUpon>ModelAgroversa.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta_Result.cs">
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
     <Compile Include="VW_PUFT_DIRECCIONES_SAP.cs">
       <DependentUpon>ModelAgroversa.tt</DependentUpon>
     </Compile>
