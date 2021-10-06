@@ -46,9 +46,10 @@
             this.btnajustar = new System.Windows.Forms.Button();
             this.gridDirecciones = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btnactualizar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btn_prueba = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.GRIDMAIN)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -113,6 +114,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btn_prueba);
             this.tabPage1.Controls.Add(this.lBAGREGADAS);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label3);
@@ -243,6 +245,18 @@
             this.tabPage3.Text = "Log Erorres";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "ERRORES",
+            "CORRECTOS"});
+            this.comboBox1.Location = new System.Drawing.Point(570, 19);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(192, 21);
+            this.comboBox1.TabIndex = 9;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
             // btnactualizar
             // 
             this.btnactualizar.Location = new System.Drawing.Point(21, 19);
@@ -261,17 +275,15 @@
             this.dataGridView1.Size = new System.Drawing.Size(970, 476);
             this.dataGridView1.TabIndex = 7;
             // 
-            // comboBox1
+            // btn_prueba
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "ERRORES",
-            "CORRECTOS"});
-            this.comboBox1.Location = new System.Drawing.Point(570, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(192, 21);
-            this.comboBox1.TabIndex = 9;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.btn_prueba.Location = new System.Drawing.Point(934, 36);
+            this.btn_prueba.Name = "btn_prueba";
+            this.btn_prueba.Size = new System.Drawing.Size(75, 43);
+            this.btn_prueba.TabIndex = 13;
+            this.btn_prueba.Text = "BTN PRUEBA";
+            this.btn_prueba.UseVisualStyleBackColor = true;
+            this.btn_prueba.Click += new System.EventHandler(this.btn_prueba_Click);
             // 
             // FormDirecciones
             // 
@@ -316,5 +328,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btn_prueba;
     }
 }

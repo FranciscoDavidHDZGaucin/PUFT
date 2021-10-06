@@ -173,7 +173,9 @@ namespace PUFT_PRUEBA_001
                                 {
 
                                     ctrl_GUARDAR_FOLIO(NUEVA_REMISION, N_AGENTE);
-                                }
+                                CTRL_DIRECCIONES gener_direcionorden = new CTRL_DIRECCIONES();
+                                gener_direcionorden.Accion_Add_DirreccionPedidoWhitOrenventa(NUEVA_REMISION.ORD_VENTA);
+                                  }
                                 else
                                 {
 

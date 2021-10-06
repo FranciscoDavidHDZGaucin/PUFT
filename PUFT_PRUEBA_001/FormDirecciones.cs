@@ -174,5 +174,14 @@ namespace PUFT_PRUEBA_001
             }
             
         }
+
+        private void btn_prueba_Click(object sender, EventArgs e)
+        {
+
+            CTRL_DIRECCIONES gener_direcionorden = new CTRL_DIRECCIONES();
+            gener_direcionorden.Accion_Add_DirreccionPedidoWhitOrenventa(25555); 
+
+
+        }
     }
 }
