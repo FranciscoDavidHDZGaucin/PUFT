@@ -144,8 +144,7 @@ namespace PUFT_PRUEBA_001
                         var prueba = row["ORDEN_VENTA"].ToString();
                         Int64 sap_n_remision = row["n_remision"] is null ? 0 : Convert.ToInt64(row["n_remision"]);
 
-                        if (Convert.ToInt64(row["n_factura"]) == 130067374)
-                        {
+                       
                             respuesta_entrega resultado_entrega = GET_NEW_ENTREGA(Convert.ToInt32(row["ID_PEDIDOS"]), 888);
                             if (EXISTE_FACTURA_CREADA(resultado_entrega, Convert.ToInt64(row["n_factura"])) == false)
                             {
@@ -174,7 +173,7 @@ namespace PUFT_PRUEBA_001
 
                                 }
                             }
-                        }
+                        
 
                     }
 

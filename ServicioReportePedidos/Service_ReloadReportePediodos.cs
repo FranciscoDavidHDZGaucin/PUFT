@@ -12,6 +12,7 @@ namespace ServicioReportePedidos
 {
     partial class Service_ReloadReportePediodos : ServiceBase
     {
+        System.Timers.Timer timer;
         public Service_ReloadReportePediodos()
         {
             InitializeComponent();
@@ -25,10 +26,18 @@ namespace ServicioReportePedidos
             Event_reload.Source = "Service_ReloadReportePediodos";
             Event_reload.Log = "Application";
             Class_Reload ObjeIntervalos = new Class_Reload(Event_reload);
+
+           
+            timerReload.Interval = ObjeIntervalos.intervaloReload;
+
         }
 
         protected override void OnStart(string[] args)
         {
+            Event_reload.WriteEntry("Iniciado servicio de respuesta de mensajes " +
+                "Servicio de Prueba REPORTE PEDIDOS   (Service_ReloadReportePediodos)."); 
+            timer.Start();
+
             // TODO: agregar código aquí para iniciar el servicio.
         }
 
