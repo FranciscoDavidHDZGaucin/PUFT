@@ -46,6 +46,9 @@ namespace ServicioReportePedidos
                 Tipocoder.Start();
                 ///***Inicio  apagado del   timer  de conpensacion 
                 FailEstandarReload.Stop();
+                EjecutarCorte();
+
+
             }
             catch (Exception e)
             {
@@ -73,38 +76,9 @@ namespace ServicioReportePedidos
           
             try
             {
-                try
-                {
-                    FailEstandarReload.Stop();
-                    Event_reload.WriteEntry("INICIAMOS LA  RECARGA ");
-                    Class_ReportePedidos ReporteReload = new Class_ReportePedidos();
-                    if (ReporteReload.EjecutarPaso(Event_reload))
-                    {
-                        Class_ErroReload EROR = new Class_ErroReload("CORRECTO RECARGA TERMINADA", "REPORTE CARGADO", "RPTCORRECT");
-                        Event_reload.WriteEntry("CORRECTO RECARGA TERMINADA");
-                    }
-                    else {
-                        ///Iniciamos  un timer de   5  minutos para compensar el  fallo 
-                        FailEstandarReload.Interval = 300000;
-                        FailEstandarReload.Elapsed += new System.Timers.ElapsedEventHandler(this.OnFailEstandarReload);
-                        FailEstandarReload.Start();
 
-
-
-                    }
-
-
-                }
-                catch (Exception J)
-                {
-
-                    Event_reload.WriteEntry("Error N#00 Incio de Timer" + J);
-
-                }
-
-
-
-
+                EjecutarCorte();
+                
             }
             catch (Exception I)
             {
@@ -142,6 +116,39 @@ namespace ServicioReportePedidos
 
                 Event_reload.WriteEntry("Error  en recarga de Compensacion" + J);
                 Class_ErroReload EROR = new Class_ErroReload("ERROR  RECARGA COMPENSACION ", J.ToString(), "RPTCORRECT");
+            }
+
+        }
+        public void EjecutarCorte()
+        {
+            try
+            {
+                FailEstandarReload.Stop();
+                Event_reload.WriteEntry("INICIAMOS LA  RECARGA ");
+                Class_ReportePedidos ReporteReload = new Class_ReportePedidos();
+                if (ReporteReload.EjecutarPaso(Event_reload))
+                {
+                    Class_ErroReload EROR = new Class_ErroReload("CORRECTO RECARGA TERMINADA", "REPORTE CARGADO", "RPTCORRECT");
+                    Event_reload.WriteEntry("CORRECTO RECARGA TERMINADA");
+                }
+                else
+                {
+                    ///Iniciamos  un timer de   5  minutos para compensar el  fallo 
+                    FailEstandarReload.Interval = 300000;
+                    FailEstandarReload.Elapsed += new System.Timers.ElapsedEventHandler(this.OnFailEstandarReload);
+                    FailEstandarReload.Start();
+
+
+
+                }
+
+
+            }
+            catch (Exception J)
+            {
+
+                Event_reload.WriteEntry("Error N#00 Incio de Timer" + J);
+
             }
 
         }
