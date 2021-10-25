@@ -14,6 +14,8 @@ namespace ServicioReportePedidos
     partial class Service_ReloadReportePediodos : ServiceBase
     {
         System.Timers.Timer Tipocoder  = new  System.Timers.Timer() ;
+
+        System.Timers.Timer  FailEstandarReload  = new System.Timers.Timer();
         bool ctrl_timer = false;
         public Service_ReloadReportePediodos()
         {
@@ -41,7 +43,9 @@ namespace ServicioReportePedidos
                 Class_Reload ObjeIntervalos = new Class_Reload(Event_reload);
                 Tipocoder.Interval = ObjeIntervalos.intervaloReload;
                 Tipocoder.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimeCoder);
-                Tipocoder.Start(); 
+                Tipocoder.Start();
+                ///***Inicio  apagado del   timer  de conpensacion 
+                FailEstandarReload.Stop();
             }
             catch (Exception e)
             {
@@ -60,6 +64,7 @@ namespace ServicioReportePedidos
         {
             Tipocoder.Stop();
             Event_reload.WriteEntry("Recarga Reporte Pedidos Detenido");
+            Class_ErroReload EROR = new Class_ErroReload("Servicio Recarga de Reporte Pedidos", "Detenido", "Detenido");
             // TODO: agregar código aquí para realizar cualquier anulación necesaria para detener el servicio.
         }
 
@@ -70,6 +75,7 @@ namespace ServicioReportePedidos
             {
                 try
                 {
+                    FailEstandarReload.Stop();
                     Event_reload.WriteEntry("INICIAMOS LA  RECARGA ");
                     Class_ReportePedidos ReporteReload = new Class_ReportePedidos();
                     if (ReporteReload.EjecutarPaso(Event_reload))
@@ -78,7 +84,13 @@ namespace ServicioReportePedidos
                         Event_reload.WriteEntry("CORRECTO RECARGA TERMINADA");
                     }
                     else {
-                        Tipocoder.Stop();
+                        ///Iniciamos  un timer de   5  minutos para compensar el  fallo 
+                        FailEstandarReload.Interval = 300000;
+                        FailEstandarReload.Elapsed += new System.Timers.ElapsedEventHandler(this.OnFailEstandarReload);
+                        FailEstandarReload.Start();
+
+
+
                     }
 
 
@@ -104,8 +116,37 @@ namespace ServicioReportePedidos
            
         }
 
-       
+        private void OnFailEstandarReload(object sender, ElapsedEventArgs e)
+        {
+            try
+            {
+                Event_reload.WriteEntry("INICIO RECARGA COMPENSACION FALLIDA  ");
+                Class_ReportePedidos ReporteReload = new Class_ReportePedidos();
+                if (ReporteReload.EjecutarPaso(Event_reload))
+                {
+                    Class_ErroReload EROR = new Class_ErroReload("CORRECTO RECARGA COMPENSACION TERMINADA", "REPORTE CARGADO", "RPTCORRECT");
+                    Event_reload.WriteEntry("CORRECTO RECARGA COMPENSACION TERMINADA");
+                    FailEstandarReload.Stop();
+                }
+                else
+                {
 
-        
+                    FailEstandarReload.Stop();
+
+                }
+
+
+            }
+            catch (Exception J)
+            {
+
+                Event_reload.WriteEntry("Error  en recarga de Compensacion" + J);
+                Class_ErroReload EROR = new Class_ErroReload("ERROR  RECARGA COMPENSACION ", J.ToString(), "RPTCORRECT");
+            }
+
+        }
+
+
+
     }
 }
