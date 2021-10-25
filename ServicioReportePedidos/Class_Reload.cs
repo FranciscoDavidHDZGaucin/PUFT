@@ -33,8 +33,8 @@ namespace ServicioReportePedidos
                         {
                             foreach (DataRow row in dt_table.Rows)
                             {
-                                this.intervaloReload =Convert.ToInt32( row["INTERVALO"]); 
-
+                                this.intervaloReload =Convert.ToInt32( row["INTERVALO"]);
+                                eventLog.WriteEntry("Intervalo de Recarga Pedidos :" + row["INTERVALO"].ToString());
                             }
                         }
                     }

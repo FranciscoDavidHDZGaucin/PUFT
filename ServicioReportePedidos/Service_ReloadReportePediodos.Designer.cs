@@ -30,24 +30,26 @@
         {
             this.components = new System.ComponentModel.Container();
             this.Event_reload = new System.Diagnostics.EventLog();
-            this.timerReload = new System.Windows.Forms.Timer(this.components);
+        
             ((System.ComponentModel.ISupportInitialize)(this.Event_reload)).BeginInit();
             // 
             // Event_reload
             // 
             this.Event_reload.Log = "Application";
             this.Event_reload.Source = "RECARGA_PEDIDOS";
+          
             // 
             // Service_ReloadReportePediodos
             // 
+            this.CanHandlePowerEvent = true;
+            this.CanPauseAndContinue = true;
             this.ServiceName = "Service_ReloadReportePediodos";
             ((System.ComponentModel.ISupportInitialize)(this.Event_reload)).EndInit();
 
         }
 
         #endregion
-
         private System.Diagnostics.EventLog Event_reload;
-        private System.Windows.Forms.Timer timerReload;
+        public System.Windows.Forms.Timer timerReload;
     }
 }

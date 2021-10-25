@@ -30,7 +30,7 @@ namespace ServicioReportePedidos
                         SP_EROR.Parameters.Add("@EXCEPTION", SqlDbType.NChar).Value = EXCEPTION;
 
 
-
+                        SP_EROR.ExecuteReader(); 
 
                     }
 
@@ -45,7 +45,7 @@ namespace ServicioReportePedidos
             catch (Exception J)
             {
 
-               // Event001.WriteEntry("Error N#0001  Incio de consulta" + J);
+          ///     Event001.WriteEntry("Error N#0001  Incio de consulta" + J);
 
             }
 

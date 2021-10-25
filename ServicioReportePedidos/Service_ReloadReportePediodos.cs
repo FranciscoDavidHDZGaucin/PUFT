@@ -7,12 +7,14 @@ using System.Linq;
 using System.ServiceProcess;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace ServicioReportePedidos
 {
     partial class Service_ReloadReportePediodos : ServiceBase
     {
-        System.Timers.Timer timer;
+        System.Timers.Timer Tipocoder  = new  System.Timers.Timer() ;
+        bool ctrl_timer = false;
         public Service_ReloadReportePediodos()
         {
             InitializeComponent();
@@ -25,25 +27,85 @@ namespace ServicioReportePedidos
             }
             Event_reload.Source = "Service_ReloadReportePediodos";
             Event_reload.Log = "Application";
-            Class_Reload ObjeIntervalos = new Class_Reload(Event_reload);
-
-           
-            timerReload.Interval = ObjeIntervalos.intervaloReload;
-
+            
         }
 
         protected override void OnStart(string[] args)
         {
+            
             Event_reload.WriteEntry("Iniciado servicio de respuesta de mensajes " +
-                "Servicio de Prueba REPORTE PEDIDOS   (Service_ReloadReportePediodos)."); 
-            timer.Start();
+                "Servicio de Prueba REPORTE PEDIDOS   (Service_ReloadReportePediodos).");
 
+            try
+            {
+                Class_Reload ObjeIntervalos = new Class_Reload(Event_reload);
+                Tipocoder.Interval = ObjeIntervalos.intervaloReload;
+                Tipocoder.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimeCoder);
+                Tipocoder.Start(); 
+            }
+            catch (Exception e)
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                Class_ErroReload EROR = new Class_ErroReload("Error Estado inicila servicio", "Service_ReloadReportePediodos", e.ToString());
+                Event_reload.WriteEntry("Error Estado inicila servicio");
+
+            }
             // TODO: agregar código aquí para iniciar el servicio.
         }
 
         protected override void OnStop()
         {
+            Tipocoder.Stop();
+            Event_reload.WriteEntry("Recarga Reporte Pedidos Detenido");
             // TODO: agregar código aquí para realizar cualquier anulación necesaria para detener el servicio.
         }
+
+        private void OnTimeCoder(object sender, ElapsedEventArgs e)
+        {
+          
+            try
+            {
+                try
+                {
+                    Event_reload.WriteEntry("INICIAMOS LA  RECARGA ");
+                    Class_ReportePedidos ReporteReload = new Class_ReportePedidos();
+                    if (ReporteReload.EjecutarPaso(Event_reload))
+                    {
+                        Class_ErroReload EROR = new Class_ErroReload("CORRECTO RECARGA TERMINADA", "REPORTE CARGADO", "RPTCORRECT");
+                        Event_reload.WriteEntry("CORRECTO RECARGA TERMINADA");
+                    }
+                    else {
+                        Tipocoder.Stop();
+                    }
+
+
+                }
+                catch (Exception J)
+                {
+
+                    Event_reload.WriteEntry("Error N#00 Incio de Timer" + J);
+
+                }
+
+
+
+
+            }
+            catch (Exception I)
+            {
+                Event_reload.WriteEntry("Error N#xx Incio de Timer" + I);
+
+            }
+
+
+           
+        }
+
+       
+
+        
     }
 }

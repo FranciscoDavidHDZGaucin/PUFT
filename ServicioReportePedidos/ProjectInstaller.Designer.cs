@@ -28,29 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.serviceProcessInstaller1 = new System.ServiceProcess.ServiceProcessInstaller();
-            this.serviceInstaller1 = new System.ServiceProcess.ServiceInstaller();
+            this.ReportePedisoServiceProcessInstaller = new System.ServiceProcess.ServiceProcessInstaller();
+            this.serviceInstallerReporte = new System.ServiceProcess.ServiceInstaller();
+            this.serviceControllerReportePedidos = new System.ServiceProcess.ServiceController();
             // 
-            // serviceProcessInstaller1
+            // ReportePedisoServiceProcessInstaller
             // 
-            this.serviceProcessInstaller1.Password = null;
-            this.serviceProcessInstaller1.Username = null;
+            this.ReportePedisoServiceProcessInstaller.Password = null;
+            this.ReportePedisoServiceProcessInstaller.Username = null;
             // 
-            // serviceInstaller1
+            // serviceInstallerReporte
             // 
-            this.serviceInstaller1.ServiceName = "Service_ReloadReportePediodos";
+            this.serviceInstallerReporte.Description = "Instalador  de  Servicio de recarga de Pedidos";
+            this.serviceInstallerReporte.DisplayName = "Recarga de Reporte  de Pedidos";
+            this.serviceInstallerReporte.ServiceName = "Service_ReloadReportePediodos";
+            // 
+            // serviceControllerReportePedidos
+            // 
+            this.serviceControllerReportePedidos.ServiceName = "Servico  Recarga de Pedidos";
             // 
             // ProjectInstaller
             // 
             this.Installers.AddRange(new System.Configuration.Install.Installer[] {
-            this.serviceProcessInstaller1,
-            this.serviceInstaller1});
+            this.serviceInstallerReporte,
+            this.ReportePedisoServiceProcessInstaller});
 
         }
 
         #endregion
 
-        private System.ServiceProcess.ServiceProcessInstaller serviceProcessInstaller1;
-        private System.ServiceProcess.ServiceInstaller serviceInstaller1;
+        private System.ServiceProcess.ServiceProcessInstaller ReportePedisoServiceProcessInstaller;
+        private System.ServiceProcess.ServiceInstaller serviceInstallerReporte;
+        private System.ServiceProcess.ServiceController serviceControllerReportePedidos;
     }
 }
