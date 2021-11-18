@@ -173,8 +173,10 @@ namespace PUFT_PRUEBA_001
                                 {
 
                                     ctrl_GUARDAR_FOLIO(NUEVA_REMISION, N_AGENTE);
-                                CTRL_DIRECCIONES gener_direcionorden = new CTRL_DIRECCIONES();
-                                gener_direcionorden.Accion_Add_DirreccionPedidoWhitOrenventa(NUEVA_REMISION.ORD_VENTA);
+                                    CTRL_DIRECCIONES gener_direcionorden = new CTRL_DIRECCIONES();
+                                    gener_direcionorden.Accion_Add_DirreccionPedidoWhitOrenventa(NUEVA_REMISION.ORD_VENTA);
+                                            this.UpdateFechAltaPedidos(NUEVA_REMISION, Convert.ToDateTime(row["CREACIONDATE"]));
+
                                   }
                                 else
                                 {
@@ -577,7 +579,91 @@ namespace PUFT_PRUEBA_001
 
         }
 
+        public void UpdateFechAltaPedidos(CTRL_OBJET CTRL  , DateTime FECHALTA )
+        {
+          
 
+            try
+            {
+
+                string connection =
+                                   System.Configuration.ConfigurationManager.
+                                   ConnectionStrings["Server80"].ConnectionString;
+
+                using (MySqlConnection coneccmys = new MySqlConnection(connection))
+                {
+                    coneccmys.Open();
+                    using (MySqlCommand cmd = new MySqlCommand("SP_PUFT_CTRL_FECHA_CREACION", coneccmys))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //CTRL_ACCION VARCHAR(10),  VL_ORDEN_VENTA BIGINT, VL_NREMISION BIGINT , VL_NFECHACREACION DATETIME
+                        cmd.Parameters.Add(new MySqlParameter("CTRL_ACCION", MySqlDbType.String)).Value = "UPDEREMI";
+                        cmd.Parameters.Add(new MySqlParameter("VL_ORDEN_VENTA", MySqlDbType.Int32)).Value = CTRL.ORD_VENTA;
+                        cmd.Parameters.Add(new MySqlParameter("VL_NREMISION", MySqlDbType.Int64)).Value = CTRL.REMISION;
+                        cmd.Parameters.Add(new MySqlParameter("VL_NFECHACREACION", MySqlDbType.Datetime)).Value = FECHALTA;
+
+
+
+                        DataTable dt_table = new DataTable();
+                        MySqlDataAdapter APSTER = new MySqlDataAdapter(cmd);
+
+                        APSTER.Fill(dt_table);
+                        if (dt_table.Rows.Count > 0)
+                        {
+                            foreach (DataRow row in dt_table.Rows)
+                            {
+
+                                ///MAIN_PEDIDO EXIS_DETALLE  EXIS_ENCABEZA
+                                int main_ctrl = Convert.ToInt32(row["MainResult"]);
+                                
+                                // Get the current date.
+                                DateTime thisDay = DateTime.Today;
+                                if (main_ctrl == 261021)
+                                {
+
+                                  
+                                    PUFT_ERRORS error = new PUFT_ERRORS("SE AJUSTO FECHA ALTA", "SE AJUSTO LA  REMISION:" + CTRL.REMISION.ToString(), "ORDEN VENTA:" + CTRL.ORD_VENTA.ToString() , thisDay);
+
+
+                                }
+                                else
+                                {
+
+
+
+                                    PUFT_ERRORS error = new PUFT_ERRORS("ERROR EN AJUSTAR  FECHA ALTA", "NO SE MODIFICO FECHA ALTA EN LA  REMISION:" + CTRL.REMISION.ToString(), "ORDEN VENTA:" + CTRL.ORD_VENTA.ToString() + "NUM# ERROR"+ main_ctrl.ToString() , thisDay);
+
+
+                                }
+
+
+
+
+                            }
+
+                        }
+                    }
+                    coneccmys.Close();
+                }
+
+
+
+            }
+            catch (Exception e)
+            {
+                // Get the current date.
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+
+                PUFT_ERRORS error = new PUFT_ERRORS("CLASSE MAIN_ORDEN_VENTAS ", "ERROR MODIFICAR FECHAS", e.ToString(), thisDay);
+
+
+            }
+
+
+           
+
+        }
 
 
 
