@@ -17,6 +17,7 @@ namespace ServicioReportePedidos
 
         System.Timers.Timer  FailEstandarReload  = new System.Timers.Timer();
         bool ctrl_timer = false;
+        int compensacion_ctrl = 0; 
         public Service_ReloadReportePediodos()
         {
             InitializeComponent();
@@ -44,9 +45,12 @@ namespace ServicioReportePedidos
                 Tipocoder.Interval = ObjeIntervalos.intervaloReload;
                 Tipocoder.Elapsed += new System.Timers.ElapsedEventHandler(this.OnTimeCoder);
                 Tipocoder.Start();
+                ///Iniciamos  un timer de   5  minutos para compensar el  fallo 
+                FailEstandarReload.Interval = 300000;
+                FailEstandarReload.Elapsed += new System.Timers.ElapsedEventHandler(this.OnFailEstandarReload);
                 ///***Inicio  apagado del   timer  de conpensacion 
                 FailEstandarReload.Stop();
-                EjecutarCorte();
+                ///EjecutarCorte();
 
 
             }
@@ -94,22 +98,27 @@ namespace ServicioReportePedidos
         {
             try
             {
-                Event_reload.WriteEntry("INICIO RECARGA COMPENSACION FALLIDA  ");
+                Event_reload.WriteEntry("INICIO RECARGA COMPENSACION   ");
                 Class_ReportePedidos ReporteReload = new Class_ReportePedidos();
                 if (ReporteReload.EjecutarPaso(Event_reload))
                 {
                     Class_ErroReload EROR = new Class_ErroReload("CORRECTO RECARGA COMPENSACION TERMINADA", "REPORTE CARGADO", "RPTCORRECT");
                     Event_reload.WriteEntry("CORRECTO RECARGA COMPENSACION TERMINADA");
+                    compensacion_ctrl = 1; 
                     FailEstandarReload.Stop();
                 }
                 else
                 {
+                    if (compensacion_ctrl > 5)
+                    {
+                        FailEstandarReload.Stop();
 
-                    FailEstandarReload.Stop();
-
+                    }
+                  
+                    Class_ErroReload EROR = new Class_ErroReload("ERROR  RECARGA COMPENSACION N# INTENTOS:"+compensacion_ctrl.ToString(), "SIN REPORTE", "RPTFAILCOMPENSASION");
                 }
 
-
+                compensacion_ctrl += 1;
             }
             catch (Exception J)
             {
@@ -133,9 +142,7 @@ namespace ServicioReportePedidos
                 }
                 else
                 {
-                    ///Iniciamos  un timer de   5  minutos para compensar el  fallo 
-                    FailEstandarReload.Interval = 300000;
-                    FailEstandarReload.Elapsed += new System.Timers.ElapsedEventHandler(this.OnFailEstandarReload);
+                    ////***Iniciamos  Recarga de compensacion
                     FailEstandarReload.Start();
 
 
