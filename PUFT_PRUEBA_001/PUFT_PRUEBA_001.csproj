@@ -51,11 +51,17 @@
     <StartupObject>PUFT_PRUEBA_001.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BouncyCastle.Crypto, Version=1.8.5.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
-      <HintPath>..\packages\BouncyCastle.1.8.5\lib\BouncyCastle.Crypto.dll</HintPath>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
-    <Reference Include="Google.Protobuf, Version=3.14.0.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
-      <HintPath>..\packages\Google.Protobuf.3.14.0\lib\net45\Google.Protobuf.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf, Version=3.11.4.0, Culture=neutral, PublicKeyToken=a7d26565bac4d604, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Protobuf.3.11.4\lib\net45\Google.Protobuf.dll</HintPath>
     </Reference>
     <Reference Include="K4os.Compression.LZ4, Version=1.1.11.0, Culture=neutral, PublicKeyToken=2186fa9121ef231d, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Compression.LZ4.1.1.11\lib\net46\K4os.Compression.LZ4.dll</HintPath>
@@ -66,9 +72,7 @@
     <Reference Include="K4os.Hash.xxHash, Version=1.0.6.0, Culture=neutral, PublicKeyToken=32cd54395057cec3, processorArchitecture=MSIL">
       <HintPath>..\packages\K4os.Hash.xxHash.1.0.6\lib\net46\K4os.Hash.xxHash.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=8.0.26.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.26\lib\net452\MySql.Data.dll</HintPath>
-    </Reference>
+    <Reference Include="MySql.Data, Version=6.10.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Renci.SshNet, Version=2016.1.0.0, Culture=neutral, PublicKeyToken=1cee9f8bde3db106, processorArchitecture=MSIL">
       <HintPath>..\packages\SSH.NET.2016.1.0\lib\net40\Renci.SshNet.dll</HintPath>
     </Reference>
@@ -88,6 +92,9 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -99,15 +106,17 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Ubiety.Dns.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.26\lib\net452\Ubiety.Dns.Core.dll</HintPath>
+      <HintPath>..\packages\MySql.Data.8.0.22\lib\net452\Ubiety.Dns.Core.dll</HintPath>
     </Reference>
     <Reference Include="Zstandard.Net, Version=1.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.8.0.26\lib\net452\Zstandard.Net.dll</HintPath>
+      <HintPath>..\packages\MySql.Data.8.0.22\lib\net452\Zstandard.Net.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="class\ACCION_ENTREGAS_PRODUCTOS.cs" />
     <Compile Include="class\ACCION_PRODUCTOS_PEDIDOS.cs" />
+    <Compile Include="class\Cls_Dirreciones\CTRL_DIRECCIONES.cs" />
+    <Compile Include="class\Cls_Dirreciones\My_Dirreccion.cs" />
     <Compile Include="class\cmdsForm.cs" />
     <Compile Include="class\CTRL_ENTREGA_OBJET.cs" />
     <Compile Include="class\CTRL_OBJET.cs" />
@@ -119,6 +128,12 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDirecciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDirecciones.Designer.cs">
+      <DependentUpon>FormDirecciones.cs</DependentUpon>
     </Compile>
     <Compile Include="FormFHG.cs">
       <SubType>Form</SubType>
@@ -132,13 +147,49 @@
     <Compile Include="FormDAFH.Designer.cs">
       <DependentUpon>FormDAFH.cs</DependentUpon>
     </Compile>
+    <Compile Include="ModelAgroversa.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAgroversa.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAgroversa.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ModelAgroversa.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelAgroversa.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceReportePedidos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ServiceReportePedidos.Designer.cs">
+      <DependentUpon>ServiceReportePedidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DATE_Result.cs">
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_PUFT_ORDENVENTA_DIRECCIONES_BY_DocNumOrdenVenta_Result.cs">
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_PUFT_DIRECCIONES_SAP.cs">
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_PUFT_VALI_INSER_DIREC.cs">
+      <DependentUpon>ModelAgroversa.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormDAFH.resx">
       <DependentUpon>FormDAFH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDirecciones.resx">
+      <DependentUpon>FormDirecciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormFHG.resx">
       <DependentUpon>FormFHG.cs</DependentUpon>
@@ -153,6 +204,16 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ServiceReportePedidos.resx">
+      <DependentUpon>ServiceReportePedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="ModelAgroversa.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ModelAgroversa.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ModelAgroversa.edmx.diagram">
+      <DependentUpon>ModelAgroversa.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -183,6 +244,21 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelAgroversa.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelAgroversa.edmx</DependentUpon>
+      <LastGenOutput>ModelAgroversa.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ModelAgroversa.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ModelAgroversa.edmx</DependentUpon>
+      <LastGenOutput>ModelAgroversa.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

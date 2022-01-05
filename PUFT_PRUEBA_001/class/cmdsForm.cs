@@ -390,6 +390,62 @@ namespace PUFT_PRUEBA_001
             return exito;
         }
 
+        public bool insertDirrecciones(VW_PUFT_VALI_INSER_DIREC  ObjDir )
+        {
+           
+            bool exito = false;
+            try
+            {
+                conexion.Open();
+                using (MySqlCommand command = new MySqlCommand("SP_PUFT_INSERT_DIRECCIONES", conexion))
+                {
+                    command.Connection = conexion;
+                    command.CommandType = CommandType.StoredProcedure;
+                    /// , MySqlDbType.VarChar)).Value =
+                    command.Parameters.Add(new MySqlParameter("InsClvecte", MySqlDbType.VarChar)).Value = ObjDir.CardCode;
+                    command.Parameters.Add(new MySqlParameter("InsLineNum", MySqlDbType.Int16)).Value = ObjDir.LineNum;
+                    command.Parameters.Add(new MySqlParameter("U_IDSFDC", MySqlDbType.VarChar)).Value = ObjDir.U_IDSFDC;
+                    command.Parameters.Add(new MySqlParameter("Insnom_cliente", MySqlDbType.VarChar)).Value = ObjDir.CardName;
+                    command.Parameters.Add(new MySqlParameter("Inscalle", MySqlDbType.VarChar)).Value = ObjDir.Street;
+                    command.Parameters.Add(new MySqlParameter("Inscolonia", MySqlDbType.VarChar)).Value = ObjDir.Block;
+                    command.Parameters.Add(new MySqlParameter("Insciudad", MySqlDbType.VarChar)).Value = ObjDir.City;
+                    command.Parameters.Add(new MySqlParameter("Inscp", MySqlDbType.VarChar)).Value = ObjDir.ZipCode;
+                    command.Parameters.Add(new MySqlParameter("Insestado", MySqlDbType.VarChar)).Value = ObjDir.State;
+                    command.Parameters.Add(new MySqlParameter("Inspais", MySqlDbType.VarChar)).Value = ObjDir.Country;
+                    command.Parameters.Add(new MySqlParameter("Inszona", MySqlDbType.VarChar)).Value = ObjDir.Building;
+                    command.Parameters.Add(new MySqlParameter("InsAdresType", MySqlDbType.VarChar)).Value = ObjDir.AdresType;
+                    command.Parameters.Add(new MySqlParameter("InsAdress", MySqlDbType.VarChar)).Value = ObjDir.Address;
+                    //command.Parameters.AddWithValue("InsClvecte", ObjDir.CardCode);
+                    //command.Parameters.AddWithValue("InsLineNum", ObjDir.LineNum);
+                    //command.Parameters.AddWithValue("U_IDSFDC", ObjDir.UID_SFDC);
+                    //command.Parameters.AddWithValue("Insnom_cliente", ObjDir.CardName);
+                    //command.Parameters.AddWithValue("Inscalle",  ObjDir.Street);
+                    //command.Parameters.AddWithValue("Inscolonia", ObjDir.Block);
+                    //command.Parameters.AddWithValue("Insciudad", ObjDir.City);
+                    //command.Parameters.AddWithValue("Inscp", ObjDir.ZipCode);
+                    //command.Parameters.AddWithValue("Insestado", ObjDir.State);
+                    //command.Parameters.AddWithValue("Inspais", ObjDir.Country);
+                    //command.Parameters.AddWithValue("Inszona", ObjDir.Building);
+                    //command.Parameters.AddWithValue("InsAdresType", ObjDir.AdresType);
+
+                    if (command.ExecuteNonQuery() == 1)
+                    {
+                        exito = true;
+                    }
+                }
+            }
+            catch (MySqlException e)
+            {
+                exito = false;
+                DateTime thisDay = DateTime.Today;
+                // Display the date in the default (general) format.
+                PUFT_ERRORS error = new PUFT_ERRORS("Class cmdsForm/insertDirrecciones", "ERROR INSERTAR DIRRECION SAP=>MYSQL", e.ToString(), thisDay);
+
+            }
+            return exito; 
+        }
+
+
         public bool insertarDatosFactura(double id_detalle, Int64 n_remision, Int64 n_agente, string nom_age, DateTime fecha_alta, string cve_cte, string nom_cte, string cve_prod,
                  string nom_prod, double cant_prod, double cant_original, double precio_prod, double dcto_prod, double ieps, double iva, double total_prod,
                  Int64 moneda_prod, double cant_falta, double tipo_cambio, double precio_condcto, double precio_politica, string bonificacion,

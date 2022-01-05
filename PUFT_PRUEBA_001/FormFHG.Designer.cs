@@ -35,6 +35,7 @@
             this.tiempoExe = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,12 +88,23 @@
             this.dataGridView1.Size = new System.Drawing.Size(1113, 533);
             this.dataGridView1.TabIndex = 3;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(37, 313);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 44);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Direcciones";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormFHG
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::PUFT_PRUEBA_001.Properties.Resources.b7eb6c689c037217079766fdb77c3bac3e51cb4c;
             this.ClientSize = new System.Drawing.Size(1280, 586);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tiempoExe);
@@ -113,5 +125,6 @@
         private System.Windows.Forms.ComboBox tiempoExe;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button2;
     }
 }
